@@ -1,0 +1,19 @@
+// Fonts
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap';
+
+header {
+    background-color: #cccc;
+
+    h1 {
+        color: $orange-color;
+    }
+}
+
+
+
