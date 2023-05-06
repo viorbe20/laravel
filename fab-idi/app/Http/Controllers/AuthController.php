@@ -11,7 +11,7 @@ class AuthController extends Controller
     public function login()
     {
         $showLoginButton = false;
-        return view('login', compact('showLoginButton'));
+        return view('auth/login', compact('showLoginButton'));
     }
 
     public function loginPost(Request $request)
@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function register()
     {
         $showLoginButton = false;
-        return view('register', compact('showLoginButton'));
+        return view('auth/register', compact('showLoginButton'));
     }
 
     public function registerPost(Request $request)

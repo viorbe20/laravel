@@ -13,7 +13,7 @@
 
         <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
 
-        @if ($showLoginButton)
+        @if (isset($showLoginButton))
             <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
             
         @else
