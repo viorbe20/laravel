@@ -13,7 +13,46 @@ header {
     h1 {
         color: $orange-color;
     }
+    
+    .video-content {
+        width: auto;
+    }
 }
+
+//Página inicio
+#inicio-up {
+    display: flex;
+
+    #inicio-videos {
+        a {
+            margin: 0 40%;
+        }
+    }
+
+    #inicio-text {
+        padding: 2%;
+    }
+    #video-line-2{
+        display: flex;
+    }
+
+}
+
+#carousel {
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0;
+
+    #inicio-cards {
+        display: flex;
+        justify-content: center;
+    }
+
+    a {
+        margin: 0 40%;
+    }
+}
+
 
 
 

@@ -11,8 +11,10 @@
         <i class="fa fa-instagram" aria-hidden="true"></i>
         <i class="fa fa-youtube-play" aria-hidden="true"></i>
 
+        <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
+
         @if ($showLoginButton)
-            <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Login</a>
+            <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
             
         @else
             <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a>

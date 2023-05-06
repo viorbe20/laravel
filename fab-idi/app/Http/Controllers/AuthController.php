@@ -14,14 +14,8 @@ class AuthController extends Controller
         return view('login', compact('showLoginButton'));
     }
 
-    /**
-     * Handle an authentication attempt.
-     * If the attempt is successful, redirect to the intended url.
-     * If the attempt fails, redirect back with an error message.
-     */
     public function loginPost(Request $request)
     {
-        $showLoginButton = false;
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
@@ -30,5 +24,24 @@ class AuthController extends Controller
         }
 
         return back()->with('error', 'Wrong credentials.');
+    }
+
+    public function register()
+    {
+        $showLoginButton = false;
+        return view('register', compact('showLoginButton'));
+    }
+
+    public function registerPost(Request $request)
+    {
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password); 
+
+        $user->save();
+
+        return back()->with('success', 'Register successfully.');
     }
 }
