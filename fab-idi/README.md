@@ -23,5 +23,5 @@
 - Migración. ```php artisan make:migration create_videos_table --create=videos```
 - En el archivo de migración, define los campos de la tabla utilizando el método up:
 - Ejecutar migración. ```php artisan migrate```
-- resources/views/admin/inicio-admin.blade.php. Formulario para añadir videos.
 - Creación del modelo Video. ```php artisan make:model Video```
+- Vistas. Pagina que lista los videos, página de edición de un video.

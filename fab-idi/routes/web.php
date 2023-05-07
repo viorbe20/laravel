@@ -14,8 +14,13 @@ Route::post("/login", [AuthController::class, "loginPost"])->name("login");
 Route::get("/register", [AuthController::class, "register"])->name("register");
 Route::post("/register", [AuthController::class, "registerPost"])->name("register");
 
-// Pages Admin
-Route::get("/inicio-admin", [AdminController::class, "inicioAdmin"])->name("inicio-admin");
-Route::post('/videos', [AdminController::class, 'inicioAdmin'])->name('inicio-admin');
+// Admin gestión vídeos
+Route::get("/gestion-videos", [AdminController::class, "gestionVideos"])->name("gestion-videos");
+Route::get("/gestion-videos/editar/{id}", [AdminController::class, "editarVideos"])->name("editar-videos");
+Route::post("/gestion-videos/editar/{id}", [AdminController::class, "actualizarVideo"])->name("actualizar-video");
+
+
+
+
 Route::get("/panel-colaboradores", [AdminController::class, "colaboradores"])->name("colaboradores");
 Route::get("/revistas", [AdminController::class, "revistas"])->name("revistas");
