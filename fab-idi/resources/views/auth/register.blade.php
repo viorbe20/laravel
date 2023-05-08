@@ -22,9 +22,18 @@
                         <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Nombre de usuario</label>
+                                <label for="name" class="form-label">Nombre</label>
                                 <input type="text" name="name" id="name" class="form-control">
                                 @error('name')
+                                    <div class="text-danger mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label for="surnames" class="form-label">Apellidos</label>
+                                <input type="text" name="surnames" id="surnames" class="form-control">
+                                @error('surnames')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
                                     </div>

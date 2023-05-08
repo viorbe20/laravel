@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Session;
+
+
+if (!session()->has('perfil')){
+    session(['perfil' => 'invitado']);
+}
 
 
 Route::get("/", [InicioController::class, "index"])->name("index");
@@ -13,6 +19,7 @@ Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name("login");
 Route::get("/register", [AuthController::class, "register"])->name("register");
 Route::post("/register", [AuthController::class, "registerPost"])->name("register");
+Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
 // Admin gestión vídeos
 Route::get("/gestion-videos", [AdminController::class, "gestionVideos"])->name("gestion-videos");

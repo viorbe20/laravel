@@ -11,14 +11,20 @@
         <i class="fa fa-instagram" aria-hidden="true"></i>
         <i class="fa fa-youtube-play" aria-hidden="true"></i>
 
-        <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
+        @guest
+            <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
 
-        @if (isset($showLoginButton))
-            <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
-            
+            @if ($showLoginButton)
+                <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
+                
+            @else
+                <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a>
+            @endif
         @else
-            <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a>
-        @endif
+            <a href="{{ route('logout') }}" class="btn btn-danger me-2">Logout</a>
+            <a class="btn btn-primary">Bienvenid@, {{ Auth::user()->name }} </a>
+
+        @endguest
         
     </div>
 </header>

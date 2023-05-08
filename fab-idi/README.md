@@ -21,7 +21,16 @@
 ## Creación sección gestionar videos del admin
 
 - Migración. ```php artisan make:migration create_videos_table --create=videos```
-- En el archivo de migración, define los campos de la tabla utilizando el método up:
+- En el archivo de migración, definir los campos de la tabla utilizando el método up:
 - Ejecutar migración. ```php artisan migrate```
 - Creación del modelo Video. ```php artisan make:model Video```
-- Vistas. Pagina que lista los videos, página de edición de un video.
+- Vistas 
+    -- views/admin/gestion-videos.blade.php. Pagina que lista los videos.
+    -- views/admin/editar-video.blade.php. Formulario para editar un video.
+- Web.php
+   -- Route::get("/gestion-videos", [AdminController::class, "gestionVideos"])->name("gestion-videos");-- Route::get("/gestion-videos/editar/{id}", [AdminController::class, "editarVideos"])->name("editar-videos");
+   -- Route::post("/gestion-videos/editar/{id}", [AdminController::class, "actualizarVideo"])->name("actualizar-video");
+- AdminController.php
+   -- public function gestionVideos()
+   -- public function editarVideos($id)
+   -- public function actualizarVideo(Request $request, $id)

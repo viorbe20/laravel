@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -19,8 +20,16 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
-            //return redirect()->intended('home');
-            return redirect('/home')->with('success', 'Login successfully.');
+            
+            //Comprueba si el usuario está activo
+            if (auth()->user()->active == false) {
+                auth()->logout();
+                return back()->with('error', 'User not active.');
+            }
+
+            //Obtiene el perfil del usuario y lo pasa a la vista
+            $profile = auth()->user()->profile->name;
+            return redirect('/' . $profile);
         }
 
         return back()->with('error', 'Wrong credentials.');
@@ -34,14 +43,24 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
-        $user = new User();
+        $usuario = new Usuario();
 
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password); 
+        $usuario->nombre = $request->name;
+        $usuario->apellidos = $request->surnames;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->perfil_id = 1;
+        $usuario->activo = false;
 
-        $user->save();
+        $usuario->save();
 
         return back()->with('success', 'Register successfully.');
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return redirect('/');
     }
 }
