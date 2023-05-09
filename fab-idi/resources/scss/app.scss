@@ -54,5 +54,57 @@ header {
 }
 
 
+//Página colaboradores
+
+#main-crear-colaborador {
+    form {
+        margin: 0 auto;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+      
+        label {
+          margin-bottom: 0.5rem;
+        }
+      
+        input[type="text"], 
+        select {
+          padding: 0.5rem;
+          margin-bottom: 1rem;
+          border: none;
+          border-radius: 3px;
+          background-color: #f3f3f3;
+          font-size: 1rem;
+      
+          &:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #bbb;
+          }
+        }
+      
+        .btn-primary {
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 3px;
+          background-color: #007bff;
+          color: #fff;
+          cursor: pointer;
+          transition: all 0.3s ease;
+      
+          &:hover {
+            background-color: #0069d9;
+          }
+      
+          &:focus {
+            outline: none;
+            box-shadow: 0px 0px 5px #bbb;
+          }
+        }
+      }
+      
+}
+
+
+
 
 

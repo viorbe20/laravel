@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
+    public function crearColaborador()
+    {
+        return view('admin/crear-colaborador');
+    }
+
+    public function gestionColaboradores()
+    {
+        return view('admin/gestion-colaboradores');
+    }
+
     public function actualizarVideo(Request $request)
     {
         $video = Video::find($request->id);

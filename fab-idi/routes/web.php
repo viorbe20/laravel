@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ColaboradoresController;
 use Illuminate\Support\Facades\Session;
 
 
@@ -25,9 +26,11 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 Route::get("/gestion-videos", [AdminController::class, "gestionVideos"])->name("gestion-videos");
 Route::get("/gestion-videos/editar/{id}", [AdminController::class, "editarVideos"])->name("editar-videos");
 Route::post("/gestion-videos/editar/{id}", [AdminController::class, "actualizarVideo"])->name("actualizar-video");
-
-
-
-
-Route::get("/panel-colaboradores", [AdminController::class, "colaboradores"])->name("colaboradores");
+Route::get("/gestion-colaboradores", [AdminController::class, "gestionColaboradores"])->name("gestion-colaboradores");
+Route::get("/gestion-colaboradores/crear", [AdminController::class, "crearColaborador"])->name("crear-colaborador");
 Route::get("/revistas", [AdminController::class, "revistas"])->name("revistas");
+
+
+// Colaboradores
+Route::get("/panel-colaboradores", [ColaboradoresController::class, "index"])->name("panel-colaboradores");
+

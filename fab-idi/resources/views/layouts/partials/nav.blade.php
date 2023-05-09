@@ -11,14 +11,18 @@
             <li><a href="{{ route('gestion-videos') }}" class="nav-link px-2">Gestión de vídeos y premios</a></li>
         @endif
 
-        <li><a href="#" class="nav-link px-2">Panel Colaboradores</a></li>
+        <li><a href="{{ route('panel-colaboradores') }}"  class="nav-link px-2">Panel Colaboradores</a></li>
         @if (session('perfil') == 'admin')
-            <li><a href="#" class="nav-link px-2">Gestión de colaboradores</a></li>
+            <li><a href="{{ route('gestion-colaboradores') }}" class="nav-link px-2">Gestión de colaboradores</a></li>
         @endif
 
         <li><a href="#" class="nav-link px-2">Revistas</a></li>
          @if (session('perfil') == 'admin' )
             <li><a href="#" class="nav-link px-2">Gestión de revistas</a></li>
+        @endif
+
+        @if (session('perfil') == 'admin')
+        <li><a href="#" class="nav-link px-2">Gestión de usuarios</a></li>
         @endif
 
          @if (session('perfil') != 'admin' )
