@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -29,6 +30,10 @@ class AuthController extends Controller
                 auth()->logout();
                 return back()->with('error', 'El usuario no está activo.');
             }
+
+            $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
+            $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
+            session(['perfil' => $perfil]);
             return redirect('/')->with('success', 'Login successfully.');
         }
 
