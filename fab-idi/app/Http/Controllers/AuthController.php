@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class AuthController extends Controller
 {
@@ -20,16 +21,15 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
-            
-            //Comprueba si el usuario está activo
-            if (auth()->user()->active == false) {
-                auth()->logout();
-                return back()->with('error', 'User not active.');
-            }
 
-            //Obtiene el perfil del usuario y lo pasa a la vista
-            $profile = auth()->user()->profile->name;
-            return redirect('/' . $profile);
+            //Comprueba que el campo activo de la tabla usuarios sea true
+            $user = DB::table('users')->where('email', $request->email)->first();
+
+            if ($user->activo == false) {
+                auth()->logout();
+                return back()->with('error', 'El usuario no está activo.');
+            }
+            return redirect('/')->with('success', 'Login successfully.');
         }
 
         return back()->with('error', 'Wrong credentials.');
@@ -43,16 +43,16 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
-        $usuario = new Usuario();
+        $user = new User();
 
-        $usuario->nombre = $request->name;
-        $usuario->apellidos = $request->surnames;
-        $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->perfil_id = 1;
-        $usuario->activo = false;
+        $user->nombre = $request->name;
+        $user->apellidos = $request->surnames;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->perfil_id = 1;
+        $user->activo = false;
 
-        $usuario->save();
+        $user->save();
 
         return back()->with('success', 'Register successfully.');
     }

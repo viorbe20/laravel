@@ -16,15 +16,14 @@
 
             @if ($showLoginButton)
                 <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
-                
             @else
                 <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a>
             @endif
         @else
             <a href="{{ route('logout') }}" class="btn btn-danger me-2">Logout</a>
-            <a class="btn btn-primary">Bienvenid@, {{ Auth::user()->name }} </a>
+            <a class="btn btn-primary">Bienvenid@, {{ Auth::user()->nombre }} </a>
 
         @endguest
-        
+
     </div>
 </header>
