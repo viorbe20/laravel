@@ -5,14 +5,21 @@
 @section('content')
     <main id="main-crear-colaborador">
         <h2>Alta colaborador</h2>
-        <form method="POST" action="" enctype="multipart/form-data">
+
+        <form method="POST" action="{{ route('crear-colaborador') }}" enctype="multipart/form-data"
+            id='form-crear-colaborador'>
             @csrf
+            @if (Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
             <div class="form-group">
-                <label for="nombre">Nombre</label>
+                <label for="nombre">Nombre*</label>
                 <input type="text" name="nombre" id="nombre" class="form-control" required>
             </div>
             <div class="form-group">
-                <label for="tipoColaborador">Tipo de Colaborador:</label>
+                <label for="tipoColaborador">Tipo de Colaborador*</label>
                 <select name="tipoColaborador" id="tipoColaborador" class="form-control" required>
                     <option value="">Selecciona un tipo</option>
                     <option value="Instituto">Instituto</option>
@@ -25,7 +32,7 @@
                 <label for="descripcion">Descripción</label>
                 <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group" id='div-imagen'>
                 <label for="imagen">Imagen</label>
                 <input type="file" name="imagen" id="imagen" class="form-control-file">
             </div>

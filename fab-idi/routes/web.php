@@ -28,6 +28,7 @@ Route::get("/gestion-videos/editar/{id}", [AdminController::class, "editarVideos
 Route::post("/gestion-videos/editar/{id}", [AdminController::class, "actualizarVideo"])->name("actualizar-video");
 Route::get("/gestion-colaboradores", [AdminController::class, "gestionColaboradores"])->name("gestion-colaboradores");
 Route::get("/gestion-colaboradores/crear", [AdminController::class, "crearColaborador"])->name("crear-colaborador");
+Route::post("/gestion-colaboradores/crear", [AdminController::class, "crearColaboradorPost"])->name("crear-colaborador");
 Route::get("/revistas", [AdminController::class, "revistas"])->name("revistas");
 
 

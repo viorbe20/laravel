@@ -53,9 +53,7 @@ header {
     }
 }
 
-
 //Página colaboradores
-
 #main-crear-colaborador {
     form {
         margin: 0 auto;
@@ -102,6 +100,16 @@ header {
         }
       }
       
+}
+
+//Formularios
+#form-crear-colaborador {
+  background-color: #bbb;
+  padding: 5%;
+
+  #div-imagen {
+    margin: 2% 0%;
+  }
 }
 
 
