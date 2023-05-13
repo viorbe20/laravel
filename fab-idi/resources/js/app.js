@@ -1,18 +1,23 @@
 import $ from 'jquery';
 
-// $(document).ready(function () {
-    //$("#email").prop("required", false);
-//     console.log("app.js cargado");
-//     $("#form-select-tipo-usuario").change(function () {
-//         if ($(this).val() === "usuario") {
-//             $("#usuario-campos").show();
-//             console.log("usuario");
-//         } else if ($(this).val() === "entidad") {
-//             $("#usuario-campos").hide();
-//             $("#entidad-campos").show();
-//         } else {
-//             $("#usuario-campos").hide();
-//             $("#entidad-campos").hide();
-//         }
-//     });
-// });
+$(document).ready(function () {
+    
+    $("#form-select-tipo-usuario").change(function () {
+        if ($(this).val() === "usuario") {
+            $("#usuario-campos").show();
+            $(".required-usuario").prop("required", true);
+            $("#entidad-campos").hide();
+            $(".required-entidad").prop("required", false);
+        } else if ($(this).val() === "entidad") {
+            $("#usuario-campos").hide();
+            $(".required-usuario").prop("required", false);
+            $("#entidad-campos").show();
+            $(".required-entidad").prop("required", true);
+        } else {
+            $("#usuario-campos").hide();
+            $(".required-usuario").prop("required", false);
+            $("#entidad-campos").hide();
+            $(".required-entidad").prop("required", false);
+        }
+    });
+});

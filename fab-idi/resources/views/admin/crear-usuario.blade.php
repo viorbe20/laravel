@@ -24,11 +24,11 @@
             </div>
             <hr>
             {{-- <div id="usuario-campos" style="display: none;"> --}}
-                <div id="usuario-campos">
+                <div id="usuario-campos" style="display: none;">
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" class="form-control" name="nombre-usuario" >
+                        <input type="text" class="form-control required-usuario" name="nombre-usuario">
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Apellidos*</label>
@@ -83,11 +83,11 @@
                 </div>
             </div>
 
-            <div id="entidad-campos">
+            <div id="entidad-campos" style="display: none;">
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" class="form-control" name="nombre-entidad" >
+                        <input type="text" class="form-control required-entidad" name="nombre-entidad" >
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Representante</label>
