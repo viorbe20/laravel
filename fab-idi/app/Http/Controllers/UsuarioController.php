@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
+use App\Models\User;
 use App\Models\Entidad;
 
 
@@ -15,7 +15,7 @@ class UsuarioController extends Controller
         $tipoUsuario = $request->input('select-tipo-usuario'); 
 
         if ($tipoUsuario == "usuario") {
-            $usuario = Usuario::create([
+            $usuario = User::create([
                 'nombre' => $request->input('nombre-usuario'),
                 'apellidos' => $request->input('apellidos-usuario'),
                 'email' => $request->input('email-usuario'),

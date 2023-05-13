@@ -18,21 +18,27 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        
-        $user = DB::table('users')->where('email', $request->email)->first();
+        $credentials = $request->only('email', 'password');
 
-        if ($user->activo == false) {
-            auth()->logout();
-            return back()->with('error', 'El usuario no está activo.');
+        if (auth()->attempt($credentials)) {
+
+            $user = DB::table('users')->where('email', $request->email)->first();
+
+            if ($user->activo == false) {
+                auth()->logout();
+                return back()->with('error', 'El usuario no está activo.');
+            }
+
+            $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
+            $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
+            session(['perfil' => $perfil]);
+            return redirect('/gestion-usuarios')->with('success', 'Login successfully.');
         }
 
-        $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
-        $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
-        session(['perfil' => $perfil]);
-        return redirect('/')->with('success', 'Login successfully.');
-        
         return back()->with('error', 'Wrong credentials.');
     }
+
+
 
     public function register()
     {
