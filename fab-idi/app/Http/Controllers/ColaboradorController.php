@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colaborador;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ColaboradorController extends Controller
 {
@@ -50,15 +51,15 @@ class ColaboradorController extends Controller
                 $nombreFoto = $ultimoId . '.' . $extension;
 
                 // Guardar la imagen con el nuevo nombre
-                $imagen->move(public_path('images/colaboradores'), $nombreFoto);
+                $imagen->move(public_path('images/colaboradores/'), $nombreFoto);
 
                 // Guardar el nombre de la imagen en la base de datos
                 $colaborador->imagen = $nombreFoto;
-                $colaborador->save();
+                //$colaborador->save();
             } else {
                 $nombreFoto = 'imagen-colaborador-defecto.png';
                 $colaborador->imagen = $nombreFoto;
-                $colaborador->save();
+                //$colaborador->save();
             }
         }
         return view('admin/crear-colaborador')->with('success', 'El colaborador se ha creado correctamente.');
