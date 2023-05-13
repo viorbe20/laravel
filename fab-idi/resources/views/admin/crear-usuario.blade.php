@@ -15,31 +15,103 @@
         <form method="POST" action="{{ route('crear-usuario-post') }}" enctype="multipart/form-data" id='form-crear-usuario'>
             @csrf
             <div class="form-group">
-                <label for="tipo-usuario">Tipo de Usuario</label>
-                <select class="form-control" id="form-select-tipo-usuario" name="tipo-usuario">
+                <select class="form-control" id="form-select-tipo-usuario" name="select-tipo-usuario">
+                    <option value="" selected>Selecciona el tipo de usuario</option>
                     <option value="usuario">Usuario</option>
                     <option value="entidad">Entidad</option>
                 </select>
+
             </div>
             <hr>
-            <div id="usuario_campos" style="display: none;">
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre">
+            {{-- <div id="usuario-campos" style="display: none;"> --}}
+                <div id="usuario-campos">
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="nombre">Nombre*</label>
+                        <input type="text" class="form-control" name="nombre-usuario" >
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos*</label>
+                        <input type="text" class="form-control" name="apellidos-usuario" >
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido">
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" class="form-control" name="email-usuario" >
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña*</label>
+                        <input type="text" class="form-control" name="password-usuario" >
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="phone" class="form-control" name="telefono-usuario">
+                    </div>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label for="twitter">Cuenta twitter</label>
+                        <input type="text" class="form-control" name="twitter-usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="instagram">Cuenta instagram</label>
+                        <input type="text" class="form-control" name="instagram-usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">Cuenta linkedin</label>
+                        <input type="text" class="form-control" name="linkedin-usuario">
+                    </div>
+                </div>
+
+                
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="profile">Perfil</label>
+                        <select class="form-control" name="select-perfil-usuario" >
+                            <option value="1">Admin</option>
+                            <option value="2" selected>Usuario</option>
+                            <option value="3">Embajador</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phot">Foto</label>
+                        <input type="file" class="form-control" name="foto-usuario">
+                    </div>
                 </div>
             </div>
-            <div id="entidad_campos" style="display: none;">
-                <div class="form-group">
-                    <label for="razon_social">Razón Social</label>
-                    <input type="text" class="form-control" id="razon_social" name="razon_social">
+            <div id="entidad-campos" style="display: none;">
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="nombre">Nombre*</label>
+                        <input type="text" class="form-control" name="nombre-entidad" >
+                    </div>
+                    <div class="form-group">
+                        <label for="apellidos">Representante</label>
+                        <input type="text" class="form-control" name="representante-entidad">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="cuit">CUIT</label>
-                    <input type="text" class="form-control" id="cuit" name="cuit">
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" class="form-control" name="email-entidad" >
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="phone" class="form-control" name="telefono-entidad">
+                    </div>
+                </div>
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="web">Web</label>
+                        <input type="text" class="form-control" name="web-entidad" >
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Imagen</label>
+                        <input type="file" class="form-control" name="imagen-entidad">
+                    </div>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Crear</button>

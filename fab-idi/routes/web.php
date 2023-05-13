@@ -23,7 +23,7 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 //Usuarios
 Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
 Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
-Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
+Route::post("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 
 
 

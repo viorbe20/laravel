@@ -11,98 +11,99 @@
 @import 'node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
 header {
-    background-color: #cccc;
+  background-color: #cccc;
 
-    h1 {
-        color: $orange-color;
-    }
-    
-    .video-content {
-        width: auto;
-    }
+  h1 {
+    color: $orange-color;
+  }
+
+  .video-content {
+    width: auto;
+  }
 }
 
 //Página inicio
 #inicio-up {
+  display: flex;
+
+  #inicio-videos {
+    a {
+      margin: 0 40%;
+    }
+  }
+
+  #inicio-text {
+    padding: 2%;
+  }
+
+  #video-line-2 {
     display: flex;
-
-    #inicio-videos {
-        a {
-            margin: 0 40%;
-        }
-    }
-
-    #inicio-text {
-        padding: 2%;
-    }
-    #video-line-2{
-        display: flex;
-    }
+  }
 
 }
 
 #carousel {
+  display: flex;
+  flex-direction: column;
+  margin: 2% 0;
+
+  #inicio-cards {
     display: flex;
-    flex-direction: column;
-    margin: 2% 0;
+    justify-content: center;
+  }
 
-    #inicio-cards {
-        display: flex;
-        justify-content: center;
-    }
-
-    a {
-        margin: 0 40%;
-    }
+  a {
+    margin: 0 40%;
+  }
 }
 
 //Página colaboradores
 #main-crear-colaborador {
-    form {
-        margin: 0 auto;
-        max-width: 600px;
-        display: flex;
-        flex-direction: column;
-      
-        label {
-          margin-bottom: 0.5rem;
-        }
-      
-        input[type="text"], 
-        select {
-          padding: 0.5rem;
-          margin-bottom: 1rem;
-          border: none;
-          border-radius: 3px;
-          background-color: #f3f3f3;
-          font-size: 1rem;
-      
-          &:focus {
-            outline: none;
-            box-shadow: 0px 0px 5px #bbb;
-          }
-        }
-      
-        .btn-primary {
-          padding: 0.5rem 1rem;
-          border: none;
-          border-radius: 3px;
-          background-color: #007bff;
-          color: #fff;
-          cursor: pointer;
-          transition: all 0.3s ease;
-      
-          &:hover {
-            background-color: #0069d9;
-          }
-      
-          &:focus {
-            outline: none;
-            box-shadow: 0px 0px 5px #bbb;
-          }
-        }
+  form {
+    margin: 0 auto;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"],
+    select {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 3px;
+      background-color: #f3f3f3;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 5px #bbb;
       }
-      
+    }
+
+    .btn-primary {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 3px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #0069d9;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0px 0px 5px #bbb;
+      }
+    }
+  }
+
 }
 
 //Formularios
@@ -118,13 +119,32 @@ header {
 //Gestión usuarios
 #form-crear-usuario {
   margin: 0% 10%;
-  padding: 0% 5%;
+  padding: 2% 5%;
   background-color: lightblue;
+
+  .form-row-2 {
+    display: flex;
+    justify-content: space-between;
+
+    .form-group {
+      width: 48%;
+    }
+  }
+
+  .form-row-3 {
+    display: flex;
+    justify-content: space-between;
+
+    .form-group {
+      width: 33%;
+    }
+  }
+  
+
+  button {
+    width: 100%;
+    margin: 2% 0%;
+  }
 
 
 }
-
-
-
-
-

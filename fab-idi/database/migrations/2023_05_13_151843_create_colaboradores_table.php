@@ -13,14 +13,7 @@ return new class extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('tipoColaborador')->nullable(false);
-            $table->string('descripcion')->nullable();
-            $table->string('imagen')->nullable();
-            $table->string('instagram')->nullable();
-            $table->string('twitter')->nullable();
-            $table->string('linkedin')->nullable();
-            $table->string('web')->nullable();
+            $table->string('tipo_colaborador');
             $table->timestamps();
         });
     }
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colaboradores');
+        Schema::dropIfExists('users');
     }
 };

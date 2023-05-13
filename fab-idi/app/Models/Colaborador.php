@@ -20,14 +20,7 @@ class Colaborador extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'nombre',
         'tipoColaborador',
-        'descripcion',
-        'imagen',
-        'instagram',
-        'twitter',
-        'linkedin',
-        'web',
     ];
 
 }
