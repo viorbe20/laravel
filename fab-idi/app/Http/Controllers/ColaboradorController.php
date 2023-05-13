@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Storage;
 class ColaboradorController extends Controller
 {
     public function index(){
-        return view("panel-colaboradores");
+
+        $colaboradores = Colaborador::all();
+
+        return view("panel-colaboradores")->with('colaboradores', $colaboradores);
     }
     
     public function crearColaboradorPost(Request $request)
