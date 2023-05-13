@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -19,24 +18,19 @@ class AuthController extends Controller
 
     public function loginPost(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        
+        $user = DB::table('users')->where('email', $request->email)->first();
 
-        if (auth()->attempt($credentials)) {
-
-            //Comprueba que el campo activo de la tabla usuarios sea true
-            $user = DB::table('users')->where('email', $request->email)->first();
-
-            if ($user->activo == false) {
-                auth()->logout();
-                return back()->with('error', 'El usuario no está activo.');
-            }
-
-            $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
-            $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
-            session(['perfil' => $perfil]);
-            return redirect('/')->with('success', 'Login successfully.');
+        if ($user->activo == false) {
+            auth()->logout();
+            return back()->with('error', 'El usuario no está activo.');
         }
 
+        $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
+        $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
+        session(['perfil' => $perfil]);
+        return redirect('/')->with('success', 'Login successfully.');
+        
         return back()->with('error', 'Wrong credentials.');
     }
 
@@ -48,16 +42,16 @@ class AuthController extends Controller
 
     public function registerPost(Request $request)
     {
-        $user = new User();
+        $usuario = new User();
 
-        $user->nombre = $request->name;
-        $user->apellidos = $request->surnames;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->perfil_id = 1;
-        $user->activo = false;
+        $usuario->nombre = $request->name;
+        $usuario->apellidos = $request->surnames;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->perfil_id = 1;
+        $usuario->activo = false;
 
-        $user->save();
+        $usuario->save();
 
         return back()->with('success', 'Register successfully.');
     }

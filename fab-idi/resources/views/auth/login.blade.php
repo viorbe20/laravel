@@ -16,7 +16,6 @@
                 @if (Session::has('error'))
                     <div class="alert alert-danger" role="alert">
                         {{ Session::get('error') }}
-                        {{-- Método loginPost de AuthController --}}
                     </div>
                 @endif
                 <form action="{{ route('login') }}" method="POST">
