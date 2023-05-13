@@ -82,7 +82,8 @@
                     </div>
                 </div>
             </div>
-            <div id="entidad-campos" style="display: none;">
+
+            <div id="entidad-campos">
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
