@@ -22,7 +22,7 @@
         @endif
 
         @if (session('perfil') == 'admin')
-        <li><a href="#" class="nav-link px-2">Gestión de usuarios</a></li>
+        <li><a href="{{ route('gestion-usuarios') }}" class="nav-link px-2">Gestión de usuarios</a></li>
         @endif
 
          @if (session('perfil') != 'admin' )

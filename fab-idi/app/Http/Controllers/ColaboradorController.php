@@ -10,9 +10,7 @@ class ColaboradorController extends Controller
 {
     public function index(){
 
-        $colaboradores = Colaborador::all();
-
-        return view("panel-colaboradores")->with('colaboradores', $colaboradores);
+        return view("panel-colaboradores");
     }
     
     public function crearColaboradorPost(Request $request)

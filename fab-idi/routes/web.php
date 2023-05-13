@@ -5,6 +5,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\UsuarioController;
 
 if (!session()->has('perfil')){
     session(['perfil' => 'invitado']);
@@ -18,6 +19,13 @@ Route::post("/login", [AuthController::class, "loginPost"])->name("login");
 Route::get("/register", [AuthController::class, "register"])->name("register");
 Route::post("/register", [AuthController::class, "registerPost"])->name("register");
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
+
+//Usuarios
+Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
+Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
+Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
+
+
 
 // Vídeos 
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
