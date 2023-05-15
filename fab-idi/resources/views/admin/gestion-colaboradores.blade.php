@@ -3,22 +3,34 @@
 @section('title', 'Gestión de Colaboradores')
 
 @section('content')
-    <main>
+    <main id='main-gestion-colaboradores'>
     
     @php
-      $usuarios = App\Models\User::all();
+    $lastUsuarios = App\Models\User::latest()->take(3)->get();
     @endphp
 
 <input type="text" name="buscar" id="buscar-usuario">
 <div id="resultado-busqueda">r</div>
 
-        <h2>Gestión de Colaboradores</h2>
-        {{-- <form id="form-buscar-usuario" method="POST" action="{{ route('buscar-usuario') }}">
-            <div class="form-group">
-              <input id="input-buscar-usuario" type="text" class="form-control"  placeholder="Buscar usuario">
-            </div>
-          </form>
-          <ul id="muestra-usuarios"></ul> --}}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($lastUsuarios as $usuario): ?>
+      <tr>
+        <td><?= $usuario['nombre'] ?></td>
+        <td><?= $usuario['apellidos'] ?></td>
+        <td><button type="button" class="btn btn-primary">Agregar</button></td>
+      </tr>
+    <?php endforeach ?>
+  </tbody>
+</table>
+
 
 
         <a href="{{ route('crear-colaborador') }}" class="btn btn-primary me-2">Crear</a>

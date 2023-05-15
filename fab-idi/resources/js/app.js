@@ -1,6 +1,8 @@
 import $ from 'jquery';
 
 $(document).ready(function () {
+
+    /*Muestra usuarios con coincidencia nombre en input*/
     $("#buscar-usuario").on("keyup", function () {
         let query = $(this).val().toLowerCase();
         if (query.length === 0) {

@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
-            $table->string('tipoColaborador');
-            $table->foreignId('user_id')->nullable(false)->constrained('users');
+            $table->string('colaborador');
             $table->timestamps();
         });
     }

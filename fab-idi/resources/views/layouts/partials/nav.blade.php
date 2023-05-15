@@ -1,14 +1,15 @@
 <nav class="navbar bg-light">
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
-        {{-- <li><a href="{{ route('index') }}" class="nav-link px-2">Inicio</a></li> --}}
         <li class="{{ Request::is('/') ? 'active' : '' }}">
-            <a href="{{ URL::to('/') }}">Home</a>
+            <a href="{{ URL::to('/') }}">Inicio</a>
           </li>
           
 
         @if (session('perfil') != 'admin' )
-        <li><a href="#" class="nav-link px-2">Quiénes somos</a></li>
+        <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+            <a href="{{ route('gestion-videos') }}">Quiénes somos</a>
+        </li>
         @endif
 
 
@@ -29,7 +30,9 @@
 
         <li><a href="#" class="nav-link px-2">Revistas</a></li>
          @if (session('perfil') == 'admin' )
-            <li><a href="#" class="nav-link px-2">Gestión de revistas</a></li>
+         <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+            <a href="{{ route('gestion-videos') }}">Gestión de revistas</a>
+        </li>
         @endif
 
         @if (session('perfil') == 'admin')

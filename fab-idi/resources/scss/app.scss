@@ -10,6 +10,14 @@
 // Fontawesome
 @import 'node_modules/@fortawesome/fontawesome-free/css/all.min.css';
 
+*{
+  font-family: 'Nunito', sans-serif;
+  
+  main {
+    padding: 0% 2%;
+  }
+}
+
 header {
   background-color: #cccc;
 
