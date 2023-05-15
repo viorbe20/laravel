@@ -1,19 +1,30 @@
 <nav class="navbar bg-light">
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
 
-        <li><a href="{{ route('index') }}" class="nav-link px-2">Inicio</a></li>
+        {{-- <li><a href="{{ route('index') }}" class="nav-link px-2">Inicio</a></li> --}}
+        <li class="{{ Request::is('/') ? 'active' : '' }}">
+            <a href="{{ URL::to('/') }}">Home</a>
+          </li>
+          
 
         @if (session('perfil') != 'admin' )
-            <li><a href="#" class="nav-link px-2">Quiénes somos</a></li>
+        <li><a href="#" class="nav-link px-2">Quiénes somos</a></li>
         @endif
 
+
         @if (session('perfil') == 'admin')
-            <li><a href="{{ route('gestion-videos') }}" class="nav-link px-2">Gestión de vídeos y premios</a></li>
+            <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+                <a href="{{ route('gestion-videos') }}">Gestión de vídeos y premios</a>
+            </li>
         @endif
 
-        <li><a href="{{ route('panel-colaboradores') }}"  class="nav-link px-2">Panel Colaboradores</a></li>
+        <li class="{{ Route::is('panel-colaboradores') ? 'active' : '' }}">
+            <a href="{{ route('panel-colaboradores') }}">Panel de colaboradores</a>
+        </li>
         @if (session('perfil') == 'admin')
-            <li><a href="{{ route('gestion-colaboradores') }}" class="nav-link px-2">Gestión de colaboradores</a></li>
+        <li class="{{ Route::is('gestion-colaboradores') ? 'active' : '' }}">
+            <a href="{{ route('gestion-colaboradores') }}">Gestión de colaboradores</a>
+        </li>
         @endif
 
         <li><a href="#" class="nav-link px-2">Revistas</a></li>
@@ -22,7 +33,9 @@
         @endif
 
         @if (session('perfil') == 'admin')
-        <li><a href="{{ route('gestion-usuarios') }}" class="nav-link px-2">Gestión de usuarios</a></li>
+        <li class="{{ Route::is('gestion-usuarios*') ? 'active' : '' }}">
+            <a href="{{ route('gestion-usuarios') }}">Gestión de usuarios</a>
+        </li>
         @endif
 
          @if (session('perfil') != 'admin' )
