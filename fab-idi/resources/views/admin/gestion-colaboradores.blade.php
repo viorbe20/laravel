@@ -21,13 +21,18 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($lastUsuarios as $usuario): ?>
+    @foreach ($lastUsuarios as $usuario)
       <tr>
-        <td><?= $usuario['nombre'] ?></td>
-        <td><?= $usuario['apellidos'] ?></td>
-        <td><button type="button" class="btn btn-primary">Agregar</button></td>
+        <td>{{ $usuario['nombre'] }}</td>
+        <td>{{ $usuario['apellidos'] }}</td>
+        <td>{{ $usuario['id_colaborador'] }}</td>
+        @if ($usuario['id_colaborador'] == null)
+          <td><button type="button" class="btn btn-success">Agregar</button></td>
+        @else
+          <td><button type="button" class="btn btn-warning">Eliminar</button></td>
+        @endif
       </tr>
-    <?php endforeach ?>
+    @endforeach
   </tbody>
 </table>
 
