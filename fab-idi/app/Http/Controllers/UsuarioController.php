@@ -9,10 +9,20 @@ use App\Models\Entidad;
 
 class UsuarioController extends Controller
 {
+
+
+
+    public function obtenerUsuariosAjax(Request $request)
+    {
+        $query = $request->get('query');
+        $usuarios = User::where('nombre', 'LIKE', '%'.$query.'%')->get();
+        return response()->json($usuarios);
+    }
+    
     public function crearUsuarioPost(Request $request)
     {
 
-        $tipoUsuario = $request->input('select-tipo-usuario'); 
+        $tipoUsuario = $request->input('select-tipo-usuario');
 
         if ($tipoUsuario == "usuario") {
             $usuario = User::create([
@@ -20,7 +30,7 @@ class UsuarioController extends Controller
                 'apellidos' => $request->input('apellidos-usuario'),
                 'email' => $request->input('email-usuario'),
                 'password' => $request->input('password-usuario'),
-                'perfil_id' => $request->input("select-perfil-usuario"),
+                'perfil_id' => 1,
                 'activo' => 1,
                 'telefono' => $request->input('telefono-usuario'),
                 'twitter' => $request->input('twitter-usuario'),
@@ -43,8 +53,8 @@ class UsuarioController extends Controller
             ]);
         }
 
-            
-            
+
+
 
         return view("admin/gestion-usuarios");
     }

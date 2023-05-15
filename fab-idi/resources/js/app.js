@@ -1,6 +1,32 @@
 import $ from 'jquery';
 
 $(document).ready(function () {
+    $("#buscar-usuario").on("keyup", function () {
+        console.log($(this).val().toLowerCase());
+        let query = $(this).val().toLowerCase();
+        //llamda fetch
+        fetch('/obtener-usuarios-ajax', {
+            method: 'POST',
+            body: JSON.stringify({ query: query }),
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(function (response) {
+            console.log(response);
+            return response.json();
+        }).then(function (usuarios) {
+            let resultadoBusqueda = $('#resultado-busqueda');
+            resultadoBusqueda.empty();
+
+            usuarios.forEach(function (usuario) {
+                resultadoBusqueda.append(`<p>${usuario.nombre}</p>`);
+            });
+
+            console.log(resultadoBusqueda);
+        })
+    });
+    /*Formulario creación usuario. Muestra o esconde campos según tipo usuario*/
     $('#btn-crear-usuario').hide();
     $("#form-select-tipo-usuario").change(function () {
         if ($(this).val() === "usuario") {

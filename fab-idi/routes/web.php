@@ -9,6 +9,7 @@ use App\Http\Controllers\UsuarioController;
 
 if (!session()->has('perfil')){
     session(['perfil' => 'invitado']);
+    session(['showLoginButton'=>true]);
 }
 
 Route::get("/", [InicioController::class, "index"])->name("index");
@@ -25,15 +26,18 @@ Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gest
 Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
 Route::post("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 
-
-
 // Vídeos 
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
 Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
 //Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
 
 // Colaborador
+Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPost"])->name("buscar-usuario");
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
 Route::get("/gestion-colaboradores", [ColaboradorController::class, "gestionColaboradores"])->name("gestion-colaboradores");
 Route::get("/gestion-colaboradores/crear", [ColaboradorController::class, "crearColaborador"])->name("crear-colaborador");
 Route::post("/gestion-colaboradores/crear", [ColaboradorController::class, "crearColaboradorPost"])->name("crear-colaborador-post");
+
+//Ajax
+//Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");

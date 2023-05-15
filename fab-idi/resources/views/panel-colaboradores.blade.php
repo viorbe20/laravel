@@ -10,8 +10,10 @@
 @section('content')
 
     <main id='main-panel-colaboradores'>
+
+  
         @php
-            $mentores = App\Models\Colaborador::where('tipoColaborador', 'Mentor')->get();
+            $mentores = App\Models\Colaborador::where('tipoColaborador', 'mentor')->get();
         @endphp
 
         @foreach ($mentores as $mentor)
@@ -40,7 +42,7 @@
                 </div>
             </div>
         </div>
-        @endforeach
+        @endforeach --}}
 
         {{-- @foreach ($colaboradores as $colaborador)
             @if ($colaborador->tipoColaborador == 'Mentor')

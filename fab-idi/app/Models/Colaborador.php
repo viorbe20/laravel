@@ -21,6 +21,7 @@ class Colaborador extends Model
      */
     protected $fillable = [
         'tipoColaborador',
+        'user_id',
     ];
 
 }

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('colaboradores', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_colaborador');
+            $table->string('tipoColaborador');
+            $table->foreignId('user_id')->nullable(false)->constrained('users');
             $table->timestamps();
         });
     }
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('colaboradores');
     }
 };

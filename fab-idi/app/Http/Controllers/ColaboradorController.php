@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colaborador;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Models\User;
 
 class ColaboradorController extends Controller
 {
@@ -15,6 +15,7 @@ class ColaboradorController extends Controller
     
     public function crearColaboradorPost(Request $request)
     {
+
         if ($request->isMethod('post')) {
             // Lanzar mensaje de error si no se han completado los campos obligatorios
             if (!$request->has('nombre') || !$request->has('tipoColaborador')) {
@@ -66,8 +67,9 @@ class ColaboradorController extends Controller
         return view('admin/crear-colaborador')->with('success', 'El colaborador se ha creado correctamente.');
     }
 
-    public function crearColaborador()
+    public function crearColaborador(Request $request)
     {
+
         return view('admin/crear-colaborador');
     }
 
