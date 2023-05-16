@@ -10,7 +10,7 @@
     @endphp
 
 <input type="text" name="buscar" id="buscar-usuario">
-<div id="resultado-busqueda">r</div>
+<div id="resultado-busqueda"></div>
 
 <table class="table">
   <thead>
@@ -20,7 +20,7 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tbody-tabla-usuarios">
     @foreach ($lastUsuarios as $usuario)
       <tr>
         <td>{{ $usuario['nombre'] }}</td>
