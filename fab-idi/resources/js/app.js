@@ -53,6 +53,45 @@ $(document).ready(function () {
 
                 console.log(tbody);
             });
+        } else {
+            fetch('/obtener-usuarios-ajax', {
+                method: 'POST',
+                body: JSON.stringify({ query: query }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }).then(function (response) {
+                return response.json();
+            }).then(function (usuarios) {
+                let tbody = document.querySelector("#tbody-tabla-usuarios");
+                tbody.innerHTML = ""; 
+
+                //Hacer filtro de usuarios que coincidan con query
+                let usuariosFiltrados = usuarios.filter(function (usuario) {
+                    return usuario.nombre.toLowerCase().includes(query);
+                }
+                );
+
+                usuariosFiltrados.forEach(function (usuario) {
+                    // Construir la estructura de la fila de la tabla
+                    let rowHtml = `
+                  <tr>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.apellidos}</td>
+                    <td>${usuario.id_colaborador}</td>
+                    ${usuario.id_colaborador == null ?
+                            `<td><button type="button" class="btn btn-success">Agregar</button></td>` :
+                            `<td><button type="button" class="btn btn-warning">Eliminar</button></td>`
+                        }
+                  </tr>
+                `;
+
+                    // Agregar la fila al tbody
+                    tbody.innerHTML += rowHtml;
+                }
+                );
+            });
         }
 
     });
