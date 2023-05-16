@@ -4,7 +4,6 @@ $(document).ready(function () {
 
     $("#buscar-usuario").on("keyup", function () {
         const originalTbodyContent = $("#tbody-tabla-usuarios").html();
-        console.log(originalTbodyContent);
 
         let tbody = document.querySelector("#tbody-tabla-usuarios");
         let query = $(this).val().toLowerCase();
@@ -51,7 +50,7 @@ $(document).ready(function () {
                     tbody.innerHTML += rowHtml;
                 });
 
-                console.log(tbody);
+                //console.log(tbody);
             });
         } else {
             fetch('/obtener-usuarios-ajax', {
