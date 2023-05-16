@@ -31,8 +31,11 @@ class ColaboradorController extends Controller
         return view('admin/gestion-colaboradores');
     }
 
-    public function eliminarColaboradorPost(Request $request) {
-
+    public function eliminarColaboradorPost(Request $request, $id) {
+        $usuario = User::find($id);
+        $usuario->id_colaborador = null;
+        $usuario->save();
+        return view('admin/gestion-colaboradores');
     }
     
     // public function crearColaboradorPost(Request $request)

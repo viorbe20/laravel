@@ -58,8 +58,7 @@
                             </td>
                         @else
                             <td>
-                                <form method="POST"
-                                    action="{{ route('eliminar-colaborador-post', ['id' => $usuario['id']]) }}">
+                              <form method="POST" action="{{ route('eliminar-colaborador-post', ['id' => $usuario['id']]) }}">
                                     @csrf
                                     <button type="submit" class="btn btn-warning">Eliminar Colaborador</button>
                                 </form>
