@@ -25,6 +25,7 @@ class ColaboradorController extends Controller
 
     public function crearColaboradorPost(Request $request, $id) {
         $tipoColaborador = $request->input('tipo_colaborador');
+        dd($tipoColaborador);
         $usuario = User::find($id);
         $usuario->id_colaborador = $tipoColaborador;
         $usuario->save();

@@ -12,11 +12,11 @@
     <main id='main-panel-colaboradores'>
 
   
-        @php
+        {{-- @php
             $mentores = App\Models\Colaborador::where('tipoColaborador', 'mentor')->get();
-        @endphp
+        @endphp --}}
 
-        @foreach ($mentores as $mentor)
+        {{-- @foreach ($mentores as $mentor)
         <div class="items">  
             <div class="card">
                 <div class="media media-2x1 gd-primary">
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        @endforeach --}}
+        @endforeach  --}}
 
         {{-- @foreach ($colaboradores as $colaborador)
             @if ($colaborador->tipoColaborador == 'Mentor')

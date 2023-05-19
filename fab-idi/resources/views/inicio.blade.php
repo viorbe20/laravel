@@ -4,7 +4,6 @@
 
 @section('content')
     <main>
-
         <section id='inicio-up'>
 
             <section id="inicio-videos">
