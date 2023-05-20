@@ -10,8 +10,6 @@ use App\Models\Entidad;
 class UsuarioController extends Controller
 {
 
-
-
     public function obtenerUsuariosAjax(Request $request)
     {
         $query = $request->get('query');

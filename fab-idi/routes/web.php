@@ -36,7 +36,8 @@ Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPo
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
 Route::get("/gestion-colaboradores", [ColaboradorController::class, "gestionColaboradores"])->name("gestion-colaboradores");
 Route::post('/crear-colaborador/{id}', [ColaboradorController::class, 'crearColaboradorPost'])->name('crear-colaborador-post');
-Route::post('/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
+Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
+
 
 
 //Route::get("/gestion-colaboradores/crear", [ColaboradorController::class, "crearColaborador"])->name("crear-colaborador");
