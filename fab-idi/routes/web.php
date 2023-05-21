@@ -35,7 +35,7 @@ Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos
 Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPost"])->name("buscar-usuario");
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
 Route::get("/gestion-colaboradores", [ColaboradorController::class, "gestionColaboradores"])->name("gestion-colaboradores");
-Route::post('/crear-colaborador/{id}', [ColaboradorController::class, 'crearColaboradorPost'])->name('crear-colaborador-post');
+Route::match(['GET', 'POST'], '/crear-colaborador/{id}/{tipoColaborador}', [ColaboradorController::class, 'crearColaborador'])->name('crear-colaborador');
 Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
 
 

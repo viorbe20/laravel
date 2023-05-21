@@ -23,20 +23,20 @@ class ColaboradorController extends Controller
         return view('admin/gestion-colaboradores');
     }
 
-    public function crearColaboradorPost(Request $request, $id) {
-        $tipoColaborador = $request->input('tipo_colaborador');
-        dd($tipoColaborador);
+    public function crearColaborador($id, $tipoColaborador) {
+        
         $usuario = User::find($id);
         $usuario->id_colaborador = $tipoColaborador;
         $usuario->save();
-        return view('admin/gestion-colaboradores');
+
+        return redirect()->route('gestion-colaboradores');
     }
 
-    public function eliminarColaboradorPost(Request $request, $id) {
+    public function eliminarColaboradorPost($id) {
         $usuario = User::find($id);
         $usuario->id_colaborador = null;
-        $usuario->save();
-        return view('admin/gestion-colaboradores');
+        //$usuario->save();
+        return redirect()->route('gestion-colaboradores');
     }
     
     // public function crearColaboradorPost(Request $request)
