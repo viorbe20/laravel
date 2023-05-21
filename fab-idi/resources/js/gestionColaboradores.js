@@ -61,6 +61,7 @@ $(document).ready(function () {
       `;
           tbody.innerHTML += rowHtml;
 
+          //Actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
           $(document).on('change', 'input[name="tipo_colaborador"]', function () {
             //actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
             let botones = document.querySelectorAll('.btn-crear-colaborador');
@@ -73,10 +74,6 @@ $(document).ready(function () {
               console.log(boton.href);
             });
           });
-
-
-
-
 
         } else {
           let rowHtml = `
@@ -94,11 +91,6 @@ $(document).ready(function () {
   }
 
 
-
-
-
-
-
   function mostrarUsuariosCoincidentes() {
     let query = queryInput.val().toLowerCase();
     obtenerUsuarios().then(function (usuarios) {
@@ -111,46 +103,55 @@ $(document).ready(function () {
       usuariosFiltrados.forEach(function (usuario) {
         if (usuario.id_colaborador == null) {
           let rowHtml = `
-              <tr>
-                <td>${usuario.nombre}</td>
-                <td>${usuario.apellidos}</td>
-                <td>
-                  <form method="post" action="{{ route('crear-colaborador-post', ['id' => ${usuario.id}]) }}">
-                  <div style="display:flex;justify-content: flex-end">
-                      <div class="form-check" style="margin: 0% 2%">
-                        <input class="form-check-input" type="radio" name="tipo_colaborador" id="tipo_colaborador_embajador" value="2" required>
-                        <label class="form-check-label" for="tipo_colaborador_embajador">
-                          Colaborador/Embajador
-                        </label>
-                      </div>
-                      <div class="form-check" style="margin: 0% 2%">
-                        <input class="form-check-input" type="radio" name="tipo_colaborador" id="tipo_colaborador_mentor" value="3" required>
-                        <label class="form-check-label" for="tipo_colaborador_mentor">
-                          Colaborador/Mentor
-                        </label>
-                      </div>
-                      <div class="form-check" style="margin: 0% 2%">
-                        <input class="form-check-input" type="radio" name="tipo_colaborador" id="tipo_colaborador_instituto" value="4" required>
-                        <label class="form-check-label" for="tipo_colaborador_instituto">
-                          Colaborador/Instituto
-                        </label>
-                      </div>
-                      <button type="submit" class="btn btn-success">Crear Colaborador</button>
-                    </div>
-                  </form>
-                </td>
-              </tr>`;
+          <tr>
+          <td>${usuario.nombre}</td>
+          <td>${usuario.apellidos}</td>
+          <input type="hidden" name="usuario_id" value="${usuario.id}">
+          <td>
+              <div style="display:flex;justify-content: flex-end">
+                <div class="form-check" style="margin: 0% 2%">
+                  <input class="form-check-input" type="radio" name="tipo_colaborador" value="2" required>
+                  <label class="form-check-label">Colaborador/Embajador</label>
+                </div>
+                <div class="form-check" style="margin: 0% 2%">
+                  <input class="form-check-input" type="radio" name="tipo_colaborador" value="3" required>
+                  <label class="form-check-label">Colaborador/Mentor</label>
+                </div>
+                <div class="form-check" style="margin: 0% 2%">
+                  <input class="form-check-input" type="radio" name="tipo_colaborador" value="4" required>
+                  <label class="form-check-label">Colaborador/Instituto</label>
+                </div>
+                <a href="/crear-colaborador/${usuario.id}/" class="btn btn-success btn-crear-colaborador">Crear Colaborador</a>
+              </div>
+          </td>
+        </tr>
+      `;
           tbody.innerHTML += rowHtml;
+
+          //Actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
+          $(document).on('change', 'input[name="tipo_colaborador"]', function () {
+            //actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
+            let botones = document.querySelectorAll('.btn-crear-colaborador');
+            let tipoColaboradorSeleccionado = $('input[name="tipo_colaborador"]:checked').val();
+            
+            botones.forEach((boton) => {
+              //imprirmir por consola el id del usuario y el tipo de colaborador seleccionado
+              usuario.id = $(this).closest('tr').find('input[name="usuario_id"]').val();
+              boton.href = '/crear-colaborador/' + usuario.id + '/' + tipoColaboradorSeleccionado + '/';
+              console.log(boton.href);
+            });
+          });
         } else {
+          console.log(usuario.id);
           let rowHtml = `
-                  <tr>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.apellidos}</td>
-                    <td>
-                    <a href="/eliminar-colaborador/${usuario.id}" class="btn btn-warning">Eliminar Colaborador</a>
-                  </td>
-                  </tr>`;
-          tbody.innerHTML += rowHtml;
+          <tr>
+            <td>${usuario.nombre}</td>
+            <td>${usuario.apellidos}</td>
+            <td style="display:flex;justify-content: flex-end">
+              <a href="/eliminar-colaborador/${usuario.id}" class="btn btn-warning">Eliminar Colaborador</a>
+            </td>
+          </tr>`;
+        tbody.innerHTML += rowHtml;
         }
       });
     });

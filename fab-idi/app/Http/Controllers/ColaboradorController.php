@@ -35,7 +35,8 @@ class ColaboradorController extends Controller
     public function eliminarColaboradorPost($id) {
         $usuario = User::find($id);
         $usuario->id_colaborador = null;
-        //$usuario->save();
+        $usuario->save();
+        
         return redirect()->route('gestion-colaboradores');
     }
     
