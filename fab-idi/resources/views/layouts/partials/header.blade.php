@@ -9,21 +9,18 @@
     <div class="col-md-3 text-end">
         <i class="fa fa-twitter" aria-hidden="true"></i>
         <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-youtube-play" aria-hidden="true"></i>
-
+        <i class="fa fa-youtube-play" aria-hidden="true"></i>        
+        
         @guest
+        <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
             <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
+        @endguest
 
-            @if ($showLoginButton)
-                <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
-            @else
-                <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a>
-            @endif
-        @else
+        @auth
+        <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a> 
             <a href="{{ route('logout') }}" class="btn btn-danger me-2">Logout</a>
             <a class="btn btn-primary">Bienvenid@, {{ Auth::user()->nombre }} </a>
-
-        @endguest
+        @endauth
 
     </div>
 </header>

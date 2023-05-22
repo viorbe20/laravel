@@ -3,14 +3,12 @@
 
         <li class="{{ Request::is('/') ? 'active' : '' }}">
             <a href="{{ URL::to('/') }}">Inicio</a>
-          </li>
-          
-
-        @if (session('perfil') != 'admin' )
-        <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
-            <a href="{{ route('gestion-videos') }}">Quiénes somos</a>
         </li>
-        @endif
+        
+
+        <li class="{{ Route::is('quienes-somos') ? 'active' : '' }}">
+            <a href="{{ route('quienes-somos') }}">Quiénes somos</a>
+        </li>
 
 
         @if (session('perfil') == 'admin')
@@ -41,14 +39,14 @@
         </li>
         @endif
 
-         @if (session('perfil') != 'admin' )
-            <li><a href="https://jovenesconinvestigadores.wordpress.com/" target="_blank" class="nav-link px-2">Jóvenes
-                    con Investigadores</a></li>
+        @if (session('perfil') != 'admin' )
+        <li><a href="https://jovenesconinvestigadores.wordpress.com/" target="_blank" class="nav-link px-2">Jóvenes
+            con Investigadores</a></li>
             <li><a href="#" class="nav-link px-2">Mentorización</a></li>
             <li><a href="#" class="nav-link px-2">Proyectos Intercentros</a></li>
             <li><a href="#" class="nav-link px-2">Formularios Certificados</a></li>
             <li><a href="#" class="nav-link px-2">Asociación</a></li>
-            <li><a href="#" class="nav-link px-2">Blog</a></li>
+            <li><a href="https://profundizaiesmartinrivero.blogspot.com/" class="nav-link px-2">Blog</a></li>
             <li><a href="#" class="nav-link px-2">Contacto</a></li>
         @endif
 

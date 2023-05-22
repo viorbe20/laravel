@@ -9,6 +9,10 @@ use App\Models\Entidad;
 
 class UsuarioController extends Controller
 {
+    public function quienesSomos()
+    {
+        return view("quienes-somos");
+    }
 
     public function obtenerUsuariosAjax(Request $request)
     {

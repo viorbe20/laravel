@@ -7,11 +7,6 @@ use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UsuarioController;
 
-if (!session()->has('perfil')){
-    session(['perfil' => 'invitado']);
-    session(['showLoginButton'=>true]);
-}
-
 Route::get("/", [InicioController::class, "index"])->name("index");
 
 // Auth
@@ -23,6 +18,7 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
 //Usuarios
 Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
+Route::get("/quienes-somos", [UsuarioController::class, "quienesSomos"])->name("quienes-somos");
 Route::get("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
 Route::post("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 
