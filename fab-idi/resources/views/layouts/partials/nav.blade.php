@@ -4,52 +4,66 @@
         <li class="{{ Request::is('/') ? 'active' : '' }}">
             <a href="{{ URL::to('/') }}">Inicio</a>
         </li>
-        
+
+        @auth
+            @if (session('perfil') == 'admin')
+                <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-videos') }}">Gestión de vídeos y premios</a>
+                </li>
+            @endif
+        @endauth
 
         <li class="{{ Route::is('quienes-somos') ? 'active' : '' }}">
             <a href="{{ route('quienes-somos') }}">Quiénes somos</a>
         </li>
 
+        <li class="{{ Route::is('https://jovenesconinvestigadores.wordpress.com/') ? 'active' : '' }}">
+            <a href="https://jovenesconinvestigadores.wordpress.com/">Jóvenes
+                con Investigadores</a>
+        </li>
 
-        @if (session('perfil') == 'admin')
-            <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
-                <a href="{{ route('gestion-videos') }}">Gestión de vídeos y premios</a>
-            </li>
-        @endif
+        <li class="{{ Route::is('mentorizacion') ? 'active' : '' }}">
+            <a href="{{ route('mentorizacion') }}">Mentorizacion</a>
+        </li>
+
+        <li class="{{ Route::is('proyectos-intercentros') ? 'active' : '' }}">
+            <a href="{{ route('proyectos-intercentros') }}">Proyectos Intercentros</a>
+        </li>
 
         <li class="{{ Route::is('panel-colaboradores') ? 'active' : '' }}">
             <a href="{{ route('panel-colaboradores') }}">Panel de colaboradores</a>
         </li>
+
+        @auth
+            @if (session('perfil') == 'admin')
+                <li class="{{ Route::is('gestion-colaboradores') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-colaboradores') }}">Gestión de colaboradores</a>
+                </li>
+            @endif
+        @endauth
+
+        <li class="{{ Route::is('eventos') ? 'active' : '' }}">
+            <a href="{{ route('eventos') }}">Eventos</a>
+        </li>
+
+        <li class="{{ Route::is('revistas') ? 'active' : '' }}">
+            <a href="{{ route('revistas') }}">Revistas</a>
+        </li>
+
         @if (session('perfil') == 'admin')
-        <li class="{{ Route::is('gestion-colaboradores') ? 'active' : '' }}">
-            <a href="{{ route('gestion-colaboradores') }}">Gestión de colaboradores</a>
-        </li>
+            <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+                <a href="{{ route('gestion-videos') }}">Gestión de revistas</a>
+            </li>
         @endif
 
-        <li><a href="#" class="nav-link px-2">Revistas</a></li>
-         @if (session('perfil') == 'admin' )
-         <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
-            <a href="{{ route('gestion-videos') }}">Gestión de revistas</a>
+        <li class="{{ Route::is('https://profundizaiesmartinrivero.blogspot.com/') ? 'active' : '' }}">
+            <a href="('https://profundizaiesmartinrivero.blogspot.com/')">Blog</a>
         </li>
-        @endif
 
         @if (session('perfil') == 'admin')
-        <li class="{{ Route::is('gestion-usuarios*') ? 'active' : '' }}">
-            <a href="{{ route('gestion-usuarios') }}">Gestión de usuarios</a>
-        </li>
+            <li class="{{ Route::is('gestion-usuarios*') ? 'active' : '' }}">
+                <a href="{{ route('gestion-usuarios') }}">Gestión de usuarios</a>
+            </li>
         @endif
-
-        @if (session('perfil') != 'admin' )
-        <li><a href="https://jovenesconinvestigadores.wordpress.com/" target="_blank" class="nav-link px-2">Jóvenes
-            con Investigadores</a></li>
-            <li><a href="#" class="nav-link px-2">Mentorización</a></li>
-            <li><a href="#" class="nav-link px-2">Proyectos Intercentros</a></li>
-            <li><a href="#" class="nav-link px-2">Formularios Certificados</a></li>
-            <li><a href="#" class="nav-link px-2">Asociación</a></li>
-            <li><a href="https://profundizaiesmartinrivero.blogspot.com/" class="nav-link px-2">Blog</a></li>
-            <li><a href="#" class="nav-link px-2">Contacto</a></li>
-        @endif
-
-
     </ul>
 </nav>

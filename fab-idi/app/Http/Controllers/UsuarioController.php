@@ -9,6 +9,27 @@ use App\Models\Entidad;
 
 class UsuarioController extends Controller
 {
+
+    public function eventos()
+    {
+        return view("eventos");
+    }
+
+    public function proyectosIntercentros()
+    {
+        return view("proyectos-intercentros");
+    }
+    
+    public function mentorizacion()
+    {
+        return view("mentorizacion");
+    }
+
+    public function revistas()
+    {
+        return view("revistas");
+    }
+
     public function quienesSomos()
     {
         return view("quienes-somos");
