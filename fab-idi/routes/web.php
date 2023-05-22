@@ -29,7 +29,6 @@ Route::post("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioP
 // Vídeos 
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
 Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
-//Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
 
 // Colaborador
 Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPost"])->name("buscar-usuario");
@@ -39,10 +38,5 @@ Route::match(['GET', 'POST'], '/crear-colaborador/{id}/{tipoColaborador}', [Cola
 Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
 
 
-
-//Route::get("/gestion-colaboradores/crear", [ColaboradorController::class, "crearColaborador"])->name("crear-colaborador");
-//Route::post("/gestion-colaboradores/crear", [ColaboradorController::class, "crearColaboradorPost"])->name("crear-colaborador-post");
-
 //Ajax
-//Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
