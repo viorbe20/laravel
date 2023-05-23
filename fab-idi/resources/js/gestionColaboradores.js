@@ -5,7 +5,7 @@ $(document).ready(function () {
   const originalTbodyContent = $("#tbody-tabla-usuarios").html();
   let tbody = document.querySelector("#tbody-tabla-usuarios");
   let queryInput = $("#buscar-usuario");
-  let tipoColaborador = $('input[name="tipo_colaborador"]:checked').val();
+  //let tipoColaborador = $('input[name="tipo_colaborador"]:checked').val();
 
   //Obtiene los todos usuarios mediante una petición AJAX
   function obtenerUsuarios() {
@@ -20,6 +20,7 @@ $(document).ready(function () {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       }
     }).then(function (response) {
+      console.log(response);
       return response.json();
     });
   }

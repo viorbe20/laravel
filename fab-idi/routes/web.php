@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PremioController;
+use App\Http\Controllers\MentorController;
 
 Route::get("/", [InicioController::class, "index"])->name("index");
 
@@ -30,6 +33,9 @@ Route::post("/gestion-usuarios/crear", [UsuarioController::class, "crearUsuarioP
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
 Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
 
+//Premios
+Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
+
 // Colaborador
 Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPost"])->name("buscar-usuario");
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
@@ -39,4 +45,8 @@ Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorControll
 
 
 //Ajax
+Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+
+//Emails
+Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");

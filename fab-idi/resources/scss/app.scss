@@ -107,6 +107,19 @@ nav {
   }
 }
 
+#inicio-cards {
+  .card {
+    margin: 0% 3%;
+
+    //sombra
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+
+  }
+}
+
+#btn-ver-premios {
+  margin: 4% 0%;
+}
 //Página colaboradores
 
 #form-buscar-usuario {

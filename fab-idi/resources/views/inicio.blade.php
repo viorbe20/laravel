@@ -14,7 +14,7 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
-                
+
                 <div id="video-line-2">
                     <iframe width="280" height="158" src="https://www.youtube.com/embed/SEg33yRZ3sg"
                         title="YouTube video player" frameborder="0"
@@ -27,7 +27,7 @@
                 </div>
                 <a href="#" class="btn btn-primary">Ver videos</a>
             </section>
-            
+
             <div id="inicio-text">
                 <h3>Título del texto</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corporis voluptatibus
@@ -47,40 +47,40 @@
             <section id='inicio-cards'>
 
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="{{ asset('img/logo.png') }}"  alt="Card image cap">
+                    <img class="card-img-top" src="{{ asset('images/premio.jpg') }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Card title</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                             card's
                             content.</p>
-                        </div>
                     </div>
-                    
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('img/logo.png') }}"  alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's
-                                content.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="{{ asset('img/logo.png') }}"  alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's
-                        content.</p>
                 </div>
-            </div>
-        </section>
-            <a href="#" class="btn btn-primary">Ver premios</a>
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset('images/premio.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's
+                            content.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ asset('images/premio.jpg') }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                            card's
+                            content.</p>
+                    </div>
+                </div>
+            </section>
+            <a href="{{ route('mostrar-premios') }}" class="btn btn-primary" id='btn-mostrar-premios'>Ver premios</a>
 
         </section>
-        
-        
+
+
     </main>
 
 @endsection

@@ -5,12 +5,12 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 @endsection
 
-@section('title', 'Proyectos Intercentros')
+@section('title', 'Revistas')
 
 @section('content')
 
-    <main id='main-proyectos-intercentros'>
-        <h2>Proyectos Anteriores</h2>
+    <main id='main-revistas'>
+        <h2>Revistas</h2>
     </main>
 
 

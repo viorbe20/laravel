@@ -11,7 +11,6 @@
 </head>
 
 <body>
-    <p>Perfil de sesión: {{ session('perfil') }}</p>
 
     @include('layouts.partials.header')
 
