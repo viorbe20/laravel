@@ -5,7 +5,6 @@ $(document).ready(function () {
     let tbody = document.querySelector("#tbody-tabla-gestion-usuarios");
     let queryInput = $("#buscar-gestion-usuarios");
 
-    console.log('dd');
     //Obtiene los todos usuarios mediante una petición AJAX
     function obtenerUsuarios() {
         let query = queryInput.val().toLowerCase();
@@ -40,15 +39,15 @@ $(document).ready(function () {
                 if(usuario.activo == 1){
                     let rowHtml =`
                     <tr>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.apellidos}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.telefono}</td>
-                    <td>${usuario.twitter}</td>
-                    <td>${usuario.instagram}</td>
-                    <td>${usuario.linkedin}</td>
-                    <td>${usuario.id_colaborador}</td>
-                    <td>${usuario.perfil_id}</td>
+                    <td>${usuario.nombre ? usuario.nombre : ''}</td>
+                    <td>${usuario.apellidos ? usuario.apellidos : ''}</td>
+                    <td>${usuario.email ? usuario.email : ''}</td>
+                    <td>${usuario.telefono ? usuario.telefono : ''}</td>
+                    <td>${usuario.twitter ? usuario.twitter : ''}</td>
+                    <td>${usuario.instagram ? usuario.instagram : ''}</td>
+                    <td>${usuario.linkedin ? usuario.linkedin : ''}</td>
+                    <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
+                    <td>${usuario.perfil_id ? usuario.perfil_id : ''}</td>
                     <td>
                     <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-eliminar-ususario">Eliminar Usuario</a>
                     <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-editar-ususario">Editar Usuario</a>
