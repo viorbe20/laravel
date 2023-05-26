@@ -20,15 +20,17 @@ Route::post("/register", [AuthController::class, "registerPost"])->name("registe
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
 //Usuarios
-Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
 Route::get("/quienes-somos", [UsuarioController::class, "quienesSomos"])->name("quienes-somos");
 Route::get("/mentorizacion", [UsuarioController::class, "mentorizacion"])->name("mentorizacion");
 Route::get("/proyectos-intercentros", [UsuarioController::class, "proyectosIntercentros"])->name("proyectos-intercentros");
 Route::get("/eventos", [UsuarioController::class, "eventos"])->name("eventos");
 Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas");
+Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
 Route::get("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
 Route::post("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 Route::get("/gestion-usuarios/eliminar-usuario/{id}", [UsuarioController::class, "eliminarUsuario"])->name("eliminar-usuario");
+Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "editarUsuario"])->name("editar-usuario");
+Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
 // Vídeos 
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
