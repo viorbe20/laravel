@@ -29,6 +29,31 @@ $(document).ready(function () {
         return perfilEncontrado;
     }
 
+    //Obtiene el el tipo de colaborador de un usuario dado un ID
+    function getColaborador(colaboradorId) {
+        let colaboradorEncontrado = '';
+
+        
+        $.ajax({
+            url: '/obtener-colaboradores-ajax/',
+            method: 'GET',
+            async: false,  // Asegura que la petición se realice de forma síncrona
+            success: function (colaboradores) {
+                colaboradores.forEach(element => {
+                    if (element.id == colaboradorId) {
+                        colaboradorEncontrado = element.colaborador;
+                    }
+                });
+            },
+            error: function () {
+                // Manejar el error en caso de que la subconsulta falle
+            }
+        });
+
+        return colaboradorEncontrado;
+    }
+
+
 
     //Obtiene los todos usuarios mediante una petición AJAX
     function obtenerUsuarios() {
@@ -58,6 +83,11 @@ $(document).ready(function () {
 
                 if (usuario.activo == 1) {
                     usuario.perfil_id = getPerfil(usuario.perfil_id);
+
+                    if (usuario.id_colaborador != null){ //Si el usuario tiene un colaborador asociado se obtiene el nombre del colaborador
+                        usuario.id_colaborador = getColaborador(usuario.id_colaborador);
+                    }
+                        
 
                     let rowHtml = `
                     <tr>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Entidad;
 use App\Models\Perfil;
+use App\Models\Colaborador;
 
 
 class UsuarioController extends Controller
@@ -73,6 +74,12 @@ class UsuarioController extends Controller
     {
         $perfiles = Perfil::all();
         return response()->json($perfiles);
+    }
+
+    public function obtenerColaboradoresAjax()
+    {
+        $colaboradores = Colaborador::all();
+        return response()->json($colaboradores);
     }
 
     public function obtenerUsuariosAjax(Request $request)
