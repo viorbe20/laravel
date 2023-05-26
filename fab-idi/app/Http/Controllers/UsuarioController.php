@@ -51,7 +51,6 @@ class UsuarioController extends Controller
         $user->save();
 
         return redirect()->route('gestion-usuarios');
-
     }
 
     public function editarUsuario($id)
@@ -71,10 +70,10 @@ class UsuarioController extends Controller
     }
 
     public function obtenerPerfilesAjax()
-{
-    $perfiles = Perfil::all();
-    return response()->json($perfiles);
-}
+    {
+        $perfiles = Perfil::all();
+        return response()->json($perfiles);
+    }
 
     public function obtenerUsuariosAjax(Request $request)
     {
