@@ -19,7 +19,7 @@ class UsuarioController extends Controller
     {
         return view("proyectos-intercentros");
     }
-    
+
     public function mentorizacion()
     {
         return view("mentorizacion");
@@ -35,13 +35,22 @@ class UsuarioController extends Controller
         return view("quienes-somos");
     }
 
+    public function eliminarUsuario($id)
+    {
+        $usuario = User::find($id);
+        $usuario->activo = 0;
+        $usuario->save();
+
+        return view('admin/gestion-usuarios');
+    }
+
     public function obtenerUsuariosAjax(Request $request)
     {
         $query = $request->get('query');
-        $usuarios = User::where('nombre', 'LIKE', '%'.$query.'%')->get();
+        $usuarios = User::where('nombre', 'LIKE', '%' . $query . '%')->get();
         return response()->json($usuarios);
     }
-    
+
     public function crearUsuarioPost(Request $request)
     {
 

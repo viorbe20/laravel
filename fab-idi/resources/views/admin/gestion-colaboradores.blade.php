@@ -5,12 +5,6 @@
 @section('content')
     <main id='main-gestion-colaboradores'>
 
-        @php
-            $lastUsuarios = App\Models\User::latest()
-                ->take(3)
-                ->get();
-        @endphp
-
         <input type="text" name="buscar" id="buscar-usuario">
 
         <table class="table">

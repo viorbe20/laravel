@@ -7,5 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Premio extends Model
 {
-    use HasFactory;
+    protected $table = 'premios';
+
+    protected $fillable = [
+        'titulo',
+        'imagen',
+        'fecha',
+        'descripcion',
+        'url',
+        'activo',
+    ];
+
 }
