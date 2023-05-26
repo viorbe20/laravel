@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Entidad;
+use App\Models\Perfil;
 
 
 class UsuarioController extends Controller
@@ -68,6 +69,12 @@ class UsuarioController extends Controller
 
         return view('admin/gestion-usuarios');
     }
+
+    public function obtenerPerfilesAjax()
+{
+    $perfiles = Perfil::all();
+    return response()->json($perfiles);
+}
 
     public function obtenerUsuariosAjax(Request $request)
     {
