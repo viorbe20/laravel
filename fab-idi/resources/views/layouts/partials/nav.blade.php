@@ -56,8 +56,8 @@
             </li>
         @endif
 
-        <li class="{{ Route::is('https://profundizaiesmartinrivero.blogspot.com/') ? 'active' : '' }}">
-            <a href="('https://profundizaiesmartinrivero.blogspot.com/')">Blog</a>
+        <li class="{{ Request::url() === 'https://profundizaiesmartinrivero.blogspot.com/' ? 'active' : '' }}">
+            <a href="https://profundizaiesmartinrivero.blogspot.com/">Blog</a>
         </li>
 
         @if (session('perfil') == 'admin')

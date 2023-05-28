@@ -6,20 +6,23 @@
         </a>
     </div>
     <h1>FAB-IDI</h1>
-    <div class="col-md-3 text-end">
-        <i class="fa fa-twitter" aria-hidden="true"></i>
-        <i class="fa fa-instagram" aria-hidden="true"></i>
-        <i class="fa fa-youtube-play" aria-hidden="true"></i>        
-        
+    <div id='header-right'>
+        <div id='iconos-rrss'>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-youtube"></i>
+        </div>
+
         @guest
-        <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
-            <a href="{{ route('register') }}" class="btn btn-success me-2">Registro</a>
+            <a href="{{ route('login') }}" class="btn btn-primary me-2">Login</a>
         @endguest
 
         @auth
-        <a href="{{ route('index') }}" class="btn btn-outline-secondary me-2">Regresar</a> 
-            <a href="{{ route('logout') }}" class="btn btn-danger me-2">Logout</a>
-            <a class="btn btn-primary">Bienvenid@, {{ Auth::user()->nombre }} </a>
+            <div class="user-info">
+                <span class="greeting">Bienvenid@,</span>
+                <span class="username">{{ Auth::user()->nombre }}</span>
+                <a href="{{ route('logout') }}" class="btn btn-danger me-2">Salir</a>
+            </div>
         @endauth
 
     </div>

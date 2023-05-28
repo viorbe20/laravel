@@ -53,8 +53,6 @@ $(document).ready(function () {
         return colaboradorEncontrado;
     }
 
-
-
     //Obtiene los todos usuarios mediante una petición AJAX
     function obtenerUsuarios() {
         let query = queryInput.val().toLowerCase();
@@ -68,7 +66,6 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         }).then(function (response) {
-            console.log(response);
             return response.json();
         });
     }
