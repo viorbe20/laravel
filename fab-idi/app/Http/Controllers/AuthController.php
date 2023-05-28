@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
+
+    public function adminIndex()
+    {
+        return view('admin/admin-index');
+    }
+
     public function login()
     {
-        $showLoginButton = false;
-        return view('auth/login', compact('showLoginButton'));
+        return view('auth/login');
     }
 
     public function loginPost(Request $request)
@@ -32,7 +37,13 @@ class AuthController extends Controller
             $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');
             $perfil = DB::table('perfiles')->where('id', $perfil_id)->value('perfil');
             session(['perfil' => $perfil]);
-            return redirect('/gestion-usuarios')->with('success', 'Login successfully.');
+
+            if ($perfil == 'admin') {
+                return redirect('/gestion-usuarios')->with('success', 'Login successfully.');
+            } else {
+                return redirect('/')->with('success', 'Login successfully.');
+            }
+
         }
 
         return back()->with('error', 'Wrong credentials.');

@@ -55,7 +55,12 @@ $(document).ready(function () {
 
     //Obtiene los todos usuarios mediante una petición AJAX
     function obtenerUsuarios() {
-        let query = queryInput.val().toLowerCase();
+        let query = queryInput.val();
+        
+        if (query != undefined) {
+            query = query.toLowerCase();
+        }
+        
         tbody.innerHTML = "";
 
         return fetch('/obtener-usuarios-ajax', {

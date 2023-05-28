@@ -55,3 +55,6 @@ Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerCol
 
 //Emails
 Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
+
+//Admin panel
+Route::get("/admin", [AuthController::class, "adminIndex"])->name("admin-index");

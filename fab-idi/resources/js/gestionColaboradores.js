@@ -8,7 +8,13 @@ $(document).ready(function () {
 
   //Obtiene los todos usuarios mediante una petición AJAX
   function obtenerUsuarios() {
-    let query = queryInput.val().toLowerCase();
+    
+    let query = queryInput.val();
+        
+    if (query != undefined) {
+        query = query.toLowerCase();
+    }
+
     tbody.innerHTML = "";
 
     return fetch('/obtener-usuarios-ajax', {
@@ -66,7 +72,7 @@ $(document).ready(function () {
             //actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
             let botones = document.querySelectorAll('.btn-crear-colaborador');
             let tipoColaboradorSeleccionado = $('input[name="tipo_colaborador"]:checked').val();
-            
+
             botones.forEach((boton) => {
               //imprirmir por consola el id del usuario y el tipo de colaborador seleccionado
               usuario.id = $(this).closest('tr').find('input[name="usuario_id"]').val();
@@ -96,9 +102,17 @@ $(document).ready(function () {
     obtenerUsuarios().then(function (usuarios) {
       tbody.innerHTML = "";
 
+      // let usuariosFiltrados = usuarios.filter(function (usuario) {
+      //   return usuario.nombre.toLowerCase().includes(query);
+      // });
+
       let usuariosFiltrados = usuarios.filter(function (usuario) {
-        return usuario.nombre.toLowerCase().includes(query);
+        if (usuario.nombre) {
+          return usuario.nombre.toLowerCase().includes(query);
+        }
+        return false;
       });
+
 
       usuariosFiltrados.forEach(function (usuario) {
         if (usuario.id_colaborador == null) {
@@ -133,7 +147,7 @@ $(document).ready(function () {
             //actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
             let botones = document.querySelectorAll('.btn-crear-colaborador');
             let tipoColaboradorSeleccionado = $('input[name="tipo_colaborador"]:checked').val();
-            
+
             botones.forEach((boton) => {
               //imprirmir por consola el id del usuario y el tipo de colaborador seleccionado
               usuario.id = $(this).closest('tr').find('input[name="usuario_id"]').val();
@@ -151,7 +165,7 @@ $(document).ready(function () {
               <a href="/eliminar-colaborador/${usuario.id}" class="btn btn-warning">Eliminar Colaborador</a>
             </td>
           </tr>`;
-        tbody.innerHTML += rowHtml;
+          tbody.innerHTML += rowHtml;
         }
       });
     });

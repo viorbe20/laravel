@@ -29,17 +29,8 @@
             </section>
 
             <div id="inicio-text">
-                <h3>Título del texto</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corporis voluptatibus
-                    ut
-                    eum non, earum animi dolor minus ullam blanditiis temporibus debitis. Quis ex quam expedita,
-                    corporis
-                    totam debitis maiores?</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum corporis voluptatibus
-                    ut
-                    eum non, earum animi dolor minus ullam blanditiis temporibus debitis. Quis ex quam expedita,
-                    corporis
-                    totam debitis maiores?</p>
+                <h3>¿Qués es FAB-IDI</h3>
+                <p>FAB-IDI es una red de centros educativos que poseen un itinerario de investigación desde 1º ESO hasta 2º de bachillerato/ciclos formativos, que acreditan a los estudiantes con capacidades demostradas para realizar investigaciones científicas en cualquier área. Se trata de una RED que ayuda a otros centros a diseñar dicho itinerario y generar investigaciones comunes en el que los estudiantes forman equipos intercentros de trabajo. El éxito de este proyecto está demostrado</p>
             </div>
         </section>
 
