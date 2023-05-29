@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 class AuthController extends Controller
 {
 
-    public function adminIndex()
+    public function inicioAdmin()
     {
-        return view('admin/admin-index');
+        return view('admin/inicio-admin');
     }
 
     public function login()
@@ -39,9 +39,9 @@ class AuthController extends Controller
             session(['perfil' => $perfil]);
 
             if ($perfil == 'admin') {
-                return redirect('/gestion-usuarios')->with('success', 'Login successfully.');
+                return redirect('/inicio-admin');
             } else {
-                return redirect('/')->with('success', 'Login successfully.');
+                return redirect('/');
             }
 
         }

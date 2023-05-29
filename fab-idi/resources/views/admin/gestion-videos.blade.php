@@ -1,11 +1,9 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantilla-admin')
 
 @section('title', 'Gestión de Vídeos')
 
 @section('content')
     <main>
-
-
         <section id="section-table-videos">
             <h2>Videos</h2>
             <table class="table table-striped">

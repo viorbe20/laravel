@@ -13,15 +13,14 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
-<body>
-
-    @include('layouts.partials.header')
-
-    @include('layouts.partials.nav-admin')
-
-    @yield('content')
-
-    @include('layouts.partials.footer')
+<body id='body-admin'>
+    <section>
+        @include('layouts.partials.nav-admin')
+    </section>
+    <section>
+        @include('layouts.partials.header-admin')
+        @yield('content')
+    </section>
 </body>
 
 </html>

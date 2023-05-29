@@ -1,7 +1,10 @@
 <div id="sidebar-admin">
-    <button class="accordion">Section 1</button>
+  <h4>Menu Principal</h4>
+    <button class="accordion">Inicio</button>
     <div class="panel">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <li class="{{ Route::is('gestion-videos*') ? 'active' : '' }}">
+        <a href="{{ route('gestion-videos') }}">Gestión de vídeos y premios</a>
+    </li>
     </div>
     
     <button class="accordion">Section 2</button>

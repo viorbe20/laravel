@@ -33,7 +33,7 @@ Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
 // Vídeos 
-Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
+
 Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
 
 //Premios
@@ -57,4 +57,7 @@ Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerCol
 Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
 
 //Admin panel
-Route::get("/admin", [AuthController::class, "adminIndex"])->name("admin-index");
+Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
+
+//Admin vídeos
+Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");

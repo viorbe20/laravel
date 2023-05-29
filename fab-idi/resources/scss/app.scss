@@ -19,15 +19,74 @@
   }
 }
 
+/*Plantill admin*/
+
+#body-admin {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  font-family: 'Nunito', sans-serif;
+
+  section:first-child {
+    *background-color: #8cc2f9;
+
+  }
+
+  section:nth-child(2) {
+    background-color: pink;
+    width: 100%;
+  }
+
+  #sidebar-admin {
+    background-color: #ccc;
+  }
+}
+
+
+
+///////////////////////////////USUARIO
+
+.btn-principal {
+  background-color: #F6C115;
+  color: var(--grey-dark-color);
+  font-weight: 600;
+  font-size: 18px;
+
+  &:hover {
+    background-color: var(--verde-oscuro);
+    color: #ffffff;
+  }
+}
+
+#body-admin {
+  display: flex;
+
+  
+}
+
 header {
   background-color: var(--grey-light-color);
   padding: 0% 2%;
   margin: 0%;
 
   h1 {
-    color: var(--blue-dark-color);
+    color: var(--verde-oscuro);
     font-weight: bold;
     font-family: 'Comfortaa', cursive;
+  }
+
+  #btn-login {
+    background-color: #F6C115;
+    color: var(--grey-dark-color);
+    font-weight: 600;
+    font-size: 18px;
+
+
+
+    &:hover {
+      background-color: var(--verde-oscuro);
+      color: #ffffff;
+    }
   }
 
   #header-right {
@@ -40,7 +99,7 @@ header {
       width: 5%;
       
       i {
-        color: var(--blue-dark-color);
+        color: var(--verde-oscuro);
         padding: 10px;
         font-size: 20px;
       }
@@ -80,7 +139,7 @@ nav {
       opacity: 0.8;
 
       a {
-        color: var(--green-color);
+        color: var(--verde-medio);
         /* un tono marrón claro */
         text-decoration: none;
         /* quita subrayado */
@@ -94,7 +153,7 @@ nav {
     }
 
     li.active {
-      background-color: var(--green-color);
+      background-color: var(--verde-medio);
 
       a {
         text-decoration: none;
@@ -103,7 +162,7 @@ nav {
     }
 
     li:hover {
-      background-color: var(--green-color);
+      background-color: var(--verde-medio);
 
       a {
         text-decoration: none;
@@ -144,6 +203,18 @@ nav {
     display: none;
     background-color: white;
     overflow: hidden;
+  }
+
+  .accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+  }
+  
+  .active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
   }
 }
 
