@@ -61,3 +61,4 @@ Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inici
 
 //Admin vídeos
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
+Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");

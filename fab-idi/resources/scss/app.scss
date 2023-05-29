@@ -11,9 +11,9 @@
 @import "./node_modules/@fortawesome/fontawesome-free/css/all.min.css";
 
 
-*{
+* {
   font-family: 'Nunito', sans-serif;
-  
+
   main {
     padding: 0% 2%;
   }
@@ -33,13 +33,78 @@
   }
 
   section:nth-child(2) {
-    background-color: pink;
+    *background-color: pink;
     width: 100%;
   }
 
   #sidebar-admin {
-    background-color: #ccc;
+    background-color: #1f2c4c;
+    width: 300px;
+    height: auto;
+    background: #162447;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+
+    h4 {
+      text-align: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 600;
+      padding: 20px 0;
+    }
+
+    .accordion {
+      background-color: #1f2c4c;
+      color: #ffffff;
+      cursor: pointer;
+      padding: 18px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      outline: none;
+      font-size: 15px;
+      transition: 0.8s;
+
+      i {
+        margin-right: 10px;
+      }
+    }
+
+    .active,
+    .accordion:hover {
+      background-color: #ccc;
+    }
+
+    .panel {
+      padding: 0 18px;
+      display: none;
+      background-color: white;
+      overflow: hidden;
+
+      li {
+
+        a {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .accordion:after {
+      content: '\02795';
+      /* Unicode character for "plus" sign (+) */
+      font-size: 13px;
+      color: #777;
+      float: right;
+      margin-left: 5px;
+    }
+
+    .active:after {
+      content: "\2796";
+      /* Unicode character for "minus" sign (-) */
+    }
   }
+
 }
 
 
@@ -58,11 +123,6 @@
   }
 }
 
-#body-admin {
-  display: flex;
-
-  
-}
 
 header {
   background-color: var(--grey-light-color);
@@ -97,7 +157,7 @@ header {
     #iconos-rrss {
       display: flex;
       width: 5%;
-      
+
       i {
         color: var(--verde-oscuro);
         padding: 10px;
@@ -105,14 +165,14 @@ header {
       }
     }
 
-  
-    .user-info{
+
+    .user-info {
       display: flex;
       flex-direction: column;
     }
-  
+
   }
-  
+
 
   .video-content {
     width: auto;
@@ -120,7 +180,7 @@ header {
 }
 
 .mb-4 {
-  margin-bottom: 0rem !important; 
+  margin-bottom: 0rem !important;
 }
 
 nav {
@@ -171,53 +231,6 @@ nav {
     }
   }
 }
-
-#sidebar-admin {
-  
-  width: 300px;
-  height: auto;
-  background: #162447;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-
-  .accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.8s;
-  }
-  
-  .active, .accordion:hover {
-    background-color: #ccc; 
-  }
-  
-  .panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-  }
-
-  .accordion:after {
-    content: '\02795'; /* Unicode character for "plus" sign (+) */
-    font-size: 13px;
-    color: #777;
-    float: right;
-    margin-left: 5px;
-  }
-  
-  .active:after {
-    content: "\2796"; /* Unicode character for "minus" sign (-) */
-  }
-}
-
 
 //Página inicio
 #inicio-up {
@@ -270,62 +283,62 @@ nav {
 
 //Premios
 .gallery {
-	display: flex;
-	padding: 2px;
-	transition: .3s;
-	
-	&:hover &__image {
-		filter: grayscale(1);
-	}
-	
-	&__column {
-		display: flex;
-		flex-direction: column;
-		width: 25%;
-	}
-	
-	&__link {
-		margin: 2px;
-		overflow: hidden;
-		
-		&:hover {
-			.gallery__image {
-				filter: grayscale(0);
-			}
-			
-			.gallery__caption {
-				opacity: 1;
-			}
-		}
-	}
-	
-	&__thumb {
-		position: relative;
-	}
-	
-	&__image {
-		display: block;
-		width: 100%;
-		transition: .3s;
-		
-		&:hover {
-			transform: scale(1.1);
-		}
-	}
-	
-	&__caption {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding: 25px 15px 15px;
-		width: 100%;
-		font-family: 'Raleway', sans-serif;
-		font-size: 16px;
-		color: white;
-		opacity: 0;
-		background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255 ,255 , 0) 100%);
-		transition: .3s;
-	}
+  display: flex;
+  padding: 2px;
+  transition: .3s;
+
+  &:hover &__image {
+    filter: grayscale(1);
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+  }
+
+  &__link {
+    margin: 2px;
+    overflow: hidden;
+
+    &:hover {
+      .gallery__image {
+        filter: grayscale(0);
+      }
+
+      .gallery__caption {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__thumb {
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    transition: .3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px 15px 15px;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: .3s;
+  }
 }
 
 //Página colaboradores
@@ -429,4 +442,3 @@ nav {
 
 
 }
-

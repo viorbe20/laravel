@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <section id="section-table-videos">
-            <h2>GESTIÓN DE VÍDEOS</h2>
+            <h2>Videos</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
