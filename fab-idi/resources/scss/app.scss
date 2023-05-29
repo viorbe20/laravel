@@ -19,13 +19,74 @@
   }
 }
 
-/*Plantill admin*/
+/*Estilos generales*/
+.btn-admin-edit {
+  background-color: #ffffff;
+  color: #C71585;
+  font-weight: 500;
+  font-size: 16px;
+  border-style: solid;
+  border-color: #C71585;
+
+  &:hover {
+    background-color: #C71585;
+    color: #ffffff;
+  }
+}
+
+.btn-admin-create {
+  background-color: #ffffff;
+  color: #00C67E;
+  font-weight: 500;
+  font-size: 16px;
+  border-style: solid;
+  border-color: #00C67E;
+
+  &:hover {
+    background-color: #00C67E;
+    color: #ffffff;
+  }
+}
+
+.btn-admin-delete {
+  background-color: #ffffff;
+  color: #FC3A5F;
+  font-weight: 500;
+  font-size: 16px;
+  border-style: solid;
+  border-color: #FC3A5F;
+
+  &:hover {
+    background-color: #FC3A5F;
+    color: #ffffff;
+  }
+}
+
+.table-header {
+  background-color: #7169E2;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
 
 #body-admin {
   display: flex;
   flex-direction: row;
   height: 100vh;
   font-family: 'Nunito', sans-serif;
+
+  header {
+    background-color: #dedede;
+    padding: 2% 0%;
+    text-align: center;
+    font-size: 30px;
+
+    h2 {
+      color: #1f2c4c;
+      font-weight: bold;
+    }
+  }
 
   section:first-child {
     *background-color: #8cc2f9;
@@ -35,6 +96,10 @@
   section:nth-child(2) {
     *background-color: pink;
     width: 100%;
+
+    main {
+      margin: 30px 15px;
+    }
   }
 
   #sidebar-admin {
@@ -107,9 +172,46 @@
 
 }
 
+/*Página edición vídeos*/
+#main-editar-videos {
 
+  .form-group {
+    padding: 1% 5%;
 
-///////////////////////////////USUARIO
+    label {
+      font-weight: 600;
+      font-size: 16px;
+    }
+
+  }
+
+  .form-group:nth-child(5) {
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+/*Página gestión vídeos*/
+#section-table-videos th {
+  background-color: #7169E2;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+}
+
+#section-table-videos tr {
+  background-color: #dedede;
+}
+
+#section-table-videos tr td {
+  text-align: center;
+}
+
+#section-table-videos tr:hover {
+  cursor: pointer;
+}
 
 .btn-principal {
   background-color: #F6C115;
@@ -122,7 +224,6 @@
     color: #ffffff;
   }
 }
-
 
 header {
   background-color: var(--grey-light-color);

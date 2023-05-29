@@ -32,10 +32,6 @@ Route::get("/gestion-usuarios/eliminar-usuario/{id}", [UsuarioController::class,
 Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "editarUsuario"])->name("editar-usuario");
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
-// Vídeos 
-
-Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
-
 //Premios
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
 
@@ -61,4 +57,6 @@ Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inici
 
 //Admin vídeos
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
+Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
+Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
 Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");

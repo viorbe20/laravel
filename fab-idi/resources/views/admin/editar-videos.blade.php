@@ -1,31 +1,36 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantilla-admin')
 
 @section('title', 'Editar vídeos')
 
 @section('content')
-    <main>
-        <section id="section-table-editar-videos">
-            <h2>Editar vídeo</h2>
-            <form method="POST" action="{{ route('actualizar-video', ['id' => $video['id']]) }}">
-                @csrf
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">URL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="text" name="nombre" value="{{ $video['nombre'] }}"></td>
-                            <td><input type="text" name="url" value="{{ $video['url'] }}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <input type="hidden" name="id" value="{{ $video['id'] }}">
-                <button type="submit" class="btn btn-primary">Guardar cambios</button>
-            </form>
+    <main id='main-editar-videos'>
+        <section id="section-editar-videos">
+            <div class="card">
+                <div class="card-header table-header">
+                    <h3 class="card-title">Actualización vídeo</h3>
+                </div>
+
+                <form method="POST" action="{{ route('actualizar-video', ['id' => $video['id']]) }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $video['nombre'] }}">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="url" class="form-label">URL</label>
+                        <input type="text" class="form-control" id="url" name="url" value="{{ $video['url'] }}">
+                    </div>
+                    
+                    <input type="hidden" name="id" value="{{ $video['id'] }}">
+                    
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-admin-create">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
             
+    
         </section>
     </main>
 

@@ -5,12 +5,12 @@
 @section('content')
     <main>
         <section id="section-table-videos">
-            <h2>GESTIÓN DE VÍDEOS</h2>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">URL</th>
+                        <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,7 +18,7 @@
                         <tr>
                             <td>{{ $video['nombre'] }}</td>
                             <td>{{ $video['url'] }}</td>
-                            <td><a href="{{ url('gestion-videos/editar/' . $video['id']) }}" class="btn btn-warning">Editar</a></td>
+                            <td><a href="{{ url('gestion-videos/editar/' . $video['id']) }}" class="btn btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>
