@@ -34,7 +34,7 @@
   }
 }
 
-.btn-admin-create {
+.btn-admin-save {
   background-color: #ffffff;
   color: #00C67E;
   font-weight: 500;
@@ -59,6 +59,33 @@
   &:hover {
     background-color: #FFD700;
     color: #ffffff;
+  }
+}
+
+.btn-admin-add {
+  background-color: transparent;
+  color: #00C67E;
+  font-weight: 500;
+  font-size: 35px;
+
+  &:hover {
+    background-color: transparent;
+    color: #00C67E;
+    transform: scale(1.2);
+  }
+}
+
+.page-subtitle {
+  margin: 1% 0%;
+  border-radius: 5px;
+  font-size: 20px;
+  
+  h2 {
+    margin: 0;
+    padding: 1%;
+    font-weight: 800;
+    color: #0B5ED7;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -107,6 +134,16 @@
     cursor: pointer;
   }
 
+}
+
+.styled-input-group {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  input {
+    width: 300px;
+  }
 }
 
 /*Plantilla admin*/
@@ -251,6 +288,15 @@
   .form-group:nth-child(5) {
     display: flex;
     justify-content: center;
+  }
+
+}
+
+/*Página gestión-premios*/
+#main-gestion-premios {
+
+  section {
+    margin: 5% 0%;
   }
 
 }

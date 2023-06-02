@@ -25,7 +25,7 @@
                     <input type="hidden" name="id" value="{{ $video['id'] }}">
                     
                     <div class="form-group">
-                    <button type="submit" class="btn btn-admin-create">Guardar cambios</button>
+                    <button type="submit" class="btn btn-admin-save">Guardar cambios</button>
                     </div>
                 </form>
             </div>
