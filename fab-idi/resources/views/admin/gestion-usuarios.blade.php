@@ -13,7 +13,7 @@
     <main id='main-gestion-usuarios'>
         
         <div class="input-group styled-input-group">
-            <span class="input-group-text" id="">Buscar premio</span>
+            <span class="input-group-text" id="">Buscar usuario</span>
             <input type="text" class="input-group-text" name="buscar" id="buscar-gestion-usuarios">
             <a href="{{ url('gestion-usuarios/crear-usuario') }}" class="btn btn-admin-add"><i class="fa fa-circle-plus"></i></a>
         </div>

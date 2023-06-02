@@ -6,22 +6,31 @@ $(document).ready(function () {
     let queryInput = $("#buscar-premio");
     //contar los premios destacados sacandolo del número de filas de la tabla
     let numPremiosDestacados = $("#tbody-tabla-premios-destacados tr").length;
-    console.log(numPremiosDestacados);
 
 
     function obtenerPremios() {
-        let query = queryInput.val().toLowerCase();
-        tbody.innerHTML = "";
-        return fetch("/obtener-premios-ajax", {
-            method: "POST",
-            body: JSON.stringify({ query: query }),
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-            },
-        }).then(function (response) {
-            return response.json();
-        });
+        let query = queryInput.val();
+
+        if (query != undefined) {
+            query = query.toLowerCase();
+        }
+
+        let tbody = document.querySelector("#tbody-tabla-premios");
+        
+        if (tbody) {
+            tbody.innerHTML = "";
+            return fetch("/obtener-premios-ajax", {
+                method: "POST",
+                body: JSON.stringify({ query: query }),
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                },
+            }).then(function (response) {
+                return response.json();
+            });
+        }
+
     }
 
 
