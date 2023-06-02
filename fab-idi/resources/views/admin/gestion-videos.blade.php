@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <section id="section-table-videos">
-            <table class="table table-striped">
+            <table class="table rounded rounded-top styled-table">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>

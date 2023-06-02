@@ -70,6 +70,45 @@
   text-align: center;
 }
 
+.styled-table {
+  
+  th {
+    background-color: #0B5ED7;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  th:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  th:last-child {
+    border-top-right-radius: 10px;
+  }
+
+  
+  tr:hover td {
+    background-color: #C6C8CA;
+    color: #ffffff;
+  }
+  
+
+  tr {
+    background-color: #dedede;
+  }
+
+  tr td {
+    text-align: center;
+  }
+  
+  tr:hover {
+    cursor: pointer;
+  }
+
+}
+
 /*Plantilla admin*/
 #body-admin {
   display: flex;
@@ -196,8 +235,6 @@
 
 }
 
-
-
 /*Página edición vídeos*/
 #main-editar-videos {
 
@@ -219,38 +256,21 @@
 }
 
 /*Página gestión vídeos*/
-#section-table-videos th {
-  background-color: #7169E2;
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 16px;
-  text-align: center;
-}
 
-#section-table-videos tr {
-  background-color: #dedede;
-}
+// .btn-principal {
+//   background-color: #F6C115;
+//   color: var(--grey-dark-color);
+//   font-weight: 600;
+//   font-size: 18px;
 
-#section-table-videos tr td {
-  text-align: center;
-}
+//   &:hover {
+//     background-color: var(--verde-oscuro);
+//     color: #ffffff;
+//   }
+// }
 
-#section-table-videos tr:hover {
-  cursor: pointer;
-}
 
-.btn-principal {
-  background-color: #F6C115;
-  color: var(--grey-dark-color);
-  font-weight: 600;
-  font-size: 18px;
-
-  &:hover {
-    background-color: var(--verde-oscuro);
-    color: #ffffff;
-  }
-}
-
+/*Páginas usuario*/
 header {
   background-color: var(--grey-light-color);
   padding: 0% 2%;

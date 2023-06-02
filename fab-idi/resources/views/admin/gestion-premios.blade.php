@@ -56,7 +56,7 @@
             <tbody id="tbody-tabla-premios">
             </tbody>
         </table>
-           
+    
         <!-- mensaje success -->
         @if (session('success'))
         <div class="alert alert-success">
