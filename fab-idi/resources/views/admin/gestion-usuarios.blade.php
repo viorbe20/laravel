@@ -11,10 +11,14 @@
 @section('content')
 
     <main id='main-gestion-usuarios'>
-
-            <input type="text" name="buscar" id="buscar-gestion-usuarios">
-            <a href="/gestion-usuarios/crear-usuario" class="btn btn-primary btn-crear-usuario">Crear Usuario</a>
-            <table class="table">
+        
+        <div class="input-group styled-input-group">
+            <span class="input-group-text" id="">Buscar premio</span>
+            <input type="text" class="input-group-text" name="buscar" id="buscar-gestion-usuarios">
+            <a href="{{ url('gestion-usuarios/crear-usuario') }}" class="btn btn-admin-add"><i class="fa fa-circle-plus"></i></a>
+        </div>
+        
+        <table class="table styled-table">
                 <thead class='table-header'>
                     <tr>
                         <th>Nombre</th>

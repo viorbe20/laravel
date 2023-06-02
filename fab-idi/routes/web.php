@@ -65,6 +65,9 @@ Route::get("/gestion-premios/editar/{id}", [PremioController::class, "editarPrem
 Route::post("/gestion-premios/editar/{id}", [PremioController::class, "editarPremioPost"])->name("editar-premio-post");
 Route::match(['GET', 'POST'], '/gestion-premios/eliminar/{id}', [PremioController::class, "eliminarPremio"])->name("eliminar-premio");
 
+//Admin proyectos intercentros
+Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
+
 //Ajax
 Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
