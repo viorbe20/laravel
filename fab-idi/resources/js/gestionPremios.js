@@ -58,6 +58,7 @@ $(document).ready(function () {
                         <td>${premio.url}</td>
                         <td>${premio.imagen}</td>
                         <td>
+                        <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href="gestion-premios/editar/${premio.id}" class="btn btn-primary btn-editar-premio">Editar</a>
                             <a href="gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-eliminar-premio">Eliminar</a>
                             ${numPremiosDestacados < 3 ?
