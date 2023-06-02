@@ -72,9 +72,10 @@ Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gesti
 
 //Admin eventos
 Route::get("/gestion-eventos", [EventoController::class, "gestionEventos"])->name("gestion-eventos");
+
 //Ajax
 Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
 Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
-Route::get("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
+Route::post("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");

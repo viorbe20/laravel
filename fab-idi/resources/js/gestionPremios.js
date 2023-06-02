@@ -15,17 +15,19 @@ $(document).ready(function () {
         }
 
         let tbody = document.querySelector("#tbody-tabla-premios");
-        
+
+
         if (tbody) {
             tbody.innerHTML = "";
             return fetch("/obtener-premios-ajax", {
                 method: "POST",
                 body: JSON.stringify({ query: query }),
                 headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             }).then(function (response) {
+                console.log(response);
                 return response.json();
             });
         }
@@ -34,10 +36,16 @@ $(document).ready(function () {
 
     //Muestra todos los premios en la tabla
     function mostrarPremios() {
+
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
-            // los premios que no son destacados
-            premios.forEach(function (premio) {
+            
+            let ultimosPremios = premios.slice(-6);
+
+            ultimosPremios.forEach(function (premio) {
+
+                console.log(premio);
+                
                 if (!premio.destacado) {
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
@@ -53,9 +61,9 @@ $(document).ready(function () {
                             <a href="gestion-premios/editar/${premio.id}" class="btn btn-primary btn-editar-premio">Editar</a>
                             <a href="gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-eliminar-premio">Eliminar</a>
                             ${numPremiosDestacados < 3 ?
-                                `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn-success"} btn-destacar-premio">${premio.destacado ? "Quitar destacado" : "Destacar"}</a>`
-                                : ''
-                            }
+                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn-success"} btn-destacar-premio">${premio.destacado ? "Quitar destacado" : "Destacar"}</a>`
+                            : ''
+                        }
                         </td>
                     </tr>
                 `;
@@ -77,7 +85,7 @@ $(document).ready(function () {
                 // formatear la fecha en el formato dd/mm/aaaa
                 let fecha = new Date(premio.fecha);
                 let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
-                
+
                 let rowHtml = `
                 <tr>
                     <td>${premio.titulo}</td>
@@ -89,9 +97,9 @@ $(document).ready(function () {
                         <a href="gestion-premios/editar/${premio.id}" class="btn btn-primary btn-editar-premio">Editar</a>
                         <a href="gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-eliminar-premio">Eliminar</a>
                         ${numPremiosDestacados < 3 ?
-                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn-success"} btn-destacar-premio">${premio.destacado ? "Quitar destacado" : "Destacar"}</a>`
-                            : ''
-                        }
+                        `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn-success"} btn-destacar-premio">${premio.destacado ? "Quitar destacado" : "Destacar"}</a>`
+                        : ''
+                    }
                     </td>
                 </tr>
             `;
@@ -100,10 +108,10 @@ $(document).ready(function () {
         });
     }
 
-        //Muestra usuarios al cargar la página
-        if (window.location.pathname === "/gestion-premios") {
-            mostrarPremios();
-        }
+    //Muestra premios al cargar la página
+    if (window.location.pathname === "/gestion-premios") {
+        mostrarPremios();
+    }
 
     //Muestra los premios que coinciden con la búsqueda
     $("#buscar-premio").on("keyup", function () {

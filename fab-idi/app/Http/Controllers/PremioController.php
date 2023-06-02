@@ -15,6 +15,7 @@ class PremioController extends Controller
         return response()->json($premios);
     }
 
+
     public function destacarPremio(Request $request)
     {
         $premio = Premio::find($request->id);
