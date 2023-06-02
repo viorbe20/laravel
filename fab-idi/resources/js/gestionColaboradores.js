@@ -102,10 +102,6 @@ $(document).ready(function () {
     obtenerUsuarios().then(function (usuarios) {
       tbody.innerHTML = "";
 
-      // let usuariosFiltrados = usuarios.filter(function (usuario) {
-      //   return usuario.nombre.toLowerCase().includes(query);
-      // });
-
       let usuariosFiltrados = usuarios.filter(function (usuario) {
         if (usuario.nombre) {
           return usuario.nombre.toLowerCase().includes(query);

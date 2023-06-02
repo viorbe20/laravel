@@ -103,8 +103,8 @@ $(document).ready(function () {
                     <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
                     <td>${usuario.perfil_id}</td>
                     <td>
-                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-eliminar-ususario">Eliminar Usuario</a>
-                    <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-editar-ususario">Editar Usuario</a>
+                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
     
                     </td>
                    </tr> 

@@ -3,7 +3,9 @@
 @section('title', 'Panel Administrador')
 
 @section('content')
-    
-<h1>hola</h1>
+
+    <main id='main-inicio-admin'>
+        <h5>POSIBLE PANEL DE ACCESOS DIRECTOS</h5>
+    </main>
 
 @endsection

@@ -7,10 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    @vite(['resources/scss/app.scss'])
-    <script src="{{ asset('js/app.js') }}"></script> <!-- Ruta correcta para tu archivo app.js -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    @vite(['resources/scss/app.scss', 'resources/js/gestionUsuarios.js', 'resources/js/gestionPremios.js'])
 </head>
 
 <body id='body-admin'>

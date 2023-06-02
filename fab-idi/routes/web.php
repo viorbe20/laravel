@@ -43,12 +43,6 @@ Route::match(['GET', 'POST'], '/crear-colaborador/{id}/{tipoColaborador}', [Cola
 Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
 
 
-//Ajax
-Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
-Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
-
 //Emails
 Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
 
@@ -60,3 +54,20 @@ Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("
 Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
 Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
 Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");
+
+//Admin premios
+Route::get("/gestion-premios", [PremioController::class, "gestionPremios"])->name("gestion-premios");
+Route::get("/gestion-premios/crear", [PremioController::class, "crearPremio"])->name("crear-premio");
+Route::post("/gestion-premios/crear", [PremioController::class, "crearPremioPost"])->name("crear-premio-post");
+Route::get("/gestion-premios/destacar/{id}", [PremioController::class, "destacarPremio"])->name("destacar-premio");
+Route::get("/gestion-premios/quitar-destacado/{id}", [PremioController::class, "quitarPremioDestacado"])->name("quitar-premio-destacado");
+Route::get("/gestion-premios/editar/{id}", [PremioController::class, "editarPremio"])->name("editar-premio");
+Route::post("/gestion-premios/editar/{id}", [PremioController::class, "editarPremioPost"])->name("editar-premio-post");
+Route::match(['GET', 'POST'], '/gestion-premios/eliminar/{id}', [PremioController::class, "eliminarPremio"])->name("eliminar-premio");
+
+//Ajax
+Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
+Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
+Route::get("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");

@@ -79,10 +79,13 @@
             </ul>
         </li>
         <li>
-            <button class="accordion">Section 2</button>
+            <button class="accordion">Usuarios</button>
             <ul class="panel">
-                <li>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <li class="{{ Route::is('gestion-usuarios') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-usuarios') }}">Gestión de usuarios</a>
+                </li>
+                <li class="{{ Route::is('gestion-colaboradores') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-colaboradores') }}">Gestión de colaboradores</a>
                 </li>
             </ul>
         </li>

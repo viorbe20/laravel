@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('premios', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo')->nullable(false);
+            $table->string('titulo');
+            $table->date('fecha');
+            $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
-            $table->date('fecha')->nullable();
-            $table->text('descripcion')->nullable();
             $table->string('url')->nullable();
-            $table->boolean('activo')->default(1);
+            $table->boolean('activo')->default(true);
+            $table->boolean('destacado')->default(false);
             $table->timestamps();
         });
     }
