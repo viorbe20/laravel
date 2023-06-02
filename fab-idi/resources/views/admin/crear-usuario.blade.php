@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.plantilla-admin')
 
 @section('head')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -10,9 +10,11 @@
 @section('content')
 
     <main id='main-crear-usuario'>
-        <h2>Alta Usuario</h2>
+        <div class='page-subtitle'>
+            <h2>ALTA USUARIO</h2>
+        </div>
 
-        <form method="POST" action="{{ route('crear-usuario-post') }}" enctype="multipart/form-data" id='form-crear-usuario'>
+        <form method="POST" action="{{ route('crear-usuario-post') }}" enctype="multipart/form-data" id='form-crear-usuario'class='styled-form'>
             @csrf
             <div class="form-group">
                 <select class="form-control" id="form-select-tipo-usuario" name="select-tipo-usuario">
@@ -115,7 +117,10 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary" id='btn-crear-usuario'>Crear</button>
+            <div class='btn-container'>
+                <button type="submit" class="btn btn-admin-save">Crear</button>
+            </div>
+
         </form>
 
     </main>

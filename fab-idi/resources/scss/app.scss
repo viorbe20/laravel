@@ -75,6 +75,12 @@
   }
 }
 
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 1% 0%;
+}
+
 .page-subtitle {
   margin: 1% 0%;
   border-radius: 5px;
@@ -134,6 +140,48 @@
     cursor: pointer;
   }
 
+}
+
+.styled-form {
+  background-color: #ECECEC;
+  padding: 3%;
+  border-radius: 50px;
+
+  .form-group {
+    margin: 1% 0%;
+  }
+  
+  .form-row-2 {
+    display: flex;
+    
+    .form-group {
+      width: 50%;
+      
+      &:first-child {
+        margin-right: 1%;
+      }
+
+      &:last-child {
+        margin-left: 1%;
+      }
+    }
+  }
+
+  .form-row-3 {
+    display: flex;
+    
+    .form-group {
+      width: 33%;
+      
+      &:first-child {
+        margin-right: 1%;
+      }
+
+      &:last-child {
+        margin-left: 1%;
+      }
+    }
+  }
 }
 
 .styled-input-group {
@@ -300,6 +348,11 @@
     margin: 5% 0%;
   }
 
+}
+
+/*pägina editar premios*/
+#main-editar-premios {
+  padding: 0% 5%;
 }
 
 /*Página gestión vídeos*/
@@ -602,37 +655,4 @@ nav {
   #div-imagen {
     margin: 2% 0%;
   }
-}
-
-//Gestión usuarios
-#form-crear-usuario {
-  margin: 0% 10%;
-  padding: 2% 5%;
-  background-color: lightblue;
-
-  .form-row-2 {
-    display: flex;
-    justify-content: space-between;
-
-    .form-group {
-      width: 48%;
-    }
-  }
-
-  .form-row-3 {
-    display: flex;
-    justify-content: space-between;
-
-    .form-group {
-      width: 33%;
-    }
-  }
-
-
-  button {
-    width: 100%;
-    margin: 2% 0%;
-  }
-
-
 }
