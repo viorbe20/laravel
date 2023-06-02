@@ -81,7 +81,9 @@ $(document).ready(function () {
         obtenerUsuarios().then(function (usuarios) {
             tbody.innerHTML = "";
 
-            usuarios.forEach(function (usuario) {
+            let ultimosUsuarios = usuarios.slice(-6);
+
+            ultimosUsuarios.forEach(function (usuario) {
 
                 if (usuario.activo == 1) {
                     usuario.perfil_id = getPerfil(usuario.perfil_id);
