@@ -44,7 +44,7 @@ $(document).ready(function () {
 
             ultimosPremios.forEach(function (premio) {
 
-                console.log(premio);
+                //console.log(premio);
                 
                 if (!premio.destacado) {
                     let fecha = new Date(premio.fecha);
