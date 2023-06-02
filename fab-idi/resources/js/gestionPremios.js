@@ -7,7 +7,6 @@ $(document).ready(function () {
     //contar los premios destacados sacandolo del número de filas de la tabla
     let numPremiosDestacados = $("#tbody-tabla-premios-destacados tr").length;
 
-
     function obtenerPremios() {
         let query = queryInput.val();
 
@@ -32,8 +31,6 @@ $(document).ready(function () {
         }
 
     }
-
-
 
     //Muestra todos los premios en la tabla
     function mostrarPremios() {
@@ -103,8 +100,10 @@ $(document).ready(function () {
         });
     }
 
-    //Muestra todos los premios en la tabla
-    mostrarPremios();
+        //Muestra usuarios al cargar la página
+        if (window.location.pathname === "/gestion-premios") {
+            mostrarPremios();
+        }
 
     //Muestra los premios que coinciden con la búsqueda
     $("#buscar-premio").on("keyup", function () {

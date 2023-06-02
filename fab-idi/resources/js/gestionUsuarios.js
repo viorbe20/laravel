@@ -61,18 +61,22 @@ $(document).ready(function () {
             query = query.toLowerCase();
         }
         
-        tbody.innerHTML = "";
+        let tbody = document.querySelector("#tbody-tabla-gestion-usuarios");
 
-        return fetch('/obtener-usuarios-ajax', {
-            method: 'POST',
-            body: JSON.stringify({ query: query }),
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }).then(function (response) {
-            return response.json();
-        });
+        if(tbody){
+            tbody.innerHTML = "";
+            
+            return fetch('/obtener-usuarios-ajax', {
+                method: 'POST',
+                body: JSON.stringify({ query: query }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }).then(function (response) {
+                return response.json();
+            });
+        }
     }
 
     //Muestra todos los usuarios en la tabla
@@ -119,8 +123,11 @@ $(document).ready(function () {
         });
     }
 
-    //Muestra todos los usuarios al cargar la página
-    mostrarUsuarios();
+    //Muestra usuarios al cargar la página
+    if (window.location.pathname === "/gestion-usuarios") {
+        mostrarUsuarios();
+    }
+
 
     //Muestra los usuarios que coincidan con la búsqueda
     $("#buscar-gestion-usuarios").on("keyup", function () {
