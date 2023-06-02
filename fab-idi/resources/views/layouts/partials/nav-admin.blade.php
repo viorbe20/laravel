@@ -94,6 +94,14 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <button class="accordion"><i class="fa-solid fa-calendar-days"></i></i>Eventos</button>
+            <ul class="panel">
+                <li class="{{ Route::is('gestion-eventos') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-eventos') }}">Gestión de eventos</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </div>
 <script>

@@ -1,11 +1,11 @@
 @extends('layouts.plantilla-admin')
 
-@section('title', 'Gestión de Proyectos Intercentros')
+@section('title', 'Gestión de Eventos')
 
 @section('content')
     <main>
 
-        <p>Gestión de Proyectos Intercentros</p>
+        <p>Gestión de Eventos</p>
         
         
     </main>

@@ -9,6 +9,8 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PremioController;
 use App\Http\Controllers\MentorController;
+use App\Http\Controllers\ProyectoController;
+use App\Http\Controllers\EventoController;
 
 Route::get("/", [InicioController::class, "index"])->name("index");
 
@@ -68,6 +70,8 @@ Route::match(['GET', 'POST'], '/gestion-premios/eliminar/{id}', [PremioControlle
 //Admin proyectos intercentros
 Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
 
+//Admin eventos
+Route::get("/gestion-eventos", [EventoController::class, "gestionEventos"])->name("gestion-eventos");
 //Ajax
 Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
 Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
