@@ -39,11 +39,10 @@
                 </tbody>
             </table>
             <input type="hidden" name="id" value="{{ $premio['id'] }}">
-            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <div class='btn-container'>
+                <button type="submit" class="btn btn-admin-save">Guardar cambios</button>
+            </div>
         </form>
-        
-        <!-- Volver a gestionar premios -->
-        <a href="{{ route('gestion-premios') }}" class="btn btn-danger">Atrás</a>
 
     </section>
 </main>

@@ -72,6 +72,8 @@ Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gesti
 
 //Admin eventos
 Route::get("/gestion-eventos", [EventoController::class, "gestionEventos"])->name("gestion-eventos");
+Route::get("/gestion-eventos/crear-evento", [EventoController::class, "crearEvento"])->name("crear-evento");
+Route::post("/guardar-evento", [EventoController::class, "guardarEvento"])->name("guardar-evento");
 
 //Ajax
 Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
