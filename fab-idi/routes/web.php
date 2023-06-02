@@ -79,3 +79,4 @@ Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuario
 Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
 Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
 Route::post("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
+Route::get("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
