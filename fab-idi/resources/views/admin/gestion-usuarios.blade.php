@@ -10,7 +10,7 @@
 
 @section('content')
 
-    <main id='main-gestion-usuarios'>
+    <main id='main-gestion-usuarios' class='main-admin'>
         
         <div class="input-group styled-input-group">
             <span class="input-group-text" id="">Buscar usuario</span>
