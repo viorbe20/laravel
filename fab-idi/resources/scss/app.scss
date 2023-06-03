@@ -30,11 +30,12 @@
   width: 100%;
   *background-color: #dae5f0;
 
-  section {
-    margin: 5% 0%;
+  section:first-child {
+    margin-top: 5%;
   }
 
 }
+
 .btn-admin-edit {
   background-color: #ffffff;
   color: #C71585;
@@ -394,7 +395,9 @@
 #main-gestion-premios {
 
   section {
-    margin: 5% 0%;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
   }
 
 }

@@ -27,7 +27,6 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             }).then(function (response) {
-                console.log(response);
                 return response.json();
             });
         }
@@ -39,13 +38,11 @@ $(document).ready(function () {
 
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
-            
+
             let ultimosPremios = premios.slice(-6);
 
             ultimosPremios.forEach(function (premio) {
 
-                //console.log(premio);
-                
                 if (!premio.destacado) {
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
@@ -83,13 +80,18 @@ $(document).ready(function () {
             let premiosFiltrados = premios.filter(function (premio) {
                 return premio.titulo.toLowerCase().includes(queryInput.val());
             });
-            premiosFiltrados.forEach(function (premio) {
-                // formatear la fecha en el formato dd/mm/aaaa
-                let fecha = new Date(premio.fecha);
-                let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                let rowHtml = `
-                <tr>
+
+            premiosFiltrados.forEach(function (premio) {
+
+
+                if (!premio.destacado) {
+
+                    let fecha = new Date(premio.fecha);
+                    let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
+
+                    let rowHtml = `
+                    <tr>
                     <td>${premio.titulo}</td>
                     <td>${fechaFormateada}</td>
                     <td>${premio.descripcion}</td>
@@ -98,16 +100,17 @@ $(document).ready(function () {
                     <td>
                     <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                     <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                        ${numPremiosDestacados < 3 ?
-                        `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
-                <i class="fa-solid fa-trophy"></i>
-            </a>`
-                        : ''
-                    }
+                    ${numPremiosDestacados < 3 ?
+                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
+                        <i class="fa-solid fa-trophy"></i>
+                        </a>`
+                            : ''
+                        }
                     </td>
-                </tr>
-            `;
-                tbody.innerHTML += rowHtml;
+                    </tr>
+                    `;
+                    tbody.innerHTML += rowHtml;
+                }
             });
         });
     }

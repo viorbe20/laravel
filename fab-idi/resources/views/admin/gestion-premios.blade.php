@@ -4,10 +4,11 @@
 
 @section('content')
 
-    <main id="main-gestion-premios">
+    <main id="main-gestion-premios" class='main-admin'>
         @php
             $premiosDestacados = App\Models\Premio::where('destacado', true)->get();
         @endphp
+        
         <section id="section-table-premios-destacados">
 
             <div class='page-subtitle'>
