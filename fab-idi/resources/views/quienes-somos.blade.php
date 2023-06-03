@@ -1,7 +1,7 @@
 @extends('layouts.plantilla')
 
 @section('head')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 @endsection
 
@@ -9,45 +9,98 @@
 
 @section('content')
 
-    <main id='main-quienes-somos'>
-    
-        <section>
-        <div>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi quaerat culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique soluta tenetur.
+<main id='main-quienes-somos'>
+    <section id="historia-red">
+        <div id="historia">
+            <h2>Historia del FAB-IDI</h2>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
+                quaerat
+                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
+                soluta tenetur.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
+                quaerat
+                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
+                soluta tenetur.
+            </p>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
+                quaerat
+                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
+                soluta tenetur.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
+                quaerat
+                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
+                soluta tenetur.
+            </p>
+
+
         </div>
-        <div>
-            <img src="{{ asset('images/logo.png') }}"  alt="logo-fab-idi" width="25%">
+        <div id="img-red">
+            <img src="{{ asset('images/logo.png') }}" alt="logo-fab-idi">
         </div>
     </section>
-    
-    <section>
-        <form>
-            <div>
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" required>
+
+    <section class="formulario mt-5">
+        <div class="form-header">
+            <h4>Inscripción a la red FAB-IDI</h4>
+        </div>
+
+        <form class="form-body" action="mailto:maria14998@gmail.com" method="POST">
+            @csrf
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label" for="tipo">Tipo de usuario</label>
+                    <select class="form-select" name="tipo" id="tipo" required>
+                        <option value="usuario">Usuario</option>
+                        <option value="entidad">Entidad (Instituto, Universidad, Empresa.)</option>
+                    </select>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="nombre">Nombre</label>
+                    <input class="form-control" type="text" name="nombre" required>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="nombre">Apellidos</label>
+                    <input class="form-control" type="text" name="apellidos">
+                </div>
             </div>
-            <div>
-                <label for="nombre">Apellidos</label>
-                <input type="text" name="apellidos" required>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-control" type="email" name="email" required>
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="telefono">Teléfono</label>
+                    <input class="form-control" type="tel" name="telefono">
+                </div>
             </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" required>
+            <div class="row">
+                <div class="mb-3 col">
+                    <label class="form-label" for="twitter">Twitter</label>
+                    <input class="form-control" type="text" name="twitter">
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="instagram">Instagram</label>
+                    <input class="form-control" type="text" name="instagram">
+                </div>
+                <div class="mb-3 col">
+                    <label class="form-label" for="linkedin">Linkedin</label>
+                    <input class="form-control" type="text" name="linkedin">
+                </div>
             </div>
-            <div>
-                <label for="telefono">Teléfono</label>
-                <input type="tel" name="telefono">
-            <div>
-                <label for="mensaje">Mensaje</label>
-                <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+            <div class="mb-3 col">
+                <label class="form-label" for="mensaje">Mensaje</label>
+                <textarea class="form-control" name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
             </div>
-            <div>
-                <input type="submit" value="Enviar">
+            <div class="mb-3">
+                <input class="btn btn-principal" type="submit" value="Enviar">
             </div>
+        </form>
     </section>
 
 
-    </main>
+</main>
 
 
 @endsection

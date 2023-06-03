@@ -140,7 +140,15 @@ $(document).ready(function () {
 
 
             usuariosFiltrados.forEach(function (usuario) {
-                if (usuario.id_colaborador == null) {
+
+                if (usuario.activo == 1) {
+                    usuario.perfil_id = getPerfil(usuario.perfil_id);
+
+                    if (usuario.id_colaborador != null) { //Si el usuario tiene un colaborador asociado se obtiene el nombre del colaborador
+                        usuario.id_colaborador = getColaborador(usuario.id_colaborador);
+                    }
+
+
                     let rowHtml = `
                     <tr>
                     <td>${usuario.nombre}</td>
@@ -160,32 +168,8 @@ $(document).ready(function () {
                    </tr> 
                     `;
                     tbody.innerHTML += rowHtml;
-
-                    //Actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
-                    $(document).on('change', 'input[name="tipo_colaborador"]', function () {
-                        //actualizar el valor del href del boton que corresponde con el tipo de colaborador seleccionado
-                        let botones = document.querySelectorAll('.btn-crear-colaborador');
-                        let tipoColaboradorSeleccionado = $('input[name="tipo_colaborador"]:checked').val();
-
-                        botones.forEach((boton) => {
-                            //imprirmir por consola el id del usuario y el tipo de colaborador seleccionado
-                            usuario.id = $(this).closest('tr').find('input[name="usuario_id"]').val();
-                            boton.href = '/crear-colaborador/' + usuario.id + '/' + tipoColaboradorSeleccionado + '/';
-                            console.log(boton.href);
-                        });
-                    });
-                } else {
-                    console.log(usuario.id);
-                    let rowHtml = `
-              <tr>
-                <td>${usuario.nombre}</td>
-                <td>${usuario.apellidos}</td>
-                <td style="display:flex;justify-content: flex-end">
-                  <a href="/eliminar-colaborador/${usuario.id}" class="btn btn-warning">Eliminar Colaborador</a>
-                </td>
-              </tr>`;
-                    tbody.innerHTML += rowHtml;
                 }
+
             });
         });
     }

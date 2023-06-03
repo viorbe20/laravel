@@ -24,6 +24,9 @@
                 <li class="{{ Route::is('gestion-usuarios') ? 'active' : '' }}">
                     <a href="{{ route('gestion-usuarios') }}">Gestión de usuarios</a>
                 </li>
+                <li class="{{ Route::is('gestion-usuarios') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-usuarios') }}">Gestión de entidades</a>
+                </li>
             </ul>
         </li>
         <li>
