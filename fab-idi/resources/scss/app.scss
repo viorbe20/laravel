@@ -21,6 +21,16 @@
 
 /*ADMIN VIEW*/
 /*Estilos generales*/
+.main-admin {
+  padding: 2%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  width: 100%;
+  *background-color: #dae5f0;
+
+}
 .btn-admin-edit {
   background-color: #ffffff;
   color: #C71585;
@@ -229,7 +239,7 @@
     height: 92vh;
 
     #sidebar-admin {
-      *width: 300px;
+      width: 20%;
       height: auto;
       overflow: hidden;
 
@@ -328,23 +338,15 @@
         /* Unicode character for "minus" sign (-) */
       }
     }
-
-    #main-inicio-admin {
-      padding: 2%;
-      text-align: center;
-      *background-image: url('../../public/images/colmena.jpg');
-      background-repeat: no-repeat;
-      background-size: 50%;
-      background-position: center;
-      width: 80%;
-      background-color: #007bff;
-
-    }
   }
+}
 
+/*Página gestión vídeos*/
+#main-gestion-videos {
 
-
-
+  section {
+    margin: 5% 0%;
+  }
 
 }
 
@@ -472,54 +474,54 @@ nav {
   margin: 0%;
   padding: 0%;
 
-  .container-fluid{
-      padding: 0%;
+  .container-fluid {
+    padding: 0%;
   }
 
   ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+
+    li {
+      padding: 10px 0%;
+      background-color: #ffffff;
+      opacity: 0.8;
+      width: 20%;
       display: flex;
+      justify-content: center !important;
+      align-items: center !important;
 
-      li {
-          padding: 10px 0%;
-          background-color: #ffffff;
-          opacity: 0.8;
-          width: 20%;
-          display: flex;
-          justify-content: center !important;
-          align-items: center !important;
-
-          a {
-              color: var(--verde-medio);
-              text-decoration: none;
-              font-weight: bold;
-              padding: 0px 10px;
-              font-size: 18px;
-              display: flex;
-              justify-content: center !important;
-              align-items: center !important;
-          }
+      a {
+        color: var(--verde-medio);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0px 10px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center !important;
+        align-items: center !important;
       }
+    }
 
-      li.active {
-          background-color: var(--verde-medio);
+    li.active {
+      background-color: var(--verde-medio);
 
-          a {
-              text-decoration: none;
-              color: #ffffff;
-          }
+      a {
+        text-decoration: none;
+        color: #ffffff;
       }
+    }
 
-      li:hover {
-          background-color: var(--verde-medio);
+    li:hover {
+      background-color: var(--verde-medio);
 
-          a {
-              text-decoration: none;
-              color: #ffffff;
-          }
+      a {
+        text-decoration: none;
+        color: #ffffff;
       }
+    }
   }
 }
 
@@ -528,22 +530,22 @@ nav {
   display: flex;
 
   #inicio-videos {
-      text-align: center;
-      flex: 50%;
+    text-align: center;
+    flex: 50%;
   }
 
   #inicio-text {
-      padding: 2%;
-      flex: 50%;
+    padding: 2%;
+    flex: 50%;
   }
 
   #video-line-2 {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 
-  iframe{
-      width: 100%;
+  iframe {
+    width: 100%;
   }
 }
 
@@ -553,21 +555,21 @@ nav {
   margin: 2% 0;
 
   #inicio-cards {
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 
   a {
-      margin: 0 40%;
+    margin: 0 40%;
   }
 }
 
 #inicio-cards {
   .card {
-      margin: 0% 3%;
+    margin: 0% 3%;
 
-      //sombra
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    //sombra
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   }
 }
 
@@ -575,127 +577,31 @@ nav {
   margin: 4% 0%;
 }
 
-//Premios
-.gallery {
-  display: flex;
-  padding: 2px;
-  transition: 0.3s;
+//Páginas quiénes somos
 
-  &:hover &__image {
-      filter: grayscale(1);
-  }
-
-  &__column {
-      display: flex;
-      flex-direction: column;
-      width: 25%;
-  }
-
-  &__link {
-      margin: 2px;
-      overflow: hidden;
-
-      &:hover {
-          .gallery__image {
-              filter: grayscale(0);
-          }
-
-          .gallery__caption {
-              opacity: 1;
-          }
-      }
-  }
-
-  &__thumb {
-      position: relative;
-  }
-
-  &__image {
-      display: block;
-      width: 100%;
-      transition: 0.3s;
-
-      &:hover {
-          transform: scale(1.1);
-      }
-  }
-
-  &__caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 25px 15px 15px;
-      width: 100%;
-      font-family: "Raleway", sans-serif;
-      font-size: 16px;
-      color: white;
-      opacity: 0;
-      background: linear-gradient(
-          0deg,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(255, 255, 255, 0) 100%
-      );
-      transition: 0.3s;
-  }
-}
-
-//Premios
-.gallery {
-  display: flex;
-  padding: 2px;
-  transition: .3s;
-
-  &:hover &__image {
-    filter: grayscale(1);
-  }
-
-  &__column {
+#main-quienes-somos {
+  #historia-red {
     display: flex;
-    flex-direction: column;
-    width: 25%;
-  }
+    justify-content: space-between;
 
-  &__link {
-    margin: 2px;
-    overflow: hidden;
+    #historia {
+      flex: 5;
 
-    &:hover {
-      .gallery__image {
-        filter: grayscale(0);
+      h2 {
+        text-align: center;
       }
 
-      .gallery__caption {
-        opacity: 1;
+      p {
+        font-size: 18px;
       }
+
     }
   }
 
-  &__thumb {
-    position: relative;
-  }
-
-  &__image {
-    display: block;
+  #img-red {
+    flex: 5;
     width: 100%;
-    transition: .3s;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  &__caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 25px 15px 15px;
-    width: 100%;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    color: white;
-    opacity: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
-    transition: .3s;
+    text-align: center;
   }
 }
 

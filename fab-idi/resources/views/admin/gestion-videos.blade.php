@@ -3,7 +3,8 @@
 @section('title', 'Gestión de Vídeos')
 
 @section('content')
-    <main>
+    <main id='main-gestion-videos' class='main-admin'>
+        
         <section id="section-table-videos">
             <table class="table styled-table">
                 <thead>
@@ -24,8 +25,6 @@
                 </tbody>
             </table>
         </section>
-
-
     </main>
 
 @endsection

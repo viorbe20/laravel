@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <main id='main-inicio-admin'>
-        <h5>POSIBLE PANEL DE ACCESOS DIRECTOS</h5>
+    <main id='main-inicio-admin' class='main-admin'>
+       <img src="{{ asset('images/logo.png') }}" alt="Logo" id='logo-inicio-admin'> 
     </main>
 
 @endsection
