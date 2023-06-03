@@ -1,10 +1,12 @@
 <div id="sidebar-admin">
     <ul>
-        <li>
-            <a href="{{ route('inicio-admin') }}">
-                <h4>Menu Principal</h4>
-            </a>
+        <li class="profile-container">
+            <div>
+                <img src="{{ asset('images/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil" class="profile-picture">
+                <p class="profile-name">Bienvenido, {{ Auth::user()->nombre }}</p>
+            <div>
         </li>
+        
         <li>
             <button class="accordion"><i class="fas fa-home"></i>Inicio</button>
             <ul class="panel">
@@ -52,38 +54,38 @@
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-      let accordions = document.getElementsByClassName("accordion");
-  
-      for (let i = 0; i < accordions.length; i++) {
-        accordions[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          let panel = this.nextElementSibling;
-          if (panel.style.display === "block") {
-            panel.style.display = "none";
-          } else {
-            panel.style.display = "block";
-          }
-  
-          // Guardar el estado en sessionStorage
-          sessionStorage.setItem("panelState" + i, this.classList.contains("active"));
-        });
-  
-        // Restaurar el estado desde sessionStorage
-        let panelState = sessionStorage.getItem("panelState" + i);
-        if (panelState === "true") {
-          accordions[i].classList.add("active");
-          accordions[i].nextElementSibling.style.display = "block";
+        let accordions = document.getElementsByClassName("accordion");
+
+        for (let i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                let panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+
+                // Guardar el estado en sessionStorage
+                sessionStorage.setItem("panelState" + i, this.classList.contains("active"));
+            });
+
+            // Restaurar el estado desde sessionStorage
+            let panelState = sessionStorage.getItem("panelState" + i);
+            if (panelState === "true") {
+                accordions[i].classList.add("active");
+                accordions[i].nextElementSibling.style.display = "block";
+            }
         }
-      }
     });
-  </script>
-  
-  <style>
+</script>
+
+<style>
     .panel {
-      display: none;
+        display: none;
     }
-  
-    .active + .panel {
-      display: block;
+
+    .active+.panel {
+        display: block;
     }
-  </style>
+</style>
