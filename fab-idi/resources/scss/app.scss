@@ -15,10 +15,11 @@
   font-family: 'Nunito', sans-serif;
 
   main {
-    padding: 0% 2%;
+    padding: 2% 2%;
   }
 }
 
+/*ADMIN VIEW*/
 /*Estilos generales*/
 .btn-admin-edit {
   background-color: #ffffff;
@@ -121,7 +122,7 @@
   th:last-child {
     border-top-right-radius: 10px;
   }
-  
+
   tr td {
     text-align: center;
     background-color: #ffffff;
@@ -199,9 +200,9 @@
   display: flex;
   flex-direction: column;
   font-family: 'Nunito', sans-serif;
-  
+
   section:nth-child(1) {
-    
+
     header {
       background-color: #FFFFFF;
       padding: 0% 0%;
@@ -231,7 +232,7 @@
       *width: 300px;
       height: auto;
       overflow: hidden;
-      
+
       ul:nth-child(1) {
         padding: 0% 0% 10% 0%;
         margin: 2%;
@@ -251,7 +252,7 @@
           border-top-right-radius: 25px;
           position: relative;
           height: 100px;
-          
+
           div {
             position: absolute;
             top: 65%;
@@ -259,13 +260,13 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            
+
             img {
               width: 90px;
               border-radius: 50%;
             }
           }
-          
+
         }
 
       }
@@ -337,7 +338,7 @@
       background-position: center;
       width: 80%;
       background-color: #007bff;
-      
+
     }
   }
 
@@ -381,25 +382,24 @@
   padding: 0% 5%;
 }
 
-/*Página gestión vídeos*/
 
-// .btn-principal {
-//   background-color: #F6C115;
-//   color: var(--grey-dark-color);
-//   font-weight: 600;
-//   font-size: 18px;
+/********************************VISTAS USUARIOS*******************************/
+/*Estilos generales*/
 
-//   &:hover {
-//     background-color: var(--verde-oscuro);
-//     color: #ffffff;
-//   }
-// }
+.btn-principal {
+  background-color: #f6c115;
+  color: var(--grey-dark-color);
+  font-weight: 600;
+  font-size: 18px;
 
+  &:hover {
+    background-color: var(--verde-oscuro);
+    color: #ffffff;
+  }
+}
 
-/*Páginas usuario*/
 header {
-  background-color: var(--grey-light-color);
-  padding: 0% 2%;
+  padding: 0%;
   margin: 0%;
 
   h1 {
@@ -408,13 +408,16 @@ header {
     font-family: 'Comfortaa', cursive;
   }
 
+  img {
+    width: 15%;
+    margin-left: 5%;
+  }
+
   #btn-login {
     background-color: #F6C115;
     color: var(--grey-dark-color);
     font-weight: 600;
     font-size: 18px;
-
-
 
     &:hover {
       background-color: var(--verde-oscuro);
@@ -456,52 +459,67 @@ header {
   margin-bottom: 0rem !important;
 }
 
+.navbar {
+  padding: 0 !important;
+
+  .navbar-nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 nav {
   margin: 0%;
   padding: 0%;
 
+  .container-fluid{
+      padding: 0%;
+  }
+
   ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
 
-    li {
-      padding: 30px 0%;
-      background-color: #ffffff;
-      opacity: 0.8;
+      li {
+          padding: 10px 0%;
+          background-color: #ffffff;
+          opacity: 0.8;
+          width: 20%;
+          display: flex;
+          justify-content: center !important;
+          align-items: center !important;
 
-      a {
-        color: var(--verde-medio);
-        /* un tono marrón claro */
-        text-decoration: none;
-        /* quita subrayado */
-        font-weight: bold;
-        padding: 5px 10px;
-        /* espacio interno */
-        border-radius: 5px;
-        /* bordes redondeados */
-        font-size: 20px;
+          a {
+              color: var(--verde-medio);
+              text-decoration: none;
+              font-weight: bold;
+              padding: 0px 10px;
+              font-size: 18px;
+              display: flex;
+              justify-content: center !important;
+              align-items: center !important;
+          }
       }
-    }
 
-    li.active {
-      background-color: var(--verde-medio);
+      li.active {
+          background-color: var(--verde-medio);
 
-      a {
-        text-decoration: none;
-        color: #ffffff;
+          a {
+              text-decoration: none;
+              color: #ffffff;
+          }
       }
-    }
 
-    li:hover {
-      background-color: var(--verde-medio);
+      li:hover {
+          background-color: var(--verde-medio);
 
-      a {
-        text-decoration: none;
-        color: #ffffff;
+          a {
+              text-decoration: none;
+              color: #ffffff;
+          }
       }
-    }
   }
 }
 
