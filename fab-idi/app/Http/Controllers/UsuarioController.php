@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\Entidad;
 use App\Models\Perfil;
 use App\Models\Colaborador;
-
+use App\Mail\NuevaContrasena;
 
 class UsuarioController extends Controller
 {
@@ -125,9 +127,18 @@ class UsuarioController extends Controller
                 'twitter' => $request->input('twitter-usuario'),
                 'instagram' => $request->input('instagram-usuario'),
                 'linkedin' => $request->input('linkedin-usuario'),
+                'imagen' => 'usuario-default.webp'
             ]);
 
-            $usuario->save();
+            //Comprueba si hay foto
+            
+            if ($request->hasFile('foto-usuario')) {
+                //guarda en la carpeta storage/app/public/usuarios
+                $request->file('foto-usuario')->store('public/images/usuarios/');
+                $usuario->imagen = $request->file('foto-usuario')->hashName();
+                $usuario->save();
+            } 
+            
 
             //Falta foto
         } else {

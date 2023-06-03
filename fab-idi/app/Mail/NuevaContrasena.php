@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MensajeRecibido extends Mailable
+class NuevaContrasena extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,13 +21,20 @@ class MensajeRecibido extends Mailable
         //
     }
 
+    /**Carga la vista */
+    public function build()
+    {
+        return $this->view('emails.nueva-contrasena');
+    }
+
+
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Mensaje Recibido',
+            subject: 'Nueva Contrasena',
         );
     }
 
@@ -49,10 +56,5 @@ class MensajeRecibido extends Mailable
     public function attachments(): array
     {
         return [];
-    }
-
-    public function build()
-    {
-        return $this->view('emails.mensaje-recibido')->subject('Mensaje Recibido');
     }
 }
