@@ -35,8 +35,10 @@
                             <td>{{ $premio->url }}</td>
                             <td>{{ $premio->imagen }}</td>
                             <td>
-                                <a href="{{ url('gestion-premios/quitar-destacado/' . $premio->id) }}"
-                                    class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                                <a href="{{ url('gestion-premios/editar/' . $premio->id) }}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ url('gestion-premios/eliminar/' . $premio->id) }}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                                <a href="{{ url('gestion-premios/quitar-destacado/' . $premio->id) }}" class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
+                                    
                             </td>
                         </tr>
                     @endforeach
