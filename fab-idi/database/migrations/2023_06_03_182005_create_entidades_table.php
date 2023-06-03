@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique(false)->nullable(false);
             $table->string('web')->nullable();
             $table->string('imagen')->nullable();
+            $table->foreignId('id_colaborador')->nullable(false)->constrained('colaboradores');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

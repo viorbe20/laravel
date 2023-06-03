@@ -111,9 +111,10 @@ class UsuarioController extends Controller
 
         $tipoUsuario = $request->input('select-tipo-usuario');
 
+        $randomPassword = $this->generarPasswordAleatoria();
+
         if ($tipoUsuario == "usuario") {
             
-            $randomPassword = $this->generarPasswordAleatoria();
 
             $usuario = User::create([
                 'nombre' => $request->input('nombre-usuario'),
@@ -130,7 +131,6 @@ class UsuarioController extends Controller
                 'imagen' => 'usuario-default.webp'
             ]);
 
-            //Comprueba si hay foto
             
             if ($request->hasFile('foto-usuario')) {
                 //guarda en la carpeta storage/app/public/usuarios
@@ -148,9 +148,16 @@ class UsuarioController extends Controller
                 'email' => $request->input('email-entidad'),
                 'telefono' => $request->input('telefono-entidad'),
                 'web' => $request->input('web-entidad'),
-                'imagen' => $request->input('imagen-entidad'),
-                'activo' => 1,
+                'imagen' => 'entidad-default.webp',
+                'activo' => 1
             ]);
+
+            if ($request->hasFile('foto-entidad')) {
+                //guarda en la carpeta storage/app/public/usuarios
+                $request->file('foto-entidad')->store('public/images/usuarios/');
+                $entidad->imagen = $request->file('foto-entidad')->hashName();
+                $entidad->save();
+            } 
         }
 
 
