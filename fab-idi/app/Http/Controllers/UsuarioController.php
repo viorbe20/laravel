@@ -89,17 +89,36 @@ class UsuarioController extends Controller
         return response()->json($usuarios);
     }
 
+    private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
+    {
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        if ($caracteresEspeciales) {
+            $caracteres .= '!@#$%^&*()';
+        }
+        $password = '';
+
+        for ($i = 0; $i < $longitud; $i++) {
+            $password .= $caracteres[mt_rand(0, strlen($caracteres) - 1)];
+        }
+
+        return $password;
+    }
+
     public function crearUsuarioPost(Request $request)
     {
 
         $tipoUsuario = $request->input('select-tipo-usuario');
 
         if ($tipoUsuario == "usuario") {
+            
+            $randomPassword = $this->generarPasswordAleatoria();
+
             $usuario = User::create([
                 'nombre' => $request->input('nombre-usuario'),
                 'apellidos' => $request->input('apellidos-usuario'),
                 'email' => $request->input('email-usuario'),
-                'password' => $request->input('password-usuario'),
+                'password' => bcrypt($randomPassword),
+                'idColaborador' => $request->input('select-tipo-colaborador'),
                 'perfil_id' => 1,
                 'activo' => 1,
                 'telefono' => $request->input('telefono-usuario'),

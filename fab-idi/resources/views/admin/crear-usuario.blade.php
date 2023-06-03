@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <main id='main-crear-usuario'>
+    <main id='main-crear-usuario' class='main-admin'>
         <div class='page-subtitle'>
             <h2>ALTA USUARIO</h2>
         </div>
@@ -30,22 +30,38 @@
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" class="form-control required-usuario" name="nombre-usuario">
+                        <input type="text" class="form-control required-usuario" name="nombre-usuario" required>
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Apellidos*</label>
-                        <input type="text" class="form-control" name="apellidos-usuario" >
+                        <input type="text" class="form-control" name="apellidos-usuario" required>
                     </div>
                 </div>
 
-                <div class="form-row-3">
+                <div class="form-row-2">
                     <div class="form-group">
-                        <label for="email">Email*</label>
-                        <input type="email" class="form-control" name="email-usuario" >
+                        <label for="profile">Perfil*</label>
+                        <select class="form-control" name="select-perfil-usuario">
+                            <option value="1">Admin</option>
+                            <option value="2" selected>Usuario</option>
+                            <option value="3">Embajador</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="password">Contraseña*</label>
-                        <input type="text" class="form-control" name="password-usuario" >
+                        <label for="colaborador">Tipo de Colaborador*</label>
+                        <select class="form-control" name="select-tipo-colaborador" >
+                            <option value="1" selected>Ninguno</option>
+                            <option value="2">Embajador</option>
+                            <option value="3">Mentor</option>
+                            <option value="4">Instituto</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label for="email">Email*</label>
+                        <input type="email" class="form-control" name="email-usuario" required>
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
@@ -69,15 +85,7 @@
                 </div>
 
                 
-                <div class="form-row-2">
-                    <div class="form-group">
-                        <label for="profile">Perfil</label>
-                        <select class="form-control" name="select-perfil-usuario" >
-                            <option value="1">Admin</option>
-                            <option value="2" selected>Usuario</option>
-                            <option value="3">Embajador</option>
-                        </select>
-                    </div>
+                <div class="form-row-1">
                     <div class="form-group">
                         <label for="phot">Foto</label>
                         <input type="file" class="form-control" name="foto-usuario">
