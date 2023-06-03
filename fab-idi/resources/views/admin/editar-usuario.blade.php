@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <main id='main-editar-usuario'>
+    <main id='main-editar-usuario' class='main-admin'>
         <div class='page-subtitle'>
             <h2>EDICIÓN DE USUARIO</h2>
         </div>
