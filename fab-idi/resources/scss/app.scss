@@ -97,6 +97,27 @@
   margin: 1% 0%;
 }
 
+.btn-container-vista {
+  display: flex;
+  justify-content: right;
+  margin: 1% 0%;
+
+  a {
+    background-color: #ffffff;
+    color: #2F206B;
+    font-weight: 500;
+    font-size: 20px;
+    border-style: solid;
+    border-color: #2F206B;
+    font-family: 'Nunito', sans-serif !important;
+  
+    &:hover {
+      background-color: #FFD700;
+      color: #ffffff;
+    }
+  }
+}
+
 .page-subtitle {
   margin: 1% 0%;
   border-radius: 5px;
