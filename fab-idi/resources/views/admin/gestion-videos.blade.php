@@ -6,6 +6,14 @@
     <main id='main-gestion-videos' class='main-admin'>
         
         <section id="section-table-videos">
+            <div class="alertas">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+
             <table class="table styled-table">
                 <thead>
                     <tr>

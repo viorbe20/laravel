@@ -30,6 +30,10 @@
   width: 100%;
   *background-color: #dae5f0;
 
+  section {
+    margin: 5% 0%;
+  }
+
 }
 .btn-admin-edit {
   background-color: #ffffff;
@@ -97,6 +101,7 @@
   margin: 1% 0%;
   border-radius: 5px;
   font-size: 20px;
+  text-align: left;
 
   h2 {
     margin: 0;
@@ -342,13 +347,7 @@
 }
 
 /*Página gestión vídeos*/
-#main-gestion-videos {
 
-  section {
-    margin: 5% 0%;
-  }
-
-}
 
 /*Página edición vídeos*/
 #main-editar-videos {
