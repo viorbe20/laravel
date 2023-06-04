@@ -12,7 +12,9 @@
         @endphp
 
         <section id="section-table-proyectos-destacados-intercentros">
-
+            <div class='btn-container-vista'>
+                <a href="{{ url('/proyectos-intercentros') }}" class="btn"><i class="fa-solid fa-eye"><span> Vista</span></i></a>
+            </div>
             <div class='page-subtitle'>
                 <h2>PROYECTOS DESTACADOS</h2>
             </div>

@@ -11,8 +11,16 @@
             <span class="input-group-text my-4">Buscar usuario</span>
             <input type="text" class="input-group-text" name="buscar" id="buscar-gestion-contrasenas">
         </div>
-        
-        <table class="table styled-table">
+        <section id="section-table-videos">
+            <div class="alertas">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+            </div>
+            <table class="table styled-table">
+
                 <thead class='table-header'>
                     <tr>
                         <th>Nombre</th>

@@ -12,7 +12,9 @@
         @endphp
         
         <section id="section-table-premios-destacados">
-
+            <div class='btn-container-vista'>
+                <a href="{{ url('/') }}" class="btn"><i class="fa-solid fa-eye"><span> Vista</span></i></a>
+            </div>
             <div class='page-subtitle'>
                 <h2>PREMIOS DESTACADOS</h2>
             </div>
