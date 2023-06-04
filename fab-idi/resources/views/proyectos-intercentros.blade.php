@@ -14,6 +14,9 @@
             $proyectosAnteriores = App\Models\Proyecto::where('destacado', '1')
                 ->where('tipo_proyecto_id', '2')
                 ->get();
+            $proyectosActivos = App\Models\Proyecto::where('activo', '1')
+                ->where('tipo_proyecto_id', '2')
+                ->get();
         @endphp
         <div>
             <h4>¿Qué es?</h4>
@@ -45,6 +48,24 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+        
+            <h3>Proyectos Actuales</h3>
+            <div id='panel-proyectos-intercentros-actuales'>
+                @foreach ($proyectosAnteriores as $proyecto)
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ asset('images/proyectos/' . $proyecto->imagen) }}" alt="Foto de perfil"
+                        class="profile-picture">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $proyecto->nombre }}</h5>
+                            <p class="card-text">{{ $proyecto->descripcion }}</p>
+                            <a href="{{ $proyecto->url }}" class="btn btn-admin-save">Saber más</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+
 
 
     </main>
