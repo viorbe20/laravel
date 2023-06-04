@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->nullable(false);
             $table->string('representante')->nullable();
+            $table->foreignId('colaborador_id')->nullable(false)->constrained('colaboradores');
             $table->string('telefono')->nullable();
             $table->string('email')->unique(false)->nullable(false);
             $table->string('web')->nullable();

@@ -21,6 +21,7 @@ class Entidad extends Authenticatable
     protected $fillable = [
         'nombre',
         'representante',
+        'colaborador_id',
         'telefono',
         'email',
         'web',

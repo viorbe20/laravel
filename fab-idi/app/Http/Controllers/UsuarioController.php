@@ -148,7 +148,7 @@ class UsuarioController extends Controller
                 'email' => $request->input('email-entidad'),
                 'telefono' => $request->input('telefono-entidad'),
                 'web' => $request->input('web-entidad'),
-                'idColaborador' => $request->input('select-tipo-colaborador-entidad'),
+                'colaborador_id' => $request->input('select-tipo-colaborador-entidad'),
                 'imagen' => 'entidad-default.webp',
                 'activo' => 1
             ]);

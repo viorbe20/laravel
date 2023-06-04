@@ -89,5 +89,5 @@ Route::post("/guardar-cambios-evento", [EventoController::class, "guardarCambios
     Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
     Route::post("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
     Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
-
+    Route::match(['GET', 'POST'],"/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
 
