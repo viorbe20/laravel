@@ -2,6 +2,8 @@
 
 @section('title', 'Gestión de Entidades')
 
+@vite(['resources/js/gestionEntidades.js'])
+
 @section('content')
 
 <script>

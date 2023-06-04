@@ -1,25 +1,26 @@
 import $ from "jquery";
 
 $(document).ready(function () {
-    const originalTbodyContent = $("#tbody-tabla-premios").html();
-    let tbody = document.querySelector("#tbody-tabla-premios");
-    let queryInput = $("#buscar-premio");
-    //contar los premios destacados sacandolo del número de filas de la tabla
-    let numPremiosDestacados = $("#tbody-tabla-premios-destacados tr").length;
+    const originalTbodyContent = $("#tbody-tabla-proyecto").html();
+    let tbody = document.querySelector("#tbody-tabla-proyectos");
+    let queryInput = $("#buscar-proyecto");
+    //contar los proyectos destacados sacandolo del número de filas de la tabla
+    let numproyectosDestacados = $("#tbody-tabla-proyectos-destacados tr").length;
 
-    function obtenerPremios() {
+    function obtenerproyectos() {
         let query = queryInput.val();
 
         if (query != undefined) {
             query = query.toLowerCase();
         }
 
-        let tbody = document.querySelector("#tbody-tabla-premios");
+        let tbody = document.querySelector("#tbody-tabla-proyectos");
+        console.log(tbody);
 
 
         if (tbody) {
             tbody.innerHTML = "";
-            return fetch("/obtener-premios-ajax", {
+            return fetch("/obtener-proyectos-ajax", {
                 method: "POST",
                 body: JSON.stringify({ query: query }),
                 headers: {
@@ -33,32 +34,29 @@ $(document).ready(function () {
 
     }
 
-    //Muestra todos los premios en la tabla
-    function mostrarPremios() {
+    //Muestra todos los proyectos en la tabla
+    function mostrarproyectos() {
 
-        obtenerPremios().then(function (premios) {
+        obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
-            let ultimosPremios = premios.slice(-6);
+            let ultimosproyectos = proyectos.slice(-6);
 
-            ultimosPremios.forEach(function (premio) {
+            ultimosproyectos.forEach(function (proyecto) {
 
-                if (!premio.destacado) {
-                    let fecha = new Date(premio.fecha);
-                    let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
+                if (!proyecto.destacado) {
 
                     let rowHtml = `
                     <tr>
-                        <td>${premio.titulo}</td>
-                        <td>${fechaFormateada}</td>
-                        <td>${premio.descripcion}</td>
-                        <td>${premio.url ? premio.url : ''}</td>
-                        <td>${premio.imagen}</td>
+                        <td>${proyecto.titulo}</td>
+                        <td>${proyecto.descripcion}</td>
+                        <td>${proyecto.url ? proyecto.url : ''}</td>
+                        <td>${proyecto.imagen}</td>
                         <td>
-                        <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numPremiosDestacados < 3 ?
-                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
+                        <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                            ${numproyectosDestacados < 3 ?
+                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-warning" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
                             : ''
@@ -72,36 +70,36 @@ $(document).ready(function () {
         });
     }
 
-    //Muestra los premios que coinciden con la búsqueda
-    function mostrarPremiosCoincidentes() {
-        obtenerPremios().then(function (premios) {
+    //Muestra los proyectos que coinciden con la búsqueda
+    function mostrarproyectosCoincidentes() {
+        obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
-            let premiosFiltrados = premios.filter(function (premio) {
-                return premio.titulo.toLowerCase().includes(queryInput.val());
+            let proyectosFiltrados = proyectos.filter(function (proyecto) {
+                return proyecto.titulo.toLowerCase().includes(queryInput.val());
             });
 
 
-            premiosFiltrados.forEach(function (premio) {
+            proyectosFiltrados.forEach(function (proyecto) {
 
 
-                if (!premio.destacado) {
+                if (!proyecto.destacado) {
 
-                    let fecha = new Date(premio.fecha);
+                    let fecha = new Date(proyecto.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
                     let rowHtml = `
                     <tr>
-                    <td>${premio.titulo}</td>
+                    <td>${proyecto.titulo}</td>
                     <td>${fechaFormateada}</td>
-                    <td>${premio.descripcion}</td>
-                    <td>${premio.url ? premio.url : ''}</td>
-                    <td>${premio.imagen}</td>
+                    <td>${proyecto.descripcion}</td>
+                    <td>${proyecto.url ? proyecto.url : ''}</td>
+                    <td>${proyecto.imagen}</td>
                     <td>
-                    <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    ${numPremiosDestacados < 3 ?
-                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
+                    <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    ${numproyectosDestacados < 3 ?
+                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-warning" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-sharp fa-solid fa-eye"></i></a>`
                             : ''
                         }
@@ -114,19 +112,19 @@ $(document).ready(function () {
         });
     }
 
-    //Muestra premios al cargar la página
-    if (window.location.pathname === "/gestion-premios") {
-        mostrarPremios();
+    //Muestra proyectos al cargar la página
+    if (window.location.pathname === "/gestion-proyectos") {
+        mostrarproyectos();
     }
 
-    //Muestra los premios que coinciden con la búsqueda
-    $("#buscar-premio").on("keyup", function () {
+    //Muestra los proyectos que coinciden con la búsqueda
+    $("#buscar-proyecto").on("keyup", function () {
         let query = $(this).val().toLowerCase().trim();
 
         if (query.length === 0) {
-            mostrarPremios();
+            mostrarproyectos();
         } else {
-            mostrarPremiosCoincidentes();
+            mostrarproyectosCoincidentes();
         }
     });
 });

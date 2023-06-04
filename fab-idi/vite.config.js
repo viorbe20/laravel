@@ -8,6 +8,11 @@ export default defineConfig({
             input: [
                 'resources/scss/app.scss',
                 'resources/js/app.js',
+                'resources/js/gestionProyectos.js',
+                'resources/js/gestionUsuarios.js', 
+                'resources/js/gestionPremios.js', 
+                'resources/js/gestionEntidades.js',
+                'resources/js/altaUsuarios.js',
             ],
             refresh: true,
         }),

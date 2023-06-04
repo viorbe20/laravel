@@ -2,6 +2,8 @@
 
 @section('title', 'Gestión de Premios')
 
+@vite(['resources/js/gestionPremios.js'])
+
 @section('content')
 
     <main id="main-gestion-premios" class='main-admin'>

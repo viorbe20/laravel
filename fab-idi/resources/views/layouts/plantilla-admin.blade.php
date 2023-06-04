@@ -7,9 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    @vite(['resources/scss/app.scss', 'resources/js/gestionUsuarios.js', 
-    'resources/js/gestionPremios.js', 'resources/js/altaUsuario.js', 
-    'resources/js/gestionEventos.js', 'resources/js/gestionEntidades.js'])
+    @vite(['resources/scss/app.scss'])
 </head>
 
 <body id='body-admin'>
