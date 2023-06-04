@@ -14,6 +14,8 @@ export default defineConfig({
                 'resources/js/gestionPremios.js', 
                 'resources/js/gestionEntidades.js',
                 'resources/js/altaUsuarios.js',
+                'resources/js/owl.carousel.js',
+                'resources/js/test.js'
             ],
             refresh: true,
         }),

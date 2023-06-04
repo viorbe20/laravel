@@ -1,6 +1,7 @@
 @extends('layouts.plantilla-admin')
 
 @vite(['resources/js/altaUsuario.js'])
+
 @section('title', 'Crear Usuario')
 
 @section('content')

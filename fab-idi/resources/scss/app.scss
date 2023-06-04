@@ -4,11 +4,11 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap';
-
 // Fontawesome
 @import "./node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+// Bootstrap
+@import '~bootstrap';
 
 
 * {
@@ -28,7 +28,7 @@
   background-size: 50%;
   background-position: center;
   width: 100%;
-  
+
 
   section:first-child {
     margin-top: 5%;
@@ -111,7 +111,7 @@
     border-style: solid;
     border-color: #2F206B;
     font-family: 'Nunito', sans-serif !important;
-  
+
     &:hover {
       background-color: #FFD700;
       color: #ffffff;
@@ -133,7 +133,7 @@
     border-style: solid;
     border-color: #2F206B;
     font-family: 'Nunito', sans-serif !important;
-  
+
     &:hover {
       background-color: #FFD700;
       color: #ffffff;
@@ -468,7 +468,9 @@
 }
 
 /*Página gestión-premios*/
-#main-gestion-premios, #main-gestion-proyectos-intercentros, #main-gestion-proyectos-pip {
+#main-gestion-premios,
+#main-gestion-proyectos-intercentros,
+#main-gestion-proyectos-pip {
 
   section {
     display: flex !important;
@@ -705,160 +707,181 @@ nav {
 }
 
 //Página colaboradores
-
-#form-buscar-usuario {
-
-  div {
-    input {
-      background-color: #dedede !important;
-    }
-  }
-}
-
-#main-crear-colaborador {
-  form {
-    margin: 0 auto;
-    max-width: 600px;
+#main-panel-colaboradores {
+  display: flex;
+  flex-direction: column;
+  
+  #owl-demo {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
 
-    label {
-      margin-bottom: 0.5rem;
-    }
-
-    input[type="text"],
-    select {
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 3px;
-      background-color: #f3f3f3;
-      font-size: 1rem;
-
-      &:focus {
-        outline: none;
-        box-shadow: 0px 0px 5px #bbb;
-      }
-    }
-
-    .btn-primary {
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 3px;
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: #0069d9;
-      }
-
-      &:focus {
-        outline: none;
-        box-shadow: 0px 0px 5px #bbb;
-      }
-    }
+    .item {
+      margin: 3px;
+    background-color: #00C67E;
+    width: 15%;
   }
-
+  
+  .item img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
 }
+}
+
+// #form-buscar-usuario {
+
+//   div {
+//     input {
+//       background-color: #dedede !important;
+//     }
+//   }
+// }
+
+// #main-crear-colaborador {
+//   form {
+//     margin: 0 auto;
+//     max-width: 600px;
+//     display: flex;
+//     flex-direction: column;
+
+//     label {
+//       margin-bottom: 0.5rem;
+//     }
+
+//     input[type="text"],
+//     select {
+//       padding: 0.5rem;
+//       margin-bottom: 1rem;
+//       border: none;
+//       border-radius: 3px;
+//       background-color: #f3f3f3;
+//       font-size: 1rem;
+
+//       &:focus {
+//         outline: none;
+//         box-shadow: 0px 0px 5px #bbb;
+//       }
+//     }
+
+//     .btn-primary {
+//       padding: 0.5rem 1rem;
+//       border: none;
+//       border-radius: 3px;
+//       background-color: #007bff;
+//       color: #fff;
+//       cursor: pointer;
+//       transition: all 0.3s ease;
+
+//       &:hover {
+//         background-color: #0069d9;
+//       }
+
+//       &:focus {
+//         outline: none;
+//         box-shadow: 0px 0px 5px #bbb;
+//       }
+//     }
+//   }
+
+// }
 
 //Página panel colaboradores
-#main-panel-colaboradores{
-  h3 {
-    text-align: center;
-}
+// #main-panel-colaboradores{
+//   h3 {
+//     text-align: center;
+// }
 
-.team-boxed {
-    color: #313437;
-    background-color: #eef4f7;
-}
+// .team-boxed {
+//     color: #313437;
+//     background-color: #eef4f7;
+// }
 
-.team-boxed p {
-    color: #7d8285;
-}
+// .team-boxed p {
+//     color: #7d8285;
+// }
 
-.team-boxed h2 {
-    font-weight: bold;
-    margin-bottom: 40px;
-    padding-top: 40px;
-    color: inherit;
-}
+// .team-boxed h2 {
+//     font-weight: bold;
+//     margin-bottom: 40px;
+//     padding-top: 40px;
+//     color: inherit;
+// }
 
-@media (max-width:767px) {
-    .team-boxed h2 {
-        margin-bottom: 25px;
-        padding-top: 25px;
-        font-size: 24px;
-    }
-}
+// @media (max-width:767px) {
+//     .team-boxed h2 {
+//         margin-bottom: 25px;
+//         padding-top: 25px;
+//         font-size: 24px;
+//     }
+// }
 
-.team-boxed .intro {
-    font-size: 16px;
-    max-width: 500px;
-    margin: 0 auto;
-}
+// .team-boxed .intro {
+//     font-size: 16px;
+//     max-width: 500px;
+//     margin: 0 auto;
+// }
 
-.team-boxed .intro p {
-    margin-bottom: 0;
-}
+// .team-boxed .intro p {
+//     margin-bottom: 0;
+// }
 
-.team-boxed .people {
-    padding: 50px 60px;
-}
+// .team-boxed .people {
+//     padding: 50px 60px;
+// }
 
-.team-boxed .item {
-    text-align: center;
-}
+// .team-boxed .item {
+//     text-align: center;
+// }
 
-.team-boxed .item .box {
-    text-align: center;
-    padding: 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-}
+// .team-boxed .item .box {
+//     text-align: center;
+//     padding: 30px;
+//     background-color: #fff;
+//     margin-bottom: 30px;
+// }
 
-.team-boxed .item .name {
-    font-weight: bold;
-    margin-top: 28px;
-    margin-bottom: 8px;
-    color: inherit;
-}
+// .team-boxed .item .name {
+//     font-weight: bold;
+//     margin-top: 28px;
+//     margin-bottom: 8px;
+//     color: inherit;
+// }
 
-.team-boxed .item .title {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #d0d0d0;
-    letter-spacing: 2px;
-    font-size: 13px;
-}
+// .team-boxed .item .title {
+//     text-transform: uppercase;
+//     font-weight: bold;
+//     color: #d0d0d0;
+//     letter-spacing: 2px;
+//     font-size: 13px;
+// }
 
-.team-boxed .item .description {
-    font-size: 15px;
-    margin-top: 15px;
-    margin-bottom: 20px;
-}
+// .team-boxed .item .description {
+//     font-size: 15px;
+//     margin-top: 15px;
+//     margin-bottom: 20px;
+// }
 
-.team-boxed .item img {
-    max-width: 160px;
-}
+// .team-boxed .item img {
+//     max-width: 160px;
+// }
 
-.team-boxed .social {
-    font-size: 18px;
-    color: #a2a8ae;
-}
+// .team-boxed .social {
+//     font-size: 18px;
+//     color: #a2a8ae;
+// }
 
-.team-boxed .social a {
-    color: inherit;
-    margin: 0 10px;
-    display: inline-block;
-    opacity: 0.7;
-}
+// .team-boxed .social a {
+//     color: inherit;
+//     margin: 0 10px;
+//     display: inline-block;
+//     opacity: 0.7;
+// }
 
-.team-boxed .social a:hover {
-    opacity: 1;
-}
-}
+// .team-boxed .social a:hover {
+//     opacity: 1;
+// }
+// }
 
 //Formularios
 #form-crear-colaborador {
@@ -867,5 +890,47 @@ nav {
 
   #div-imagen {
     margin: 2% 0%;
+  }
+}
+
+//carrusel
+.testimonial-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+
+  .testimonial {
+    flex: 0 0 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+
+    img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+  }
+
+  .testimonial.active {
+    opacity: 1;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  // Media Queries
+  @media screen and (min-width: 768px) {
+    .testimonial {
+      flex: 0 0 50%;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .testimonial {
+      flex: 0 0 33.33%;
+    }
   }
 }
