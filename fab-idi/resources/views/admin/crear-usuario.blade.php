@@ -30,11 +30,11 @@
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" class="form-control required-usuario" name="nombre-usuario" required>
+                        <input type="text" class="form-control required-usuario" name="nombre-usuario" >
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Apellidos*</label>
-                        <input type="text" class="form-control" name="apellidos-usuario" required>
+                        <input type="text" class="form-control" name="apellidos-usuario" >
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="email">Email*</label>
-                        <input type="email" class="form-control" name="email-usuario" required>
+                        <input type="email" class="form-control" name="email-usuario" >
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
@@ -94,17 +94,26 @@
             </div>
 
             <div id="entidad-campos" style="display: none;">
-                <div class="form-row-2">
+                <div class="form-row-3">
                     <div class="form-group">
                         <label for="nombre">Nombre*</label>
-                        <input type="text" class="form-control required-entidad" name="nombre-entidad" >
+                        <input type="text" class="form-control required-entidad" name="nombre-entidad">
                     </div>
                     <div class="form-group">
                         <label for="apellidos">Representante</label>
                         <input type="text" class="form-control" name="representante-entidad">
                     </div>
+                    <div class="form-group">
+                        <label for="colaborador">Tipo de Colaborador*</label>
+                        <select class="form-control" name="select-tipo-colaborador-entidad" >
+                            <option value="1" selected>Ninguno</option>
+                            <option value="2">Embajador</option>
+                            <option value="3">Mentor</option>
+                            <option value="4">Instituto</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-row-2">
+                <div class="form-row-3">
                     <div class="form-group">
                         <label for="email">Email*</label>
                         <input type="email" class="form-control" name="email-entidad" >
@@ -113,12 +122,12 @@
                         <label for="telefono">Teléfono</label>
                         <input type="phone" class="form-control" name="telefono-entidad">
                     </div>
-                </div>
-                <div class="form-row-2">
                     <div class="form-group">
                         <label for="web">Web</label>
                         <input type="text" class="form-control" name="web-entidad" >
                     </div>
+                </div>
+                <div class="form-row-1">
                     <div class="form-group">
                         <label for="image">Imagen</label>
                         <input type="file" class="form-control" name="imagen-entidad">

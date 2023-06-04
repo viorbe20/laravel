@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('entidades', function (Blueprint $table) {
             $table->id();
             $table->string('nombre')->nullable(false);
-            $table->string('representante')->nullable(false);
+            $table->string('representante')->nullable();
             $table->string('telefono')->nullable();
             $table->string('email')->unique(false)->nullable(false);
             $table->string('web')->nullable();
             $table->string('imagen')->nullable();
-            $table->foreignId('id_colaborador')->nullable(false)->constrained('colaboradores');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
