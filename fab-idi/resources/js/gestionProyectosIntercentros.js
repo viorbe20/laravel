@@ -15,9 +15,7 @@ $(document).ready(function () {
             async: false,
             success: function (cursos) {
                 cursos.forEach(curso => {
-                    console.log(curso.id == proyectoId);
                     if (curso.id == proyectoId) {
-                        console.log(curso.id == proyectoId);
                         cursoEncontrado = curso.curso_academico;
                     }
                 });
@@ -78,7 +76,7 @@ $(document).ready(function () {
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                             ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-warning" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
+                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
                             : ''
@@ -118,7 +116,7 @@ $(document).ready(function () {
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                             ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-warning" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
+                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
                             : ''
