@@ -100,3 +100,4 @@ Route::post("/guardar-cambios-evento", [EventoController::class, "guardarCambios
     Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
     Route::match(['GET', 'POST'],"/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
     Route::match(['GET', 'POST'],"/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
+    Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");

@@ -5,6 +5,12 @@
 @vite(['resources/js/gestionProyectosIntercentros.js'])
 
 @section('content')
+
+<script>
+    //Para cargar la imagen de perfil
+    let rutaImagen = "{{ asset('images/proyectos/') }}";
+</script>
+
     <main id='main-gestion-proyectos-intercentros' class='main-admin'>
 
         @php
@@ -23,7 +29,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Título</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Curso</th>
                         <th scope="col">URL</th>
                         <th scope="col">Acciones</th>
@@ -69,13 +75,13 @@
                 <thead>
                     <tr>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Título</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Curso</th>
                         <th scope="col">URL</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="tbody-tabla-proyectos">
+                <tbody id="tbody-tabla-proyectos-intercentros">
                 </tbody>
             </table>
 

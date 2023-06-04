@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
+use App\Models\CursoAcademico;
 
 class ProyectoController extends Controller
 {
+
+    public function obtenerCursoAcademicoAjax()
+    {
+        $cursos = CursoAcademico::all();
+        return response()->json($cursos);
+    }
 
     public function obtenerProyectosAjax()
     {

@@ -1,33 +1,46 @@
 import $ from "jquery";
 
 $(document).ready(function () {
-    console.log("Gestión de proyectos cargado");
     let tbody = document.querySelector("#tbody-tabla-proyectos-intercentros");
-
     let queryInput = $("#buscar-proyecto-intercentro");
-
     let numproyectosDestacados = $("#tbody-tabla-proyectos-destacados-intercentros tr").length;
 
+    //Obtiene el curso académico del proyecto dado un ID
+    function getCursoAcademico(proyectoId) {
+        let cursoEncontrado = '';
+    
+        $.ajax({
+            url: '/obtener-curso-academico-ajax/',
+            method: 'GET',
+            async: false,
+            success: function (cursos) {
+                cursos.forEach(curso => {
+                    console.log(curso.id == proyectoId);
+                    if (curso.id == proyectoId) {
+                        console.log(curso.id == proyectoId);
+                        cursoEncontrado = curso.curso_academico;
+                    }
+                });
+            },
+        });
+    
+        return cursoEncontrado;
+    }
+    
+
     function obtenerproyectos() {
-        
-        let queryIntercentro = queryInputIntercentro.val();
-        let queryPip = queryInputPip.val();
-        
-        if (queryIntercentro != undefined) {
-            queryIntercentro = queryIntercentro.toLowerCase();
+
+        let query = queryInput.val();
+
+        if (query != undefined) {
+            query = query.toLowerCase();
         }
 
-        if (queryPip != undefined) {
-            queryPip = queryPip.toLowerCase();
-        }
+        let tbody = document.querySelector("#tbody-tabla-proyectos-intercentros");
 
-        let tbodyIntercentros = document.querySelector("#tbody-tabla-proyectos-intercentros");
-        let tbodyPip = document.querySelector("#tbody-tabla-proyectos-pip");
-        
-        if (tbodyIntercentros || tbodyPip) {
-            tbodyIntercentros.innerHTML = "";
-            tbodyPip.innerHTML = "";
-            
+        if (tbody) {
+            tbody.innerHTML = "";
+
             return fetch("/obtener-proyectos-ajax", {
                 method: "POST",
                 body: JSON.stringify({ query: query }),
@@ -45,23 +58,23 @@ $(document).ready(function () {
 
     //Muestra todos los proyectos en la tabla
     function mostrarproyectos() {
-
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
             let ultimosproyectos = proyectos.slice(-6);
-            console.log(ultimosproyectos);
 
             ultimosproyectos.forEach(function (proyecto) {
 
-                if (!proyecto.destacado) {
-
+                //Solo se muestran en el listado los no destacados
+                if (proyecto.destacado == 0) {
+                    proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
+                    //console.log(proyecto.curso_academico_id);
                     let rowHtml = `
                     <tr>
-                        <td>${proyecto.titulo}</td>
-                        <td>${proyecto.descripcion}</td>
-                        <td>${proyecto.url ? proyecto.url : ''}</td>
-                        <td>${proyecto.imagen}</td>
+                        <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
+                        <td>${proyecto.nombre}</td>
+                        <td>${proyecto.curso_academico_id}</td>
+                        <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>
                         <td>
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
