@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class EntidadController extends Controller
 {
-    public function obtenerEntidadesAjax(Request $request)
+    public function editarEntidad($id)
     {
-        $entidades = Entidad::all();
+        $entidad = Entidad::find($id);
+
+        return view('admin/editar-entidad', compact('entidad'));
+    }
+
+    public function eliminarEntidad($id)
+    {
+        Entidad::where('id', $id)->update(['activo' => 0]);
+        return view('admin/gestion-entidades');
+    }
+
+    public function obtenerEntidadesAjax()
+    {
+        $entidades = Entidad::all()->where('activo', '1');
         return response()->json($entidades);
     }
 

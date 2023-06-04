@@ -65,9 +65,7 @@ class UsuarioController extends Controller
 
     public function eliminarUsuario($id)
     {
-        $usuario = User::find($id);
-        $usuario->activo = 0;
-        $usuario->save();
+        User::where('id', $id)->update(['activo' => 0]);
 
         return view('admin/gestion-usuarios');
     }

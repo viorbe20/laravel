@@ -75,7 +75,7 @@ $(document).ready(function () {
                     <tr>
                     <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                     <td>${entidad.nombre}</td>
-                    <td>${entidad.representante ? entidad.representante : '' }</td>
+                    <td>${entidad.representante ? entidad.representante : ''}</td>
                     <td>${entidad.email}</td>
                     <td>${entidad.telefono ? entidad.telefono : ''}</td>
                     <td>${entidad.url ? entidad.url : ''}</td>
@@ -83,9 +83,8 @@ $(document).ready(function () {
                     <td>
                     <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                     <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-    
                     </td>
-                   </tr> 
+                </tr> 
                     `;
                 tbody.innerHTML += rowHtml;
 
