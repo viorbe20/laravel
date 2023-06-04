@@ -66,25 +66,20 @@ $(document).ready(function () {
 
             ultimasEntidades.forEach(function (entidad) {
 
-                if (entidad.activo == 1) {
-                    entidad.perfil_id = getPerfil(entidad.perfil_id);
-
-                    if (entidad.id_colaborador != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
-                        entidad.id_colaborador = getColaborador(entidad.id_colaborador);
-                    }
+                if (entidad.colaborador_id != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
+                    entidad.colaborador_id = getColaborador(entidad.colaborador_id);
+                }
 
 
-                    let rowHtml = `
+                let rowHtml = `
                     <tr>
+                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                     <td>${entidad.nombre}</td>
-                    <td>${entidad.apellidos}</td>
+                    <td>${entidad.representante ? entidad.representante : '' }</td>
                     <td>${entidad.email}</td>
                     <td>${entidad.telefono ? entidad.telefono : ''}</td>
-                    <td>${entidad.twitter ? entidad.twitter : ''}</td>
-                    <td>${entidad.instagram ? entidad.instagram : ''}</td>
-                    <td>${entidad.linkedin ? entidad.linkedin : ''}</td>
-                    <td>${entidad.id_colaborador ? entidad.id_colaborador : ''}</td>
-                    <td>${entidad.perfil_id}</td>
+                    <td>${entidad.url ? entidad.url : ''}</td>
+                    <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
                     <td>
                     <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                     <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
@@ -92,8 +87,8 @@ $(document).ready(function () {
                     </td>
                    </tr> 
                     `;
-                    tbody.innerHTML += rowHtml;
-                }
+                tbody.innerHTML += rowHtml;
+
 
             });
 

@@ -4,6 +4,11 @@
 
 @section('content')
 
+<script>
+    //Para cargar la imagen de perfil
+    let rutaImagen = "{{ asset('images/usuarios/') }}";
+</script>
+
     <main id='main-gestion-entidades' class='main-admin'>
         
         <div class="input-group styled-input-group">
