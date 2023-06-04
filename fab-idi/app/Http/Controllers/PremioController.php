@@ -11,7 +11,7 @@ class PremioController extends Controller
 {
     public function obtenerPremiosAjax()
     {
-        $premios = Premio::all();
+        $premios = Premio::all()->where('activo', '1');
         return response()->json($premios);
     }
 

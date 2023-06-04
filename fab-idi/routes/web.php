@@ -77,6 +77,7 @@ Route::match(['GET', 'POST'], '/gestion-premios/eliminar/{id}', [PremioControlle
 
 //Admin proyectos intercentros
 Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
+Route::get("/gestion-proyectos-pip", [ProyectoController::class, "gestionProyectosPip"])->name("gestion-proyectos-pip");
 
 //Admin eventos
 Route::get("/gestion-eventos", [EventoController::class, "gestionEventos"])->name("gestion-eventos");
@@ -94,4 +95,4 @@ Route::post("/guardar-cambios-evento", [EventoController::class, "guardarCambios
     Route::post("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
     Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
     Route::match(['GET', 'POST'],"/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
-
+    Route::match(['GET', 'POST'],"/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");

@@ -2,11 +2,12 @@
     <ul>
         <li class="profile-container">
             <div>
-                <img src="{{ asset('images/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil" class="profile-picture">
+                <img src="{{ asset('images/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil"
+                    class="profile-picture">
                 <p class="profile-name">Bienvenido, {{ Auth::user()->nombre }}</p>
-            <div>
+                <div>
         </li>
-        
+
         <li>
             <button class="accordion"><i class="fas fa-home"></i>Inicio</button>
             <ul class="panel">
@@ -30,10 +31,14 @@
             </ul>
         </li>
         <li>
-            <button class="accordion"><i class="fa-solid fa-flask"></i>Proyectos Intercentros</button>
+            <button class="accordion"><i class="fa-solid fa-flask"></i>Proyectos</button>
             <ul class="panel">
+                <li class="{{ Route::is('gestion-proyectos-pip') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-proyectos-pip') }}">Gestión de proyectos PIP</a>
+                </li>
+
                 <li class="{{ Route::is('gestion-proyectos-intercentros') ? 'active' : '' }}">
-                    <a href="{{ route('gestion-proyectos-intercentros') }}">Gestión de proyectos</a>
+                    <a href="{{ route('gestion-proyectos-intercentros') }}">Gestión de proyectos Intercentros</a>
                 </li>
             </ul>
         </li>
