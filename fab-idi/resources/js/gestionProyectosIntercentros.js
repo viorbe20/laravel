@@ -8,7 +8,7 @@ $(document).ready(function () {
     //Obtiene el curso académico del proyecto dado un ID
     function getCursoAcademico(proyectoId) {
         let cursoEncontrado = '';
-    
+
         $.ajax({
             url: '/obtener-curso-academico-ajax/',
             method: 'GET',
@@ -23,10 +23,10 @@ $(document).ready(function () {
                 });
             },
         });
-    
+
         return cursoEncontrado;
     }
-    
+
 
     function obtenerproyectos() {
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
     }
 
     //Muestra todos los proyectos en la tabla
-    function mostrarproyectos() {
+    function mostrarProyectos() {
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
@@ -66,9 +66,8 @@ $(document).ready(function () {
             ultimosproyectos.forEach(function (proyecto) {
 
                 //Solo se muestran en el listado los no destacados
-                if (proyecto.destacado == 0) {
+                if (proyecto.destacado == 0 && proyecto.activo == 1) {
                     proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
-                    //console.log(proyecto.curso_academico_id);
                     let rowHtml = `
                     <tr>
                         <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
@@ -94,41 +93,39 @@ $(document).ready(function () {
     }
 
     //Muestra los proyectos que coinciden con la búsqueda
-    function mostrarproyectosCoincidentes() {
+    function mostrarProyectosCoincidentes() {
+        
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
             let proyectosFiltrados = proyectos.filter(function (proyecto) {
-                return proyecto.titulo.toLowerCase().includes(queryInput.val());
+                return proyecto.nombre.toLowerCase().includes(queryInput.val());
             });
 
 
             proyectosFiltrados.forEach(function (proyecto) {
 
-
-                if (!proyecto.destacado) {
-
-                    let fecha = new Date(proyecto.fecha);
-                    let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
-
+                //Solo se muestran en el listado los no destacados
+                if (proyecto.destacado == 0 && proyecto.activo == 1) {
+                    proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
                     let rowHtml = `
                     <tr>
-                    <td>${proyecto.titulo}</td>
-                    <td>${fechaFormateada}</td>
-                    <td>${proyecto.descripcion}</td>
-                    <td>${proyecto.url ? proyecto.url : ''}</td>
-                    <td>${proyecto.imagen}</td>
-                    <td>
-                    <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    ${numproyectosDestacados < 3 ?
+                        <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
+                        <td>${proyecto.nombre}</td>
+                        <td>${proyecto.curso_academico_id}</td>
+                        <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>
+                        <td>
+                        <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                            ${numproyectosDestacados < 3 ?
                             `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-warning" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
-                            <i class="fa-sharp fa-solid fa-eye"></i></a>`
+                            <i class="fa-solid fa-eye"></i>
+                </a>`
                             : ''
                         }
-                    </td>
+                        </td>
                     </tr>
-                    `;
+                `;
                     tbody.innerHTML += rowHtml;
                 }
             });
@@ -136,16 +133,16 @@ $(document).ready(function () {
     }
 
     //Muestra proyectos al cargar la página
-    mostrarproyectos();
+    mostrarProyectos();
 
     //Muestra los proyectos que coinciden con la búsqueda
-    $("#buscar-proyecto").on("keyup", function () {
+    $("#buscar-proyecto-intercentro").on("keyup", function () {
         let query = $(this).val().toLowerCase().trim();
 
         if (query.length === 0) {
-            mostrarproyectos();
+            mostrarProyectos();
         } else {
-            mostrarproyectosCoincidentes();
+            mostrarProyectosCoincidentes();
         }
     });
 });

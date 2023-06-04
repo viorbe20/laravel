@@ -43,7 +43,7 @@ $(document).ready(function () {
 
             ultimosPremios.forEach(function (premio) {
 
-                if (!premio.destacado) {
+                if (!premio.destacado && premio.activo == 1) {
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
@@ -74,6 +74,7 @@ $(document).ready(function () {
 
     //Muestra los premios que coinciden con la búsqueda
     function mostrarPremiosCoincidentes() {
+        
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
 
@@ -84,8 +85,7 @@ $(document).ready(function () {
 
             premiosFiltrados.forEach(function (premio) {
 
-
-                if (!premio.destacado) {
+                if (!premio.destacado && premio.activo == 1) {
 
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
