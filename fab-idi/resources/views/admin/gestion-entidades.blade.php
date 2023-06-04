@@ -13,8 +13,8 @@
         
         <div class="input-group styled-input-group">
             <span class="input-group-text" id="">Buscar Entidad</span>
-            <input type="text" class="input-group-text" name="buscar" id="buscar-gestion-usuarios">
-            <a href="{{ url('gestion-usuarios/crear-usuario') }}" class="btn btn-admin-add"><i class="fa fa-circle-plus"></i></a>
+            <input type="text" class="input-group-text" name="buscar" id="buscar-gestion-entidades">
+            <a href="{{ url('gestion-entidades/crear-entidad') }}" class="btn btn-admin-add"><i class="fa fa-circle-plus"></i></a>
         </div>
         
         <table class="table styled-table">

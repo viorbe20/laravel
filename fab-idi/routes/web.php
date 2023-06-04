@@ -40,6 +40,7 @@ Route::get("/gestion-entidades", [EntidadController::class, "gestionEntidades"])
 Route::get("/gestion-entidades/eliminar-entidad/{id}", [EntidadController::class, "eliminarEntidad"])->name("eliminar-entidad");
 Route::get("/gestion-entidades/editar-entidad/{id}", [Entidad::class, "editarEntidad"])->name("editar-entidad");
 Route::match(['GET', 'POST'], "/guardar-cambios-entidad", [EntidadController::class, "guardarCambiosEntidad"])->name("guardar-cambios-entidad");
+Route::get("/gestion-entidades/crear-entidad", [UsuarioController::class, "crearUsuario"])->name("crear-entidad");
 
 //Premios
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");

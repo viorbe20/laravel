@@ -1,4 +1,6 @@
 import $ from 'jquery';
+import diacriticless from 'diacriticless';
+
 
 
 $(document).ready(function () {
@@ -34,7 +36,7 @@ $(document).ready(function () {
         let query = queryInput.val();
 
         if (query != undefined) {
-            query = query.toLowerCase();
+            query = query.toLowerCase(); 
         }
 
         let tbody = document.querySelector("#tbody-tabla-gestion-entidades");
@@ -50,7 +52,6 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             }).then(function (response) {
-                console.log(response);
                 return response.json();
             });
         }
@@ -62,14 +63,13 @@ $(document).ready(function () {
         obtenerEntidades().then(function (entidades) {
             tbody.innerHTML = "";
 
-            let ultimasEntidades = entidades.slice(-6);
+            let ultimasEntidades = entidades.slice(-5);
 
             ultimasEntidades.forEach(function (entidad) {
 
                 if (entidad.colaborador_id != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
                     entidad.colaborador_id = getColaborador(entidad.colaborador_id);
                 }
-
 
                 let rowHtml = `
                     <tr>
@@ -101,7 +101,7 @@ $(document).ready(function () {
         obtenerEntidades().then(function (entidades) {
             tbody.innerHTML = "";
 
-            let entidadesFiltrados = entidades.filter(function (entidad) {
+            let entidadesFiltradas = entidades.filter(function (entidad) {
                 if (entidad.nombre) {
                     return entidad.nombre.toLowerCase().includes(query);
                 }
@@ -109,36 +109,29 @@ $(document).ready(function () {
             });
 
 
-            entidadesFiltrados.forEach(function (entidad) {
+            entidadesFiltradas.forEach(function (entidad) {
 
-                if (entidad.activo == 1) {
-                    entidad.perfil_id = getPerfil(entidad.perfil_id);
+                if (entidad.colaborador_id != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
+                    entidad.colaborador_id = getColaborador(entidad.colaborador_id);
+                }
 
-                    if (entidad.id_colaborador != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
-                        entidad.id_colaborador = getColaborador(entidad.id_colaborador);
-                    }
-
-
-                    let rowHtml = `
+                let rowHtml = `
                     <tr>
+                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                     <td>${entidad.nombre}</td>
-                    <td>${entidad.apellidos}</td>
+                    <td>${entidad.representante ? entidad.representante : ''}</td>
                     <td>${entidad.email}</td>
                     <td>${entidad.telefono ? entidad.telefono : ''}</td>
-                    <td>${entidad.twitter ? entidad.twitter : ''}</td>
-                    <td>${entidad.instagram ? entidad.instagram : ''}</td>
-                    <td>${entidad.linkedin ? entidad.linkedin : ''}</td>
-                    <td>${entidad.id_colaborador ? entidad.id_colaborador : ''}</td>
-                    <td>${entidad.perfil_id}</td>
+                    <td>${entidad.url ? entidad.url : ''}</td>
+                    <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
                     <td>
                     <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                     <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-    
                     </td>
-                   </tr> 
+                </tr> 
                     `;
-                    tbody.innerHTML += rowHtml;
-                }
+                tbody.innerHTML += rowHtml;
+
 
             });
         });
