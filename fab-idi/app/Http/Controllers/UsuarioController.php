@@ -161,10 +161,7 @@ class UsuarioController extends Controller
             } 
         }
 
-
-
-
-        return view("admin/gestion-usuarios");
+        return redirect()->route('gestion-usuarios');
     }
 
     public function crearUsuario()
@@ -172,7 +169,7 @@ class UsuarioController extends Controller
         return view("admin/crear-usuario");
     }
 
-    public function index()
+    public function gestionUsuarios()
     {
 
         return view("admin/gestion-usuarios");

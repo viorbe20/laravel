@@ -11,6 +11,7 @@ use App\Http\Controllers\PremioController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\EntidadController;
 
 Route::get("/", [InicioController::class, "index"])->name("index");
 
@@ -27,12 +28,15 @@ Route::get("/mentorizacion", [UsuarioController::class, "mentorizacion"])->name(
 Route::get("/proyectos-intercentros", [UsuarioController::class, "proyectosIntercentros"])->name("proyectos-intercentros");
 Route::get("/eventos", [UsuarioController::class, "eventos"])->name("eventos");
 Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas");
-Route::get("/gestion-usuarios", [UsuarioController::class, "index"])->name("gestion-usuarios");
+Route::get("/gestion-usuarios", [UsuarioController::class, "gestionUsuarios"])->name("gestion-usuarios");
 Route::get("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
 Route::post("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 Route::get("/gestion-usuarios/eliminar-usuario/{id}", [UsuarioController::class, "eliminarUsuario"])->name("eliminar-usuario");
 Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "editarUsuario"])->name("editar-usuario");
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
+
+//Entidades
+Route::get("/gestion-entidades", [EntidadController::class, "gestionEntidades"])->name("gestion-entidades");
 
 //Premios
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
