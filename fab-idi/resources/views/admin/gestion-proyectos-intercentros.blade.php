@@ -2,16 +2,16 @@
 
 @section('title', 'Gestión de Proyectos Intercentros')
 
-@vite(['resources/js/gestionProyectos.js'])
+@vite(['resources/js/gestionProyectosIntercentros.js'])
 
 @section('content')
     <main id='main-gestion-proyectos-intercentros' class='main-admin'>
 
         @php
-            $proyectosDestacados = App\Models\Proyecto::where('destacado', true)->get();
+            $proyectosDestacados = App\Models\Proyecto::where('destacado', true)->where('tipo_proyecto_id', '2')->get();
         @endphp
 
-        <section id="section-table-proyectos-intercentros-destacados">
+        <section id="section-table-proyectos-destacados-intercentros">
 
             <div class='page-subtitle'>
                 <h2>PROYECTOS DESTACADOS</h2>
@@ -27,7 +27,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="tbody-tabla-proyectos-destacados">
+                <tbody id="tbody-tabla-proyectos-destacados-intercentros">
                     @foreach ($proyectosDestacados as $proyecto)
                         <tr>
                             <td>{{ $proyecto->titulo }}</td>
@@ -73,7 +73,7 @@
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="tbody-tabla-proyectos-intercentros">
+                <tbody id="tbody-tabla-proyectos">
                 </tbody>
             </table>
 

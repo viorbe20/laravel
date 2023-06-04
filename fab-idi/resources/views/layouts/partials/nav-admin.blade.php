@@ -28,6 +28,9 @@
                 <li class="{{ Route::is('gestion-entidades') ? 'active' : '' }}">
                     <a href="{{ route('gestion-entidades') }}">Gestión de entidades</a>
                 </li>
+                <li class="{{ Route::is('gestion-contrasenas') ? 'active' : '' }}">
+                    <a href="{{ route('gestion-contrasenas') }}">Gestión de contraseñas</a>
+                </li>
             </ul>
         </li>
         <li>

@@ -35,6 +35,11 @@ Route::get("/gestion-usuarios/eliminar-usuario/{id}", [UsuarioController::class,
 Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "editarUsuario"])->name("editar-usuario");
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
+//Admin usuarios
+Route::get("/gestion-contrasenas", [UsuarioController::class, "gestionContrasenas"])->name("gestion-contrasenas");
+Route::get("/gestion-contrasenas/renovar-contrasena/{id}", [UsuarioController::class, "renovarContrasena"])->name("renovar-contrasena");
+
+
 //Admin Entidades
 Route::get("/gestion-entidades", [EntidadController::class, "gestionEntidades"])->name("gestion-entidades");
 Route::get("/gestion-entidades/eliminar-entidad/{id}", [EntidadController::class, "eliminarEntidad"])->name("eliminar-entidad");
@@ -51,7 +56,6 @@ Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->nam
 Route::get("/gestion-colaboradores", [ColaboradorController::class, "gestionColaboradores"])->name("gestion-colaboradores");
 Route::match(['GET', 'POST'], '/crear-colaborador/{id}/{tipoColaborador}', [ColaboradorController::class, 'crearColaborador'])->name('crear-colaborador');
 Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
-
 
 //Emails
 Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");

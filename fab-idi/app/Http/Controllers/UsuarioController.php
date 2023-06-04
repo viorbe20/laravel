@@ -13,6 +13,37 @@ use App\Mail\NuevaContrasena;
 
 class UsuarioController extends Controller
 {
+    private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
+    {
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        if ($caracteresEspeciales) {
+            $caracteres .= '!@#$%^&*()';
+        }
+        $password = '';
+
+        for ($i = 0; $i < $longitud; $i++) {
+            $password .= $caracteres[mt_rand(0, strlen($caracteres) - 1)];
+        }
+
+        return $password;
+    }
+
+    public function renovarContrasena($id)
+    {
+        $usuario = User::find($id);
+        $randomPassword = $this->generarPasswordAleatoria();
+        $usuario->password = bcrypt($randomPassword);
+        $usuario->save();
+
+        //Mail::to($usuario->email)->send(new NuevaContrasena($usuario, $randomPassword));
+
+        return redirect()->route('gestion-contrasenas');
+    }
+
+    public function gestionContrasenas()
+    {
+        return view('admin.gestion-contrasenas');
+    }
 
     public function eventos()
     {
@@ -87,21 +118,6 @@ class UsuarioController extends Controller
         $query = $request->get('query');
         $usuarios = User::where('nombre', 'LIKE', '%' . $query . '%')->get();
         return response()->json($usuarios);
-    }
-
-    private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
-    {
-        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        if ($caracteresEspeciales) {
-            $caracteres .= '!@#$%^&*()';
-        }
-        $password = '';
-
-        for ($i = 0; $i < $longitud; $i++) {
-            $password .= $caracteres[mt_rand(0, strlen($caracteres) - 1)];
-        }
-
-        return $password;
     }
 
     public function crearUsuarioPost(Request $request)

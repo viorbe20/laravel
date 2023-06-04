@@ -1,25 +1,33 @@
 import $ from "jquery";
 
 $(document).ready(function () {
-    const originalTbodyContent = $("#tbody-tabla-proyecto").html();
-    let tbody = document.querySelector("#tbody-tabla-proyectos");
-    let queryInput = $("#buscar-proyecto");
-    //contar los proyectos destacados sacandolo del número de filas de la tabla
-    let numproyectosDestacados = $("#tbody-tabla-proyectos-destacados tr").length;
+    console.log("Gestión de proyectos cargado");
+    let tbody = document.querySelector("#tbody-tabla-proyectos-intercentros");
+
+    let queryInput = $("#buscar-proyecto-intercentro");
+
+    let numproyectosDestacados = $("#tbody-tabla-proyectos-destacados-intercentros tr").length;
 
     function obtenerproyectos() {
-        let query = queryInput.val();
-
-        if (query != undefined) {
-            query = query.toLowerCase();
+        
+        let queryIntercentro = queryInputIntercentro.val();
+        let queryPip = queryInputPip.val();
+        
+        if (queryIntercentro != undefined) {
+            queryIntercentro = queryIntercentro.toLowerCase();
         }
 
-        let tbody = document.querySelector("#tbody-tabla-proyectos");
-        console.log(tbody);
+        if (queryPip != undefined) {
+            queryPip = queryPip.toLowerCase();
+        }
 
-
-        if (tbody) {
-            tbody.innerHTML = "";
+        let tbodyIntercentros = document.querySelector("#tbody-tabla-proyectos-intercentros");
+        let tbodyPip = document.querySelector("#tbody-tabla-proyectos-pip");
+        
+        if (tbodyIntercentros || tbodyPip) {
+            tbodyIntercentros.innerHTML = "";
+            tbodyPip.innerHTML = "";
+            
             return fetch("/obtener-proyectos-ajax", {
                 method: "POST",
                 body: JSON.stringify({ query: query }),
@@ -28,6 +36,7 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             }).then(function (response) {
+                //console.log(response);
                 return response.json();
             });
         }
@@ -41,6 +50,7 @@ $(document).ready(function () {
             tbody.innerHTML = "";
 
             let ultimosproyectos = proyectos.slice(-6);
+            console.log(ultimosproyectos);
 
             ultimosproyectos.forEach(function (proyecto) {
 
@@ -113,9 +123,7 @@ $(document).ready(function () {
     }
 
     //Muestra proyectos al cargar la página
-    if (window.location.pathname === "/gestion-proyectos") {
-        mostrarproyectos();
-    }
+    mostrarproyectos();
 
     //Muestra los proyectos que coinciden con la búsqueda
     $("#buscar-proyecto").on("keyup", function () {
