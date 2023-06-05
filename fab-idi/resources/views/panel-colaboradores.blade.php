@@ -19,37 +19,42 @@
         }
     </style>
     <main id='main-panel-colaboradores'>
-        @php
-            $embajadores = App\Models\User::where('id_colaborador', '2')->get();
-            $mentores = App\Models\User::where('id_colaborador', '3')->get();
-            $instituto = App\Models\User::where('id_colaborador', '4')->get();
-        @endphp
-        <div id="blog-slider">
-            <div class="testimonial-item">
-                <img src="testimonial1.jpg" alt="Testimonial 1">
-                <h3>John Doe</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </div>
-            <div class="testimonial-item">
-                <img src="testimonial2.jpg" alt="Testimonial 2">
-                <h3>Jane Smith</h3>
-                <p>Nulla facilisi. Morbi id dapibus dolor.</p>
-            </div>
-            <div class="testimonial-item">
-                <img src="testimonial3.jpg" alt="Testimonial 3">
-                <h3>David Johnson</h3>
-                <p>Phasellus vehicula euismod turpis in condimentum.</p>
-            </div>
+        <div class="blog-slider">
+            @foreach ($embajadores as $embajador)
+                <div class="testimonial-item">
+                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <h3>{{ $embajador->nombre }}</h3>
+                    <p>{{ $embajador->descripcion }}</p>
+                </div>
+            @endforeach
         </div>
 
+        <div class="blog-slider">
+            @foreach ($mentores as $mentor)
+                <div class="testimonial-item">
+                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <h3>{{ $mentor->nombre }}</h3>
+                    <p>{{ $mentor->descripcion }}</p>
+                </div>
+            @endforeach
+        </div>
 
+        <div class="blog-slider">
+            @foreach ($institutos as $instituto)
+                <div class="testimonial-item">
+                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <h3>{{ $instituto->nombre }}</h3>
+                    <p>{{ $instituto->descripcion }}</p>
+                </div>
+            @endforeach
+        </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#blog-slider").slick({
-                slidesToShow: 1,
+            $(".blog-slider").slick({
+                slidesToShow: 2,
                 slidesToScroll: 1,
                 autoplay: true,
                 autoplaySpeed: 3000, // Cambia el valor a 3000 para que avance cada 3 segundos
