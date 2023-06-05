@@ -12,7 +12,7 @@
 <body>
     <h2>Hola,</h2>
     <p>Se ha generado una nueva contraseña para tu cuenta. A continuación, encontrarás los detalles:</p>
-    <p>Contraseña: {{ $randomPassword }}</p>
+    <p>Contraseña: </p>
     <p>Por favor, inicia sesión con esta nueva contraseña y asegúrate de cambiarla después de ingresar.</p>
     <p>Gracias y saludos,</p>
     <p>Tu aplicación</p>

@@ -44,41 +44,19 @@
     <section id="section-premios">
         <h2 class="text-center">PREMIOS</h2>
         <section id='inicio-cards'>
-
+            @foreach ($premios as $premio)
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{ asset('img/logo.png') }}" alt="Card image cap">
+                <img class="card-img-top" src="{{ asset('images/premios/'.$premio->imagen) }}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                    <p class="card-text text-justify">Some quick example text to build on the card title and make up the
-                        bulk of the
-                        card's
-                        content.</p>
+                    <h5 class="card-title text-center">{{ $premio->titulo }}</h5>
+                    <p class="card-text text-justify">{{$premio->descripcion}}</p>
                 </div>
             </div>
 
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{ asset('img/logo.png') }}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                    <p class="card-text text-justify">Some quick example text to build on the card title and make up the
-                        bulk of the
-                        card's
-                        content.</p>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="{{ asset('img/logo.png') }}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Card title</h5>
-                    <p class="card-text text-justify">Some quick example text to build on the card title and make up the
-                        bulk of the
-                        card's
-                        content.</p>
-                </div>
-            </div>
+            @endforeach
         </section>
         <a href="#" class="btn btn-principal mt-4">Ver más premios</a>
+
     </section>
 
 

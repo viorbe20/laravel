@@ -10,6 +10,12 @@ use App\Models\Entidad;
 use App\Models\Perfil;
 use App\Models\Colaborador;
 use App\Mail\NuevaContrasena;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
+
+
+
 
 class UsuarioController extends Controller
 {
@@ -34,11 +40,24 @@ class UsuarioController extends Controller
         $randomPassword = $this->generarPasswordAleatoria();
         $usuario->password = bcrypt($randomPassword);
         $usuario->save();
-
-        //Mail::to($usuario->email)->send(new NuevaContrasena($usuario, $randomPassword));
-
+    
+        $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+        $transport->setUsername('viorbe20@gmail.com');
+        $transport->setPassword('qgeccmuaivcojphv');
+    
+        $mailer = new Swift_Mailer($transport);
+    
+        $message = new Swift_Message('Prueba email contraseña');
+        $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+        $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
+        $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario])->render(), 'text/html');
+    
+        $mailer->send($message);
+    
         return redirect()->route('gestion-contrasenas');
     }
+    
+
 
     public function gestionContrasenas()
     {
@@ -128,7 +147,7 @@ class UsuarioController extends Controller
         $randomPassword = $this->generarPasswordAleatoria();
 
         if ($tipoUsuario == "usuario") {
-            
+
 
             $usuario = User::create([
                 'nombre' => $request->input('nombre-usuario'),
@@ -145,14 +164,14 @@ class UsuarioController extends Controller
                 'imagen' => 'usuario-default.webp'
             ]);
 
-            
+
             if ($request->hasFile('foto-usuario')) {
                 //guarda en la carpeta storage/app/public/usuarios
                 $request->file('foto-usuario')->store('public/images/usuarios/');
                 $usuario->imagen = $request->file('foto-usuario')->hashName();
                 $usuario->save();
-            } 
-            
+            }
+
 
             //Falta foto
         } else {
@@ -172,7 +191,7 @@ class UsuarioController extends Controller
                 $request->file('foto-entidad')->store('public/images/usuarios/');
                 $entidad->imagen = $request->file('foto-entidad')->hashName();
                 $entidad->save();
-            } 
+            }
         }
 
         return redirect()->route('gestion-usuarios');
