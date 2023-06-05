@@ -50,8 +50,7 @@ class UsuarioController extends Controller
         $message = new Swift_Message('Prueba email contraseña');
         $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
         $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
-        $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario])->render(), 'text/html');
-    
+        $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
         $mailer->send($message);
     
         return redirect()->route('gestion-contrasenas');

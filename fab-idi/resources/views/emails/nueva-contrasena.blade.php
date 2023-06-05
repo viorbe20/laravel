@@ -10,11 +10,10 @@
     <title>Nueva contraseña generada</title>
 </head>
 <body>
-    <h2>Hola,</h2>
+    <h1>Hola, {{ $usuario->nombre }}</h1>
     <p>Se ha generado una nueva contraseña para tu cuenta. A continuación, encontrarás los detalles:</p>
-    <p>Contraseña: </p>
-    <p>Por favor, inicia sesión con esta nueva contraseña y asegúrate de cambiarla después de ingresar.</p>
-    <p>Gracias y saludos,</p>
-    <p>Tu aplicación</p>
+    <p>Tu cuenta de acceso es: {{ $usuario->email }}</p>
+    <p>Tu nueva contraseña es: {{ $randomPassword }}</p>
+    <p>Un saludo.</p>
 </body>
 </html>
