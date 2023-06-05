@@ -52,10 +52,9 @@
                     <p class="card-text text-justify">{{$premio->descripcion}}</p>
                 </div>
             </div>
-
             @endforeach
         </section>
-        <a href="#" class="btn btn-principal mt-4">Ver más premios</a>
+        <a href="{{ route('mostrar-premios') }}" class="btn btn-principal mt-4">Ver más premios</a>
 
     </section>
 

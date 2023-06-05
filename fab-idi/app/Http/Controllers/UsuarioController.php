@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\Entidad;
 use App\Models\Perfil;
 use App\Models\Colaborador;
-use App\Mail\NuevaContrasena;
 use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
@@ -39,6 +38,7 @@ class UsuarioController extends Controller
         $usuario = User::find($id);
         $randomPassword = $this->generarPasswordAleatoria();
         $usuario->password = bcrypt($randomPassword);
+        //dd($usuario->password);
         $usuario->save();
     
         $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');

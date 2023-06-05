@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 
 class PremioController extends Controller
 {
+
+    public function mostrarPremios() {
+        $premios = Premio::all()->where('activo', '1');
+        return view('mostrar-premios')->with('premios', $premios);
+    }
+
     public function obtenerPremiosAjax()
     {
         $premios = Premio::all()->where('activo', '1');
