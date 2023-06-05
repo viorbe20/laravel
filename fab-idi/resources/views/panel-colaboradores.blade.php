@@ -19,30 +19,30 @@
         }
     </style>
     <main id='main-panel-colaboradores'>
-        <div class="blog-slider">
+        <div class="carrusel-colaboradores">
             @foreach ($embajadores as $embajador)
                 <div class="testimonial-item">
-                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <img class="card-img-top" src="{{ asset('images/usuarios/' . $embajador->imagen) }}" alt="Foto de perfil">
                     <h3>{{ $embajador->nombre }}</h3>
                     <p>{{ $embajador->descripcion }}</p>
                 </div>
             @endforeach
         </div>
 
-        <div class="blog-slider">
+        <div class="carrusel-colaboradores">
             @foreach ($mentores as $mentor)
                 <div class="testimonial-item">
-                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <img class="card-img-top" src="{{ asset('images/usuarios/' . $mentor->imagen) }}" alt="Foto de perfil">
                     <h3>{{ $mentor->nombre }}</h3>
                     <p>{{ $mentor->descripcion }}</p>
                 </div>
             @endforeach
         </div>
 
-        <div class="blog-slider">
+        <div class="carrusel-colaboradores">
             @foreach ($institutos as $instituto)
                 <div class="testimonial-item">
-                    <img src="testimonial1.jpg" alt="Testimonial 1">
+                    <img class="card-img-top" src="{{ asset('images/entidades/' . $instituto->imagen) }}" alt="Foto de perfil">
                     <h3>{{ $instituto->nombre }}</h3>
                     <p>{{ $instituto->descripcion }}</p>
                 </div>
@@ -53,7 +53,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script>
         $(document).ready(function() {
-            $(".blog-slider").slick({
+            $(".carrusel-colaboradores").slick({
                 slidesToShow: 2,
                 slidesToScroll: 1,
                 autoplay: true,

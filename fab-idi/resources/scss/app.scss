@@ -672,27 +672,46 @@ nav {
 }
 
 //Página colaboradores
-//#main-panel-colaboradores {
-//   display: flex;
-//   flex-direction: column;
+.carrusel-colaboradores {
+  background-color: #00C67E;
 
-//   #owl-demo {
-//     display: flex;
-//     justify-content: center;
+  .testimonial-item {
+    background-color: pink;
+    margin: 0%  0.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 30%;
+  }
 
-//     .item {
-//       margin: 3px;
-//       background-color: #00C67E;
-//       width: 15%;
-//     }
+  /* Estilo para el botón previo */
+.slick-prev {
+  position: absolute;
+  z-index: 1;
+  left: 15px;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  border: 1px solid #dddddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-//     .item img {
-//       display: block;
-//       width: 100%;
-//       height: auto;
-//     }
-//   }
-// }
+/* Estilo para la flecha del botón previo */
+.slick-prev:before {
+  content: "<";
+  font-size: 34px;
+  color: #333333;
+}
+
+}
 
 //Formularios
 #form-crear-colaborador {
@@ -701,56 +720,6 @@ nav {
 
   #div-imagen {
     margin: 2% 0%;
-  }
-}
-
-//carrusel
-.my-carousel {
-
-  .carousel-item {
-    overflow: hidden;
-    min-height: 130px;
-    margin: 1px 10px;
-    *background-color: #C71585;
-  }
-
-  .testimonial-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 20px;
-    *background-color: #C71585;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-
-    .testimonial-image {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 20px;
-      border-radius: 50px;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-
-      }
-    }
-
-    .testimonial.rrss {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      font-size: 30px;
-      color: #ffffff;
-      background-color: #00C67E;
-      border-radius: 50%;
-    }
   }
 }
 
@@ -828,3 +797,4 @@ nav {
 		}
 	}
 }
+
