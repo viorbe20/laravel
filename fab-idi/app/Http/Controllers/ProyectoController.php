@@ -25,4 +25,10 @@ class ProyectoController extends Controller
     {
         return view('admin.gestion-proyectos-intercentros');
     }
+
+    
+    public function gestionProyectosPip(Request $request)
+    {
+        return view('admin.gestion-proyectos-pip');
+    }
 }
