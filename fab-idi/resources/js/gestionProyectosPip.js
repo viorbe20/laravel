@@ -59,12 +59,14 @@ $(document).ready(function () {
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
-            let ultimosproyectos = proyectos.slice(-6);
+            //Objeto convertido a array para poder usar slice
+            let proyectosArray = Object.values(proyectos);
+            let ultimosProyectos = proyectosArray.slice(-7);
 
-            ultimosproyectos.forEach(function (proyecto) {
+            ultimosProyectos.forEach(function (proyecto) {
 
                 //Solo se muestran en el listado los no destacados
-                if (proyecto.destacado == 0 && proyecto.activo == 1) {
+                if (proyecto.destacado == 0 && proyecto.activo == 1 && proyecto.curso_academico_id == 1) {
                     proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
                     let rowHtml = `
                     <tr>
@@ -92,7 +94,7 @@ $(document).ready(function () {
 
     //Muestra los proyectos que coinciden con la búsqueda
     function mostrarProyectosCoincidentes() {
-        
+
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 

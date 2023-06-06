@@ -10,7 +10,7 @@
         </div>
 
         <form method="POST" action="{{ route('guardar-cambios-proyecto') }}" enctype="multipart/form-data"
-            id='form-crear-proyecto'class='styled-form'>
+            id='form-editar-proyecto'class='styled-form'>
             @csrf
             <div class="form-group">
                 <select class="form-control" id="form-select-tipo-proyecto" name="select-tipo-proyecto">
@@ -91,6 +91,7 @@
                     </div>
                 </div>
                 <div class='btn-container'>
+                    <input type="hidden" name="id-proyecto" value="{{ $proyecto->id }}">
                     <button type="submit" class="btn btn-admin-save">Crear</button>
                 </div>
 

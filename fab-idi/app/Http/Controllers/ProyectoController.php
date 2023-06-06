@@ -9,8 +9,29 @@ use App\Models\CursoAcademico;
 class ProyectoController extends Controller
 {
 
-    public function guardarCambiosProyecto()
+    public function guardarCambiosProyecto(Request $request)
     {
+        $proyecto = Proyecto::find(request()->input('id-proyecto'));
+
+        if ($request->hasFile('imagen-proyecto')) {
+            $imagen = $request->file('imagen-proyecto');
+            $nombreImagen = $request->file('imagen-proyecto')->hashName();
+            $imagen->move(public_path() . '/images/proyectos/', $nombreImagen);
+            $proyecto->imagen = $nombreImagen;
+        }
+
+        $proyecto->nombre = $request->input('nombre-proyecto');
+        $proyecto->autor = $request->input('autor-proyecto');
+        $proyecto->centro = $request->input('centro-proyecto');
+        $proyecto->curso_academico_id = $request->input('select-curso-academico');
+        $proyecto->tipo_proyecto_id = $request->input('select-tipo-proyecto');
+        $proyecto->descripcion = $request->input('descripcion-proyecto');
+        $proyecto->destacado = $request->input('destacado') == '1' ? true : false;
+        $proyecto->disponible = $request->input('disponible') == '1' ? true : false;
+        $proyecto->url = $request->input('url-proyecto');
+        $proyecto->activo = $request->input('activo') == '1' ? true : false;
+        $proyecto->save();
+
         return view('admin.inicio-admin');
     }
 
@@ -36,7 +57,7 @@ class ProyectoController extends Controller
         } else {
             $nombreImagen = 'proyecto-default.webp';
         }
-        
+
         $proyecto = Proyecto::create([
             'nombre' => $request->input('nombre-proyecto'),
             'autor' => $request->input('autor-proyecto'),
@@ -50,8 +71,15 @@ class ProyectoController extends Controller
             'imagen' => $nombreImagen,
             'activo' => '1',
         ]);
-        
+
         return view('admin.inicio-admin');
+    }
+
+    public function eliminarProyecto($id)
+    {
+        Proyecto::where('id', $id)->update(['activo' => 0]);
+
+        return view('admin/inico-admin');
     }
 
     public function obtenerCursoAcademicoAjax()
@@ -66,14 +94,21 @@ class ProyectoController extends Controller
         return response()->json($proyecto);
     }
 
-    public function gestionProyectosIntercentros(Request $request)
+    public function gestionProyectosIntercentros()
     {
         return view('admin.gestion-proyectos-intercentros');
     }
 
-    
-    public function gestionProyectosPip(Request $request)
+
+    public function gestionProyectosPip()
     {
-        return view('admin.gestion-proyectos-pip');
+
+        $proyectosDestacados = Proyecto::where('activo', '1')
+            ->where('destacado', '1')
+            ->where('tipo_proyecto_id', '1')
+            ->get();
+        $cursosAcademicos = \App\Models\CursoAcademico::all();
+        
+        return view('admin.gestion-proyectos-pip', compact('proyectosDestacados', 'cursosAcademicos'));
     }
 }

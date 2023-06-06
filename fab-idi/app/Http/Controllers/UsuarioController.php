@@ -88,22 +88,22 @@ class UsuarioController extends Controller
         return view("quienes-somos");
     }
 
-    public function guardarCambiosUsuario()
+    public function guardarCambiosUsuario(Request $request)
     {
-
-        $user = User::find($_POST['id-usuario']);
-        $user->nombre = $_POST['nombre-usuario'];
-        $user->apellidos = $_POST['apellidos-usuario'];
-        $user->email = $_POST['email-usuario'];
-        $user->telefono = $_POST['telefono-usuario'];
-        $user->twitter = $_POST['twitter-usuario'];
-        $user->instagram = $_POST['instagram-usuario'];
-        $user->linkedin = $_POST['linkedin-usuario'];
-        $user->perfil_id = $_POST['select-perfil-usuario'];
+        $user = User::find($request->input('id-usuario'));
+        $user->nombre = $request->input('nombre-usuario');
+        $user->apellidos = $request->input('apellidos-usuario');
+        $user->email = $request->input('email-usuario');
+        $user->telefono = $request->input('telefono-usuario');
+        $user->twitter = $request->input('twitter-usuario');
+        $user->instagram = $request->input('instagram-usuario');
+        $user->linkedin = $request->input('linkedin-usuario');
+        $user->perfil_id = $request->input('select-perfil-usuario');
         $user->save();
-
+    
         return redirect()->route('gestion-usuarios');
     }
+    
 
     public function editarUsuario($id)
     {

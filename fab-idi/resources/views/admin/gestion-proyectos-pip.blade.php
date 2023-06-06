@@ -6,18 +6,11 @@
 
 @section('content')
 <script>
-    //Para cargar la imagen de perfil
+    //Para cargar la imagen de perfil en el archivo js
     let rutaImagen = "{{ asset('images/proyectos/') }}";
 </script>
 
 <main id='main-gestion-proyectos-pip' class='main-admin'>
-
-    @php
-        $proyectosDestacados = App\Models\Proyecto::where('destacado', true)
-            ->where('tipo_proyecto_id', '2')
-            ->get();
-        $cursosAcademicos = \App\Models\CursoAcademico::all();
-    @endphp
 
     <section id="section-table-proyectos-destacados-pip">
         <div class='btn-container-vista'>
