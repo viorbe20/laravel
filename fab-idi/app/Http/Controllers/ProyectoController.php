@@ -9,6 +9,39 @@ use App\Models\CursoAcademico;
 class ProyectoController extends Controller
 {
 
+    public function crearProyecto()
+    {
+        $cursosAcademicos = CursoAcademico::all();
+        return view('admin.crear-proyecto', compact('cursosAcademicos'));
+    }
+
+    public function guardarProyecto(Request $request)
+    {
+        if ($request->hasFile('imagen-proyecto')) {
+            $imagen = $request->file('imagen-proyecto');
+            $nombreImagen = $request->file('imagen-proyecto')->hashName();
+            $imagen->move(public_path() . '/images/proyectos/', $nombreImagen);
+        } else {
+            $nombreImagen = 'proyecto-default.webp';
+        }
+        
+        $proyecto = Proyecto::create([
+            'nombre' => $request->input('nombre-proyecto'),
+            'autor' => $request->input('autor-proyecto'),
+            'centro' => $request->input('centro-proyecto'),
+            'curso_academico_id' => $request->input('select-curso-academico'),
+            'tipo_proyecto_id' => $request->input('select-tipo-proyecto'),
+            'descripcion' => $request->input('descripcion-proyecto'),
+            'destacado' => '0',
+            'disponible' => $request->input('disponible') == '1' ? true : false,
+            'url' => $request->input('url-proyecto'),
+            'imagen' => $nombreImagen,
+            'activo' => '1',
+        ]);
+        
+        return view('admin.inicio-admin');
+    }
+
     public function obtenerCursoAcademicoAjax()
     {
         $cursos = CursoAcademico::all();

@@ -40,7 +40,7 @@ class PremioController extends Controller
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha quitado de destacados correctamente.');
     }
 
-    public function crearPremio(Request $request)
+    public function crearPremio()
     {
         return view('admin.crear-premio');
     }

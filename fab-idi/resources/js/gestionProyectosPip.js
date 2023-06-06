@@ -73,10 +73,10 @@ $(document).ready(function () {
                         <td>${proyecto.curso_academico_id}</td>
                         <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>
                         <td>
-                        <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                        <a href="/gestion-proyectos-pip/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/gestion-proyectos-pip/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                             ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
+                            `<a href="${proyecto.destacado ? `gestion-proyectos-pip/quitar-destacado/${proyecto.id}` : `gestion-proyectos-pip/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
                             : ''

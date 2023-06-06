@@ -166,8 +166,8 @@ class UsuarioController extends Controller
 
             if ($request->hasFile('foto-usuario')) {
                 //guarda en la carpeta storage/app/public/usuarios
-                $request->file('foto-usuario')->store('public/images/usuarios/');
                 $usuario->imagen = $request->file('foto-usuario')->hashName();
+                $request->file('foto-usuario')->store('public/images/usuarios/');
                 $usuario->save();
             }
 
