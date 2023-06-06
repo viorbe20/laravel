@@ -79,7 +79,7 @@ class ProyectoController extends Controller
     {
         Proyecto::where('id', $id)->update(['activo' => 0]);
 
-        return view('admin/inico-admin');
+        return view('admin/inicio-admin');
     }
 
     public function obtenerCursoAcademicoAjax()

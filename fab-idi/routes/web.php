@@ -84,7 +84,7 @@ Route::get("/gestion-proyectos/crear", [ProyectoController::class, "crearProyect
 Route::post("/gestion-proyectos/guardar", [ProyectoController::class, "guardarProyecto"])->name("guardar-proyecto");
 Route::get("/gestion-proyectos/editar/{id}", [ProyectoController::class, "editarProyecto"])->name("editar-proyecto");
 Route::post("/gestion-proyectos/guardar-cambios-proyecto", [ProyectoController::class, "guardarCambiosProyecto"])->name("guardar-cambios-proyecto");
-Route::post("/gestion-proyectos/eliminar/{id}", [ProyectoController::class, "eliminarProyecto"])->name("eliminar-proyecto");
+Route::match(['GET', 'POST'], "/gestion-proyectos/eliminar/{id}", [ProyectoController::class, "eliminarProyecto"])->name("eliminar-proyecto");
 Route::get("/gestion-proyectos-pip", [ProyectoController::class, "gestionProyectosPip"])->name("gestion-proyectos-pip");
 Route::post("/gestion-proyectos-pip/destacar/{id}", [ProyectoController::class, "destacarProyectoPip"])->name("destacar-proyecto-pip");
 Route::post("/gestion-proyectos-pip/quitar-destacado/{id}", [ProyectoController::class, "quitarProyectoPipDestacado"])->name("quitar-proyecto-pip-destacado");

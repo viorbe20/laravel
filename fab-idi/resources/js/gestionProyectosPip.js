@@ -98,10 +98,12 @@ $(document).ready(function () {
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
-            let proyectosFiltrados = proyectos.filter(function (proyecto) {
+            //Objeto convertido a array para poder usar slice
+            let proyectosArray = Object.values(proyectos);
+
+            let proyectosFiltrados = proyectosArray.filter(function (proyecto) {
                 return proyecto.nombre.toLowerCase().includes(queryInput.val());
             });
-
 
             proyectosFiltrados.forEach(function (proyecto) {
 
