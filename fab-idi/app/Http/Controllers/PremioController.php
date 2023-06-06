@@ -25,7 +25,6 @@ class PremioController extends Controller
     public function destacarPremio(Request $request)
     {
         $premio = Premio::find($request->id);
-        //poner destacado a true
         $premio->destacado = true;
         $premio->save();
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha destacado correctamente.');

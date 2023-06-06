@@ -73,7 +73,7 @@ Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name(
 Route::get("/gestion-premios", [PremioController::class, "gestionPremios"])->name("gestion-premios");
 Route::get("/gestion-premios/crear", [PremioController::class, "crearPremio"])->name("crear-premio");
 Route::post("/gestion-premios/crear", [PremioController::class, "crearPremioPost"])->name("crear-premio-post");
-Route::get("/gestion-premios/destacar/{id}", [PremioController::class, "destacarPremio"])->name("destacar-premio");
+Route::post("/gestion-premios/destacar/{id}", [PremioController::class, "destacarPremio"])->name("destacar-premio");
 Route::get("/gestion-premios/quitar-destacado/{id}", [PremioController::class, "quitarPremioDestacado"])->name("quitar-premio-destacado");
 Route::get("/gestion-premios/editar/{id}", [PremioController::class, "editarPremio"])->name("editar-premio");
 Route::post("/gestion-premios/editar/{id}", [PremioController::class, "editarPremioPost"])->name("editar-premio-post");
@@ -84,6 +84,8 @@ Route::get("/gestion-proyectos/crear", [ProyectoController::class, "crearProyect
 Route::post("/gestion-proyectos/guardar", [ProyectoController::class, "guardarProyecto"])->name("guardar-proyecto");
 Route::get("/gestion-proyectos/editar/{id}", [ProyectoController::class, "editarProyecto"])->name("editar-proyecto");
 Route::post("/gestion-proyectos/guardar-cambios-proyecto", [ProyectoController::class, "guardarCambiosProyecto"])->name("guardar-cambios-proyecto");
+Route::get("/gestion-proyectos/destacar/{id}", [ProyectoController::class, "destacarProyecto"])->name("destacar-proyecto");
+Route::get("/gestion-proyectos/quitar-destacado/{id}", [ProyectoController::class, "quitarProyectoDestacado"])->name("quitar-proyecto-destacado");
 Route::match(['GET', 'POST'], "/gestion-proyectos/eliminar/{id}", [ProyectoController::class, "eliminarProyecto"])->name("eliminar-proyecto");
 Route::get("/gestion-proyectos-pip", [ProyectoController::class, "gestionProyectosPip"])->name("gestion-proyectos-pip");
 Route::post("/gestion-proyectos-pip/destacar/{id}", [ProyectoController::class, "destacarProyectoPip"])->name("destacar-proyecto-pip");

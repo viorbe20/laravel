@@ -9,6 +9,33 @@ use App\Models\CursoAcademico;
 class ProyectoController extends Controller
 {
 
+    public function quitarProyectoDestacado($id)
+    {
+        $proyecto = Proyecto::find($id);
+        $proyecto->destacado = '0';
+        $proyecto->save();
+
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros');
+        }
+    }
+
+    
+    public function destacarProyecto($id)
+    {
+        $proyecto = Proyecto::find($id);
+        $proyecto->destacado = '1';
+        $proyecto->save();
+        
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros');
+        }
+    }
+
     public function guardarCambiosProyecto(Request $request)
     {
         $proyecto = Proyecto::find(request()->input('id-proyecto'));
@@ -103,10 +130,7 @@ class ProyectoController extends Controller
     public function gestionProyectosPip()
     {
 
-        $proyectosDestacados = Proyecto::where('activo', '1')
-            ->where('destacado', '1')
-            ->where('tipo_proyecto_id', '1')
-            ->get();
+        $proyectosDestacados = Proyecto::where('tipo_proyecto_id', '1')->where('activo', '1')->where('destacado', '1')->get();
         $cursosAcademicos = \App\Models\CursoAcademico::all();
         
         return view('admin.gestion-proyectos-pip', compact('proyectosDestacados', 'cursosAcademicos'));
