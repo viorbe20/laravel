@@ -106,7 +106,12 @@ class ProyectoController extends Controller
     {
         Proyecto::where('id', $id)->update(['activo' => 0]);
 
-        return view('admin/inicio-admin');
+        $proyecto = Proyecto::find($id);
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros');
+        }
     }
 
     public function obtenerCursoAcademicoAjax()
