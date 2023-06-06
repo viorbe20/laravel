@@ -128,7 +128,10 @@ class ProyectoController extends Controller
 
     public function gestionProyectosIntercentros()
     {
-        return view('admin.gestion-proyectos-intercentros');
+        $proyectosDestacados = Proyecto::where('tipo_proyecto_id', '2')->where('activo', '1')->where('destacado', '1')->get();
+        $cursosAcademicos = \App\Models\CursoAcademico::all();
+        
+        return view('admin.gestion-proyectos-intercentros', compact('proyectosDestacados', 'cursosAcademicos'));
     }
 
 

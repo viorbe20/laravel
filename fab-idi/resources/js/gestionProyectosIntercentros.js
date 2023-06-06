@@ -2,8 +2,7 @@ import $ from "jquery";
 
 $(document).ready(function () {
     let tbody = document.querySelector("#tbody-tabla-proyectos-intercentros");
-    let queryInput = $("#buscar-proyecto-intercentro");
-    let numproyectosDestacados = $("#tbody-tabla-proyectos-destacados-intercentros tr").length;
+    let queryInput = $("#buscar-proyecto-intercentros");
 
     //Obtiene el curso académico del proyecto dado un ID
     function getCursoAcademico(proyectoId) {
@@ -27,7 +26,6 @@ $(document).ready(function () {
 
 
     function obtenerproyectos() {
-
         let query = queryInput.val();
 
         if (query != undefined) {
@@ -47,26 +45,31 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             }).then(function (response) {
-                //console.log(response);
                 return response.json();
+            }).then(function (proyectos) {
+                let filtroIntercentros = proyectos.filter(function (proyecto) {
+                    return proyecto.tipo_proyecto_id == 2 && proyecto.activo == 1 && proyecto.destacado == 0;
+                });
+                return filtroIntercentros;
             });
         }
-
     }
+
 
     //Muestra todos los proyectos en la tabla
     function mostrarProyectos() {
         obtenerproyectos().then(function (proyectos) {
+            console.log(proyectos);
             tbody.innerHTML = "";
+            //Objeto convertido a array para poder usar slice
+            let proyectosArray = Object.values(proyectos);
+            let ultimosProyectos = proyectosArray.slice(-4);
 
-            let ultimosproyectos = proyectos.slice(-6);
+            ultimosProyectos.forEach(function (proyecto) {
 
-            ultimosproyectos.forEach(function (proyecto) {
-
-                //Solo se muestran en el listado los no destacados
-                if (proyecto.destacado == 0 && proyecto.activo == 1) {
-                    proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
-                    let rowHtml = `
+                //console.log(proyecto);
+                proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
+                let rowHtml = `
                     <tr>
                         <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                         <td>${proyecto.nombre}</td>
@@ -75,31 +78,27 @@ $(document).ready(function () {
                         <td>
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
-                            <i class="fa-solid fa-eye"></i>
-                </a>`
-                            : ''
-                        }
                         </td>
                     </tr>
                 `;
-                    tbody.innerHTML += rowHtml;
-                }
+                tbody.innerHTML += rowHtml;
+
             });
         });
     }
 
     //Muestra los proyectos que coinciden con la búsqueda
     function mostrarProyectosCoincidentes() {
-        
+
         obtenerproyectos().then(function (proyectos) {
             tbody.innerHTML = "";
 
-            let proyectosFiltrados = proyectos.filter(function (proyecto) {
+            //Objeto convertido a array para poder usar slice
+            let proyectosArray = Object.values(proyectos);
+
+            let proyectosFiltrados = proyectosArray.filter(function (proyecto) {
                 return proyecto.nombre.toLowerCase().includes(queryInput.val());
             });
-
 
             proyectosFiltrados.forEach(function (proyecto) {
 
@@ -115,12 +114,7 @@ $(document).ready(function () {
                         <td>
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/quitar-destacado/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
-                            <i class="fa-solid fa-eye"></i>
-                </a>`
-                            : ''
-                        }
+                        <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                 `;
@@ -134,7 +128,7 @@ $(document).ready(function () {
     mostrarProyectos();
 
     //Muestra los proyectos que coinciden con la búsqueda
-    $("#buscar-proyecto-intercentro").on("keyup", function () {
+    $("#buscar-proyecto-intercentros").on("keyup", function () {
         let query = $(this).val().toLowerCase().trim();
 
         if (query.length === 0) {
