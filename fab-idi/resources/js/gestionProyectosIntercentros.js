@@ -102,10 +102,8 @@ $(document).ready(function () {
 
             proyectosFiltrados.forEach(function (proyecto) {
 
-                //Solo se muestran en el listado los no destacados
-                if (proyecto.destacado == 0 && proyecto.activo == 1) {
-                    proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
-                    let rowHtml = `
+                proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
+                let rowHtml = `
                     <tr>
                         <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                         <td>${proyecto.nombre}</td>
@@ -118,8 +116,8 @@ $(document).ready(function () {
                         </td>
                     </tr>
                 `;
-                    tbody.innerHTML += rowHtml;
-                }
+                tbody.innerHTML += rowHtml;
+
             });
         });
     }
