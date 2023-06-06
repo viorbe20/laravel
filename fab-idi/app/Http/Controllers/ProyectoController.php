@@ -9,6 +9,18 @@ use App\Models\CursoAcademico;
 class ProyectoController extends Controller
 {
 
+    public function guardarCambiosProyecto()
+    {
+        return view('admin.inicio-admin');
+    }
+
+    public function editarProyecto($id)
+    {
+        $proyecto = Proyecto::find($id);
+        $cursosAcademicos = CursoAcademico::all();
+        return view('admin/editar-proyecto', compact('proyecto', 'cursosAcademicos'));
+    }
+
     public function crearProyecto()
     {
         $cursosAcademicos = CursoAcademico::all();

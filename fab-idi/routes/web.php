@@ -82,12 +82,13 @@ Route::match(['GET', 'POST'], '/gestion-premios/eliminar/{id}', [PremioControlle
 //Admin proyectos 
 Route::get("/gestion-proyectos/crear", [ProyectoController::class, "crearProyecto"])->name("crear-proyecto");
 Route::post("/gestion-proyectos/guardar", [ProyectoController::class, "guardarProyecto"])->name("guardar-proyecto");
-Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
+Route::get("/gestion-proyectos/editar/{id}", [ProyectoController::class, "editarProyecto"])->name("editar-proyecto");
+Route::post("/gestion-proyectos/guardar-cambios-proyecto", [ProyectoController::class, "guardarCambiosProyecto"])->name("guardar-cambios-proyecto");
+Route::post("/gestion-proyectos/eliminar/{id}", [ProyectoController::class, "eliminarProyecto"])->name("eliminar-proyecto");
 Route::get("/gestion-proyectos-pip", [ProyectoController::class, "gestionProyectosPip"])->name("gestion-proyectos-pip");
-Route::get("/gestion-proyectos-pip/editar/{id}", [ProyectoController::class, "editarProyectoPip"])->name("editar-proyecto-pip");
-Route::post("/gestion-proyectos-pip/eliminar/{id}", [ProyectoController::class, "eliminarProyectoPip"])->name("eliminar-proyecto-pip");
 Route::post("/gestion-proyectos-pip/destacar/{id}", [ProyectoController::class, "destacarProyectoPip"])->name("destacar-proyecto-pip");
 Route::post("/gestion-proyectos-pip/quitar-destacado/{id}", [ProyectoController::class, "quitarProyectoPipDestacado"])->name("quitar-proyecto-pip-destacado");
+Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
 
 
 //Admin eventos
