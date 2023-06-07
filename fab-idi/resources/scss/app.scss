@@ -295,13 +295,13 @@
       ul:nth-child(1) {
         background-color: var(--azul-oscuro);
         padding: 0% 0% 0% 0%;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        *box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 
         .sidebar-title {
           background-color: var(--azul-oscuro);
           text-align: center;
           color: #ffffff;
-          
+
           a {
             text-decoration: none;
             color: #ffffff;
@@ -347,45 +347,60 @@
 
       }
 
-
       .accordion {
-        background-color: #2F206B;
+        background-image: linear-gradient(to bottom, var(--azul-oscuro), #000);
         color: #ffffff;
         cursor: pointer;
-        padding: 18px;
         width: 100%;
         border: none;
         text-align: left;
         outline: none;
-        font-size: 15px;
+        font-size: 18px;
+        font-weight: 600;
         transition: 0.8s;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 5%;
 
         i {
           margin-right: 10px;
         }
+
+        &:hover {
+          background-image: linear-gradient(to bottom, var(--azul-oscuro), #ccc);
+        }
       }
 
-      .active,
-      .accordion:hover {
-        *background-color: #ccc;
-      }
 
       .panel {
-        padding: 0 18px;
+        padding: 0px;
         display: none;
         background-color: white;
-        *overflow: hidden;
 
         li {
           height: 40px;
           display: flex;
+          background-color: var(--gris-claro);
+          cursor: pointer;
+
 
           a {
+            padding-left: 5%;
             text-decoration: none;
             color: #1f2c4c;
+            font-size: 14px;
             display: flex;
             align-items: center;
             background-color: transparent;
+          }
+
+          &:hover {
+            background-color: #0B5ED7;
+
+            a {
+              color: #ffffff;
+            }
           }
         }
       }
@@ -399,9 +414,21 @@
         margin-left: 5px;
       }
 
-      .active:after {
+      .accordion.active:after {
         content: "\2796";
-        /* Unicode character for "minus" sign (-) */
+        /* Unicode character for "plus" sign (+) */
+      }
+
+      .accordion.active {
+        content: "\2796";
+      }
+
+      li.active {
+        background-color: #0B5ED7;
+        
+        a {
+          color: #ffffff;
+        }
       }
     }
   }
