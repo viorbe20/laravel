@@ -1,11 +1,16 @@
 <div id="sidebar-admin">
     <ul>
+        <li class='sidebar-title'>
+            <h1><a href="{{ url('/gestion-usuarios') }}">FAB-IDI</a>
+            </h1>
+            <p>Admin Panel</p>
+        </li>
         <li class="profile-container">
+            <p class="profile-name">Bienvenido, {{ Auth::user()->nombre }}</p>
             <div>
                 <img src="{{ asset('images/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil"
                     class="profile-picture">
-                <p class="profile-name">Bienvenido, {{ Auth::user()->nombre }}</p>
-                <div>
+            </div>
         </li>
 
         <li>

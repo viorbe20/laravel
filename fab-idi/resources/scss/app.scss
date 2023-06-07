@@ -277,7 +277,6 @@
   background-color: #FDFCFB;
   display: flex;
   font-family: 'Nunito', sans-serif;
-  background-color: vafr;
 
   section:nth-child(1) {
     display: flex;
@@ -288,42 +287,59 @@
     background-color: var(--azul-oscuro);
 
     #sidebar-admin {
-      width: 20%;
+      width: 100%;
       height: auto;
       overflow: hidden;
-      background-color: #040849;
+      background-color: var(--azul-oscuro);
 
       ul:nth-child(1) {
-        padding: 0% 0% 10% 0%;
-        margin: 2%;
-        border-radius: 25px;
+        background-color: var(--azul-oscuro);
+        padding: 0% 0% 0% 0%;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-        background-color: rgb(222, 222, 241);
+
+        .sidebar-title {
+          background-color: var(--azul-oscuro);
+          text-align: center;
+          color: #ffffff;
+          
+          a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 30px;
+          }
+        }
 
         .profile-container {
           display: flex;
           flex-direction: column;
           align-items: center;
           margin-bottom: 100px;
-          background-image: url('../../public/images/backgrounds/blue-bg-1.webp');
-          background-size: cover;
-          background-position: center;
-          border-top-left-radius: 25px;
-          border-top-right-radius: 25px;
           position: relative;
-          height: 100px;
+          height: 40px;
+          background-color: var(--gris-claro);
+
+          p {
+            color: var(--azul-oscuro);
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            padding: 5px 0px;
+          }
 
           div {
+            background-color: #ffffff;
             position: absolute;
             top: 65%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 100%;
+            width: 90px;
+            height: 90px;
+            border-radius: 50px;
+
 
             img {
               width: 90px;
-              border-radius: 50%;
             }
           }
 
@@ -407,7 +423,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        
+
         a {
           margin-right: 2%;
           cursor: pointer;
@@ -415,7 +431,7 @@
           border-radius: 25%;
           background-color: #ffffff;
           box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-          
+
           i {
             color: var(--azul-oscuro);
             margin: 12px;
@@ -707,7 +723,7 @@ nav {
 
   .testimonial-item {
     background-color: pink;
-    margin: 0%  0.5%;
+    margin: 0% 0.5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -716,30 +732,30 @@ nav {
   }
 
   /* Estilo para el botón previo */
-.slick-prev {
-  position: absolute;
-  z-index: 1;
-  left: 15px;
-  top: 30%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 1px solid #dddddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  .slick-prev {
+    position: absolute;
+    z-index: 1;
+    left: 15px;
+    top: 30%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    border: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-/* Estilo para la flecha del botón previo */
-.slick-prev:before {
-  content: "<";
-  font-size: 34px;
-  color: #333333;
-}
+  /* Estilo para la flecha del botón previo */
+  .slick-prev:before {
+    content: "<";
+    font-size: 34px;
+    color: #333333;
+  }
 
 }
 
@@ -754,7 +770,8 @@ nav {
 }
 
 //Página proyectos intercentros
-#panel-proyectos-intercentros-destacados, #panel-proyectos-intercentros-actuales {
+#panel-proyectos-intercentros-destacados,
+#panel-proyectos-intercentros-actuales {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -765,65 +782,64 @@ nav {
 }
 
 .gallery {
-	display: flex;
-	padding: 2px;
-	transition: .3s;
-	
+  display: flex;
+  padding: 2px;
+  transition: .3s;
+
 
   .card:hover {
-		filter: grayscale(1);
+    filter: grayscale(1);
     transition: .3s;
     transform: scale(1.1);
-	}
+  }
 
-	
-	&__column {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
-	}
-	
-	
-	&__thumb {
-		position: relative;
-	}
-	
-	&__image {
-		display: block;
-		width: 100%;
-		transition: .3s;
-	
-	}
-	
-	&__caption {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		padding: 25px 15px 15px;
-		width: 100%;
-		font-family: 'Raleway', sans-serif;
-		font-size: 16px;
-		color: white;
-		opacity: 0;
-		background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255 ,255 , 0) 100%);
-		transition: .3s;
-	}
 
-	.card {
+  &__column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+
+  &__thumb {
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    transition: .3s;
+
+  }
+
+  &__caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 25px 15px 15px;
+    width: 100%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
+    transition: .3s;
+  }
+
+  .card {
     margin: 6%;
 
-		&.wide {
-			height: 14%;
-		}
+    &.wide {
+      height: 14%;
+    }
 
-		&.tall {
-			height: 15.5%;
-		}
+    &.tall {
+      height: 15.5%;
+    }
 
-		&.big {
-			height: 17%;
+    &.big {
+      height: 17%;
 
-		}
-	}
+    }
+  }
 }
-
