@@ -1,7 +1,7 @@
 <div id="sidebar-admin">
     <ul>
         <li class='sidebar-title'>
-            <h1><a href="{{ url('/gestion-usuarios') }}">FAB-IDI</a>
+            <h1><a href="{{ url('/inicio-admin') }}">FAB-IDI</a>
             </h1>
             <p>Admin Panel</p>
         </li>

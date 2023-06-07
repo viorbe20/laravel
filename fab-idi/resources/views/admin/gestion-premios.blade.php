@@ -12,6 +12,16 @@
         @endphp
         
         <section id="section-table-premios-destacados">
+                        <!-- mensaje success -->
+                        @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @elseif (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
             <div class='btn-container-vista'>
                 <a href="{{ url('/') }}" class="btn"><i class="fa-solid fa-eye"><span> Vista</span></i></a>
             </div>
@@ -76,17 +86,6 @@
                 <tbody id="tbody-tabla-premios">
                 </tbody>
             </table>
-
-            <!-- mensaje success -->
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @elseif (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
         </section>
 
     </main>

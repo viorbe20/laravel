@@ -14,8 +14,6 @@ use Swift_Message;
 use Swift_SmtpTransport;
 
 
-
-
 class UsuarioController extends Controller
 {
     private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)

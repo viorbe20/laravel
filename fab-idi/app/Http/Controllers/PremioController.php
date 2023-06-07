@@ -85,27 +85,29 @@ class PremioController extends Controller
         return view('admin.editar-premio', compact('premio'));
     }
 
-    public function editarPremioPost(Request $request)
+    public function guardarCambiosPremio(Request $request)
     {
-        //si se ha subido una imagen
-        if ($request->hasFile('imagen')) {
-            $imagen = $request->file('imagen');
-            //cambiar nombre de la imagen al id del premio mas la extensión
-            $nombreImagen = $request->file('name') . date("YmdHis") . "." . $imagen->extension();
-            $imagen->move(public_path('img/premios'), $nombreImagen);
-            //borrar imagen de la carpeta img/premios
-            unlink(public_path('img/premios/' . $request->input('imagen-guardada')));
+        $premio = Premio::find(request()->input('id-premio'));
+
+        if ($request->hasFile('imagen-premio')) {
+            $imagen = $request->file('imagen-premio');
+            $nombreImagen = $request->file('imagen-premio')->hashName();
+            $imagen->move(public_path() . '/images/premio/', $nombreImagen);
+            //Borra la imagen anterior
+            unlink(public_path('images/premio/' . $premio->imagen));
+            //Añade id del premio al nombre de la imagen
+            $nombreImagen = $premio->id . $nombreImagen;
         } else {
-            $nombreImagen = $request->input('imagen-guardada');
+            $nombreImagen = $premio->imagen;
         }
 
-        $premio = Premio::find($request->id);
-        $premio->titulo = $request->input('titulo');
-        $premio->fecha = $request->input('fecha');
-        $premio->url = $request->input('url');
-        $premio->descripcion = $request->input('descripcion');
+        $premio->titulo = $request->input('titulo-premio');
+        $premio->fecha = $request->input('fecha-premio');
+        $premio->url = $request->input('url-premio');
+        $premio->descripcion = $request->input('descripcion-premio');
         $premio->imagen = $nombreImagen;
         $premio->save();
+
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha editado correctamente.');
     }
 
