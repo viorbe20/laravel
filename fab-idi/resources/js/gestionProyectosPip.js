@@ -47,8 +47,12 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
             }).then(function (response) {
-                //console.log(response);
                 return response.json();
+            }).then(function (proyectos) {
+                let filtroIntercentros = proyectos.filter(function (proyecto) {
+                    return proyecto.tipo_proyecto_id == 1 && proyecto.activo == 1 && proyecto.destacado == 0;
+                });
+                return filtroIntercentros;
             });
         }
 
@@ -66,9 +70,8 @@ $(document).ready(function () {
             ultimosProyectos.forEach(function (proyecto) {
 
                 //Solo se muestran en el listado los no destacados
-                if (proyecto.tipo_proyecto_id == 1 && proyecto.activo == 1 && proyecto.destacado == 0) {
-                    proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
-                    let rowHtml = `
+                proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
+                let rowHtml = `
                     <tr>
                         <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
                         <td>${proyecto.nombre}</td>
@@ -78,16 +81,16 @@ $(document).ready(function () {
                         <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                             ${numproyectosDestacados < 3 ?
-                            `<a href="${proyecto.destacado ? `gestion-proyectos/destacar/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
+                        `<a href="${proyecto.destacado ? `gestion-proyectos/destacar/${proyecto.id}` : `gestion-proyectos/destacar/${proyecto.id}`}" class="btn ${proyecto.destacado ? "btn-admin-save" : "btn btn-admin-proyecto"} btn-destacar-proyecto">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
-                            : ''
-                        }
+                        : ''
+                    }
                         </td>
                     </tr>
                 `;
-                    tbody.innerHTML += rowHtml;
-                }
+                tbody.innerHTML += rowHtml;
+
             });
         });
     }
@@ -107,8 +110,6 @@ $(document).ready(function () {
 
             proyectosFiltrados.forEach(function (proyecto) {
 
-                //Solo se muestran en el listado los no destacados
-                if (proyecto.destacado == 0 && proyecto.activo == 1) {
                     proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
                     let rowHtml = `
                     <tr>
@@ -129,7 +130,7 @@ $(document).ready(function () {
                     </tr>
                 `;
                     tbody.innerHTML += rowHtml;
-                }
+                
             });
         });
     }

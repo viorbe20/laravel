@@ -13,11 +13,11 @@
 <body id='body-admin'>
     
     <section>
-        @include('layouts.partials.header-admin')
+        @include('layouts.partials.nav-admin')
     </section>
     
     <section>
-        @include('layouts.partials.nav-admin')
+        @include('layouts.partials.header-admin')
         @yield('content')
     </section>
 
