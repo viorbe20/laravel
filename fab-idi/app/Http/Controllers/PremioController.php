@@ -46,8 +46,12 @@ class PremioController extends BaseController
 
     public function crearPremioPost(Request $request)
     {
+        //Validación url
+        if (!$this->verfificarUrl($request->input('url'))) {
+            return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
+        }
+
         $imagen = $request->file('imagen');
-        //cambiar nombre de la imagen al titulo del premio mas la fecha y la extension
         $nombreImagen = $request->input('titulo') . date("YmdHis") . "." . $imagen->extension();
         $imagen->move(public_path('img/premios'), $nombreImagen);
         

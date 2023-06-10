@@ -34,7 +34,7 @@
                         <th scope="col">Título</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">URL</th>
+                        <th scope="col">Web</th>
                         <th scope="col">Imagen</th>
                         <th scope="col">Acciones</th>
                     </tr>
@@ -81,7 +81,7 @@
                         <th scope="col">Título</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">URL</th>
+                        <th scope="col">Web</th>
                         <th scope="col">Imagen</th>
                         <th scope="col">Acciones</th>
                     </tr>
