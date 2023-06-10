@@ -28,9 +28,15 @@ $(document).ready(function () {
                 },
             }).then(function (response) {
                 return response.json();
-            });
-        }
+            }).then(function (premios) {
+                let premiosActivos = premios.filter(function (premio) {
+                    return premio.activo === 1;
+                });
 
+                return premiosActivos;
+            });
+
+        }
     }
 
     //Muestra todos los premios en la tabla
@@ -57,7 +63,7 @@ $(document).ready(function () {
                         <td>
                         <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numPremiosDestacados < 3 ?
+                            ${numPremiosDestacados < 4 ?
                             `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
                             <i class="fa-solid fa-eye"></i>
                 </a>`
@@ -74,7 +80,7 @@ $(document).ready(function () {
 
     //Muestra los premios que coinciden con la búsqueda
     function mostrarPremiosCoincidentes() {
-        
+
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
 
