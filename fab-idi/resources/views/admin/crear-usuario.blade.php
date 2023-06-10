@@ -8,10 +8,18 @@
 
     <main id='main-crear-usuario' class='main-admin'>
         <div class='page-subtitle'>
-            <h2>ALTA USUARIO</h2>
+            <h2>ALTA USUARIO</h2>    
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         </div>
-
-        <form method="POST" action="{{ route('crear-usuario-post') }}" enctype="multipart/form-data" id='form-crear-usuario'class='styled-form'>
+        <form method="POST" action="{{ route('guardar-usuario') }}" enctype="multipart/form-data" id='form-crear-usuario'class='styled-form'>
             @csrf
             <div class="form-group">
                 <select class="form-control" id="form-select-tipo-usuario" name="select-tipo-usuario">
@@ -22,7 +30,6 @@
 
             </div>
             <hr>
-            {{-- <div id="usuario-campos" style="display: none;"> --}}
                 <div id="usuario-campos" style="display: none;">
                 <div class="form-row-2">
                     <div class="form-group">

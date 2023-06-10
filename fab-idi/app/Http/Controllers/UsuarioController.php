@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Mail\Mailable;
-use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\Entidad;
 use App\Models\Perfil;
@@ -16,6 +14,48 @@ use Swift_SmtpTransport;
 
 class UsuarioController extends Controller
 {
+
+    public function guardarUsuario(Request $request)
+    {
+
+        $tipoUsuario = $request->input('select-tipo-usuario');
+
+        $randomPassword = $this->generarPasswordAleatoria();
+
+        
+        if ($request->hasFile('foto-usuario')) {
+            $file = $request->file('foto-usuario');
+            $maxSize = 2097152; // 2 megabytes
+            
+            if ($file->getSize() > $maxSize) {
+                return redirect()->route('crear-usuario')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->route('crear-usuario')->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreArchivo = time() . '.' . $extension;
+                    $file->move(public_path('img'), $nombreArchivo);
+                }
+                
+
+                return redirect()->route('crear-usuario')->with('success', 'La imagen se cargó correctamente.');
+
+            }
+
+
+
+            $request->validate([
+                'foto-usuario' => 'max:' . $maxSize,
+            ]);
+        
+        } else {
+            // No se seleccionó ninguna imagen
+        }     
+    }
+
     private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
     {
         $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -36,25 +76,22 @@ class UsuarioController extends Controller
         $usuario = User::find($id);
         $randomPassword = $this->generarPasswordAleatoria();
         $usuario->password = bcrypt($randomPassword);
-        //dd($usuario->password);
         $usuario->save();
-    
+
         $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
         $transport->setUsername('viorbe20@gmail.com');
         $transport->setPassword('qgeccmuaivcojphv');
-    
+
         $mailer = new Swift_Mailer($transport);
-    
+
         $message = new Swift_Message('Prueba email contraseña');
         $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
         $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
         $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
         $mailer->send($message);
-    
+
         return redirect()->route('gestion-contrasenas');
     }
-    
-
 
     public function gestionContrasenas()
     {
@@ -98,10 +135,9 @@ class UsuarioController extends Controller
         $user->linkedin = $request->input('linkedin-usuario');
         $user->perfil_id = $request->input('select-perfil-usuario');
         $user->save();
-    
+
         return redirect()->route('gestion-usuarios');
     }
-    
 
     public function editarUsuario($id)
     {
@@ -134,64 +170,6 @@ class UsuarioController extends Controller
         $query = $request->get('query');
         $usuarios = User::where('nombre', 'LIKE', '%' . $query . '%')->get();
         return response()->json($usuarios);
-    }
-
-    public function crearUsuarioPost(Request $request)
-    {
-
-        $tipoUsuario = $request->input('select-tipo-usuario');
-
-        $randomPassword = $this->generarPasswordAleatoria();
-
-        if ($tipoUsuario == "usuario") {
-
-
-            $usuario = User::create([
-                'nombre' => $request->input('nombre-usuario'),
-                'apellidos' => $request->input('apellidos-usuario'),
-                'email' => $request->input('email-usuario'),
-                'password' => bcrypt($randomPassword),
-                'idColaborador' => $request->input('select-tipo-colaborador'),
-                'perfil_id' => 1,
-                'activo' => 1,
-                'telefono' => $request->input('telefono-usuario'),
-                'twitter' => $request->input('twitter-usuario'),
-                'instagram' => $request->input('instagram-usuario'),
-                'linkedin' => $request->input('linkedin-usuario'),
-                'imagen' => 'usuario-default.webp'
-            ]);
-
-
-            if ($request->hasFile('foto-usuario')) {
-                //guarda en la carpeta storage/app/public/usuarios
-                $usuario->imagen = $request->file('foto-usuario')->hashName();
-                $request->file('foto-usuario')->store('public/images/usuarios/');
-                $usuario->save();
-            }
-
-
-            //Falta foto
-        } else {
-            $entidad = Entidad::create([
-                'nombre' => $request->input('nombre-entidad'),
-                'representante' => $request->input('representante-entidad'),
-                'email' => $request->input('email-entidad'),
-                'telefono' => $request->input('telefono-entidad'),
-                'web' => $request->input('web-entidad'),
-                'colaborador_id' => $request->input('select-tipo-colaborador-entidad'),
-                'imagen' => 'entidad-default.webp',
-                'activo' => 1
-            ]);
-
-            if ($request->hasFile('foto-entidad')) {
-                //guarda en la carpeta storage/app/public/usuarios
-                $request->file('foto-entidad')->store('public/images/usuarios/');
-                $entidad->imagen = $request->file('foto-entidad')->hashName();
-                $entidad->save();
-            }
-        }
-
-        return redirect()->route('gestion-usuarios');
     }
 
     public function crearUsuario()

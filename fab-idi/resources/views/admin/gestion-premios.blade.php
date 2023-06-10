@@ -10,18 +10,17 @@
         @php
             $premiosDestacados = App\Models\Premio::where('destacado', true)->get();
         @endphp
-        
+
         <section id="section-table-premios-destacados">
-                        <!-- mensaje success -->
-                        @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @elseif (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class='btn-container-vista'>
                 <a href="{{ url('/') }}" class="btn"><i class="fa-solid fa-eye"><span> Vista</span></i></a>
             </div>
@@ -49,10 +48,13 @@
                             <td>{{ $premio->url }}</td>
                             <td>{{ $premio->imagen }}</td>
                             <td>
-                                <a href="{{ url('gestion-premios/editar/' . $premio->id) }}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{ url('gestion-premios/eliminar/' . $premio->id) }}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                                <a href="{{ url('gestion-premios/quitar-destacado/' . $premio->id) }}" class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
-                                    
+                                <a href="{{ url('gestion-premios/editar/' . $premio->id) }}"
+                                    class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <a href="{{ url('gestion-premios/eliminar/' . $premio->id) }}"
+                                    class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                                <a href="{{ url('gestion-premios/quitar-destacado/' . $premio->id) }}"
+                                    class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
+
                             </td>
                         </tr>
                     @endforeach
@@ -69,7 +71,8 @@
             <div class="input-group styled-input-group">
                 <span class="input-group-text" id="">Buscar premio</span>
                 <input type="text" class="input-group-text" name="buscar" id="buscar-premio">
-                <a href="{{ url('gestion-premios/crear') }}" class="btn btn-admin-add"><i class="fa fa-circle-plus"></i></a>
+                <a href="{{ url('gestion-premios/crear') }}" class="btn btn-admin-add"><i
+                        class="fa fa-circle-plus"></i></a>
             </div>
 
             <table class="table styled-table">

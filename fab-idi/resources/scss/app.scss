@@ -297,7 +297,6 @@
       ul:nth-child(1) {
         background-color: var(--azul-oscuro);
         padding: 0% 0% 0% 0%;
-        *box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 
         .sidebar-title {
           background-color: var(--azul-oscuro);
@@ -350,7 +349,7 @@
       }
 
       .accordion {
-        background-image: linear-gradient(to bottom, var(--azul-oscuro), #000);
+        background-image: linear-gradient(to bottom, var(--azul-oscuro), #020429);
         color: #ffffff;
         cursor: pointer;
         width: 100%;
@@ -370,7 +369,7 @@
         }
 
         &:hover {
-          background-image: linear-gradient(to bottom, var(--azul-oscuro), #ccc);
+          background-image: linear-gradient(to bottom, var(--azul-oscuro), #dcdcdc);
         }
       }
 

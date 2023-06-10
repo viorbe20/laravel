@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ColaboradorController;
@@ -30,9 +29,9 @@ Route::get("/eventos", [UsuarioController::class, "eventos"])->name("eventos");
 Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas");
 Route::get("/gestion-usuarios", [UsuarioController::class, "gestionUsuarios"])->name("gestion-usuarios");
 Route::get("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuario"])->name("crear-usuario");
-Route::post("/gestion-usuarios/crear-usuario", [UsuarioController::class, "crearUsuarioPost"])->name("crear-usuario-post");
 Route::get("/gestion-usuarios/eliminar-usuario/{id}", [UsuarioController::class, "eliminarUsuario"])->name("eliminar-usuario");
 Route::get("/gestion-usuarios/editar-usuario/{id}", [UsuarioController::class, "editarUsuario"])->name("editar-usuario");
+Route::match(['GET', 'POST'], "/gestion-usuarios/guardar-usuario", [UsuarioController::class, "guardarUsuario"])->name("guardar-usuario");
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
 //Admin usuarios
