@@ -2,6 +2,8 @@
 
 @section('title', 'Crear Premio')
 
+@vite(['resources/js/actualizarContador.js'])
+
 @section('content')
 
     <main id="main-crear-premio" class='main-admin'>
@@ -48,12 +50,17 @@
                 <div class="form-row-1">
                     <div class="form-group">
                         <label for="descripcion">Descripción*</label>
-                        <textarea type="text" class="form-control" name="descripcion-premio" rows="5" required>
-                        </textarea>
+                        <textarea type="text" class="form-control" name="descripcion-premio" maxlength="240" required></textarea>
                     </div>
                 </div>
-                <div class='btn-container'>
+
+                <div class='container-contador-boton'>
+                    <div class='contador-caracteres-container'>
+                        <p>Caracteres restantes: <span class='contador-caracteres'>240</span></p>
+                    </div>
+                    <div class='boton-crear'>
                     <button type="submit" class="btn btn-admin-save">Crear</button>
+                    </div>
                 </div>
             </form>
 

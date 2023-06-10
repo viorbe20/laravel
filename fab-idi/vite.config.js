@@ -15,6 +15,7 @@ export default defineConfig({
                 'resources/js/gestionEntidades.js',
                 'resources/js/altaUsuarios.js',
                 'resources/js/owl.carousel.js',
+                'resources/js/actualizarContador.js',
                 'resources/js/test.js'
             ],
             refresh: true,
