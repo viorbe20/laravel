@@ -76,13 +76,14 @@ class PremioController extends BaseController
     }
 
 
-    public function destacarPremio(Request $request)
+    public function destacarPremio($id)
     {
-        $premio = Premio::find($request->id);
-        $premio->destacado = true;
+        $premio = Premio::find($id);
+        $premio->destacado = '1';
         $premio->save();
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha destacado correctamente.');
     }
+
 
     public function quitarPremioDestacado(Request $request)
     {

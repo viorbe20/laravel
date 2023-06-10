@@ -46,7 +46,7 @@ $(document).ready(function () {
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
 
-            let ultimosPremios = premios.slice(-6).reverse();
+            let ultimosPremios = premios.slice(-5).reverse();
 
             ultimosPremios.forEach(function (premio) {
 
@@ -109,11 +109,11 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                         <td>
                         <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                         <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numPremiosDestacados < 4 ?
-            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
-                            <i class="fa-solid fa-eye"></i>
-                </a>`
-            : ''}
+                        ${numPremiosDestacados < 4 ?
+                            `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
+                                            <i class="fa-solid fa-eye"></i>
+                                </a>`
+                            : ''}
                         </td>
                     </tr>
                 `;
