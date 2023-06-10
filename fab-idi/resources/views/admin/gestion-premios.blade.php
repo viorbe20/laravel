@@ -69,7 +69,7 @@
             </div>
 
             <div class="input-group styled-input-group">
-                <span class="input-group-text" id="">Buscar premio</span>
+                <span class="input-group-text" id="">Buscar premio por nombre</span>
                 <input type="text" class="input-group-text" name="buscar" id="buscar-premio">
                 <a href="{{ url('gestion-premios/crear') }}" class="btn btn-admin-add"><i
                         class="fa fa-circle-plus"></i></a>
