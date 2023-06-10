@@ -13,27 +13,53 @@ class PremioController extends BaseController
     public function guardarPremio(Request $request)
     {
         //Validación url
-        if (!$this->verfificarUrl($request->input('url-premio'))) {
-            return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
+        if(!empty($request->input('url-premio'))) {
+            if (!$this->verfificarUrl($request->input('url-premio'))) {
+                return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
+            }
         }
 
-        $imagen = $request->file('imagen');
-        $nombreImagen = $request->input('titulo') . date("YmdHis") . "." . $imagen->extension();
-        $imagen->move(public_path('img/premios'), $nombreImagen);
-        
-        $premio = Premio::create([
-            'titulo' => $request->input('titulo'),
-            'fecha' => $request->input('fecha'), // '2021-05-05
-            'url' => $request->input('url'),
-            'descripcion' => $request->input('descripcion'),
-            'imagen' => $nombreImagen,
-            'destacado' => false,
-            'activo' => true,
+        //Validación imagen
+        if ($request->hasFile('imagen-premio')) {
+            $file = $request->file('imagen-premio');
+            $maxSize = 2097152; // 2 megabytes
 
+            if ($file->getSize() > $maxSize) {
+                return redirect()->route('crear-premio')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->route('crear-premio')->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreImagen = '';
+                }
+            }
+        } else {
+            $nombreImagen = 'premio-default.png';
+        }
+
+        $premio = Premio::create([
+            'titulo' => $request->input('nombre-premio'),
+            'fecha' => $request->input('fecha-premio'),
+            'descripcion' => $request->input('descripcion-premio'),
+            'imagen' => $nombreImagen,
+            'url' => $request->input('url-premio'),
+            'activo' => true,
+            'destacado' => false
         ]);
 
-        //$premio->save();
-
+        //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
+        if ($request->hasFile('imagen-premio')) {
+            $nombreImagen = $premio->id . '.' . $extension;
+            $premio->imagen = $nombreImagen;
+            $premio->save();
+            $file->move(public_path('img/premios'), $nombreImagen);
+        } else {
+            $premio->imagen = 'premio-default.webp';
+            $premio->save();
+        }
 
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
     }
