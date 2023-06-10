@@ -1,6 +1,6 @@
 @extends('layouts.plantilla')
 
-@section('title', 'Login')
+@section('title', 'Regenerar contraseña')
 
 @section('content')
 
@@ -10,7 +10,7 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Login</h3>
+                <h3 class="card-title">Obtener nueva contraseña</h3>
             </div>
             <div class="card-body">
                 @if (Session::has('error'))
@@ -18,10 +18,10 @@
                         {{ Session::get('error') }}
                     </div>
                 @endif
-                <form action="{{ route('login') }}" method="POST">
+                <form action="{{ route('regenerar-contrasena') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
+                        <label for="email" class="form-label">Introduce tu email de usuario</label>
                         <input type="email" name="email" id="email" class="form-control">
                         @error('email')
                             <div class="text-danger mt-1">
@@ -30,19 +30,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" class="form-control">
-                        @error('password')
-                            <div class="text-danger mt-1">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>´
-                    <div class="mb-3">
-                        <a href="{{ route('olvidar-contrasena') }}">He olvidado mi contraseña</a>
-                    </div>
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-primary">Regenerar</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,4 @@
 import $ from 'jquery';
-import diacriticless from 'diacriticless';
-
 
 
 $(document).ready(function () {
@@ -24,7 +22,7 @@ $(document).ready(function () {
                 });
             },
             error: function () {
-                // Manejar el error en caso de que la subconsulta falle
+                console.log('Ocurrió un error al obtener los colaboradores.');
             }
         });
 
@@ -36,7 +34,7 @@ $(document).ready(function () {
         let query = queryInput.val();
 
         if (query != undefined) {
-            query = query.toLowerCase(); 
+            query = query.toLowerCase();
         }
 
         let tbody = document.querySelector("#tbody-tabla-gestion-entidades");
@@ -53,6 +51,13 @@ $(document).ready(function () {
                 }
             }).then(function (response) {
                 return response.json();
+            }).then(function (entidades) {
+                // Filtrar entidades activos
+                let entidadesActivas = entidades.filter(function (entidad) {
+                    return entidad.activo === 1;
+                });
+
+                return entidadesActivas;
             });
         }
     }
@@ -63,32 +68,14 @@ $(document).ready(function () {
         obtenerEntidades().then(function (entidades) {
             tbody.innerHTML = "";
 
-            let ultimasEntidades = entidades.slice(-5);
+            let ultimasEntidades = entidades.slice(-5).reverse();
 
             ultimasEntidades.forEach(function (entidad) {
 
                 if (entidad.colaborador_id != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
                     entidad.colaborador_id = getColaborador(entidad.colaborador_id);
                 }
-
-                let rowHtml = `
-                    <tr>
-                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
-                    <td>${entidad.nombre}</td>
-                    <td>${entidad.representante ? entidad.representante : ''}</td>
-                    <td>${entidad.email}</td>
-                    <td>${entidad.telefono ? entidad.telefono : ''}</td>
-                    <td>${entidad.url ? entidad.url : ''}</td>
-                    <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
-                    <td>
-                    <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                    </td>
-                </tr> 
-                    `;
-                tbody.innerHTML += rowHtml;
-
-
+                renderData(entidad, tbody);
             });
 
         });
@@ -114,34 +101,13 @@ $(document).ready(function () {
                 if (entidad.colaborador_id != null) { //Si el entidad tiene un colaborador asociado se obtiene el nombre del colaborador
                     entidad.colaborador_id = getColaborador(entidad.colaborador_id);
                 }
-
-                let rowHtml = `
-                    <tr>
-                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
-                    <td>${entidad.nombre}</td>
-                    <td>${entidad.representante ? entidad.representante : ''}</td>
-                    <td>${entidad.email}</td>
-                    <td>${entidad.telefono ? entidad.telefono : ''}</td>
-                    <td>${entidad.url ? entidad.url : ''}</td>
-                    <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
-                    <td>
-                    <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                    </td>
-                </tr> 
-                    `;
-                tbody.innerHTML += rowHtml;
-
-
+                renderData(entidad, tbody);
             });
         });
     }
 
     //Muestra entidades al cargar la página
-    if (window.location.pathname === "/gestion-entidades") {
-        mostrarEntidades();
-    }
-
+    mostrarEntidades();
 
     //Muestra los entidades que coincidan con la búsqueda
     $("#buscar-gestion-entidades").on("keyup", function () {
@@ -154,4 +120,23 @@ $(document).ready(function () {
             mostrarEntidadesCoincidentes();
         }
     });
-}); 
+});
+
+function renderData(entidad, tbody) {
+    let rowHtml = `
+                    <tr>
+                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
+                    <td>${entidad.nombre}</td>
+                    <td>${entidad.representante ? entidad.representante : ''}</td>
+                    <td><a href="mailto:${entidad.email}">${entidad.email}</a></td>
+                    <td>${entidad.telefono ? entidad.telefono : ''}</td>
+                    <td>${entidad.web ? `<a href="${entidad.web}" target="_blank">${entidad.web}</a>` : ''}</td>
+                    <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
+                    <td>
+                    <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td>
+                </tr> 
+                    `;
+    tbody.innerHTML += rowHtml;
+}

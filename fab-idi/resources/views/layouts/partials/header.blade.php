@@ -3,7 +3,7 @@
 
     <div class="col-md-3 mb-2 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-            <img src="{{ asset('images/logo.png') }}">
+            <img src="{{ asset('img/logo.png') }}">
         </a>
     </div>
 

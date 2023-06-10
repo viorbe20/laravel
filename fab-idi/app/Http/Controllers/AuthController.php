@@ -2,15 +2,52 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
+use Swift_Mailer;
+use Swift_Message;
+use Swift_SmtpTransport;
 
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
+    public function regenerarContrasena(Request $request)
+    {
+        $email = $request->input('email');
+
+        $usuario = DB::table('users')->where('email', $email)->first();
+
+        if ($usuario) {
+            $randomPassword = $this->generarPasswordAleatoria();
+            $passwordEncriptada = bcrypt($randomPassword);
+            DB::table('users')->where('email', $email)->update(['password' => $passwordEncriptada]);
+
+            $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+            $transport->setUsername('viorbe20@gmail.com');
+            $transport->setPassword('qgeccmuaivcojphv');
+
+            $mailer = new Swift_Mailer($transport);
+
+            $message = new Swift_Message('Generación de nueva contraseña Red FAB-IDI');
+            $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+            $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
+            $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
+            $mailer->send($message);
+
+            return view('auth.login')->with('success', 'Se ha enviado un email con la nueva contraseña.');
+        } else {
+            return back()->with('error', 'El email no existe.');
+        }
+        
+    }
+
+    public function olvidarContrasena()
+    {
+        return view('auth/regenerar-contrasena');
+    }
 
     public function inicioAdmin()
     {
@@ -44,7 +81,6 @@ class AuthController extends Controller
             } else {
                 return redirect('/');
             }
-
         }
 
         return back()->with('error', 'Wrong credentials.');
@@ -78,6 +114,4 @@ class AuthController extends Controller
 
         return redirect('/');
     }
-
-
 }

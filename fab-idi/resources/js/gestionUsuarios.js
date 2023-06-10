@@ -73,8 +73,15 @@ $(document).ready(function () {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             }).then(function (response) {
-                console.log(response);
+                //console.log(response);
                 return response.json();
+            }).then(function (usuarios) {
+                // Filtrar usuarios activos
+                let usuariosActivos = usuarios.filter(function (usuario) {
+                    return usuario.activo === 1;
+                });
+
+                return usuariosActivos;
             });
         }
     }
@@ -152,7 +159,7 @@ $(document).ready(function () {
             mostrarUsuariosCoincidentes();
         }
     });
-}); 
+});
 
 function renderData(usuario, tbody) {
     let rowHtml = `
