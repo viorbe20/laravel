@@ -99,6 +99,19 @@ class UsuarioController extends Controller
                 $usuario->save();
             }
 
+            //Envio de email
+            $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+            $transport->setUsername('viorbe20@gmail.com');
+            $transport->setPassword('qgeccmuaivcojphv');
+    
+            $mailer = new Swift_Mailer($transport);
+    
+            $message = new Swift_Message('Alta de usuario');
+            $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+            $message->setTo(['a20orbevi@iesgrancapitan.org' => $usuario->nombre]);
+            $message->setBody(view('emails.alta-usuario', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
+            $mailer->send($message);
+
             return redirect()->route('gestion-usuarios');
         } else if ($tipoUsuario == "entidad") {
 
