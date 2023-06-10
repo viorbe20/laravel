@@ -9,6 +9,16 @@
 
             <div class='page-subtitle'>
                 <h2>CREAR PREMIO</h2>
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @elseif (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             </div>
 
             <form method="POST" action="{{ route('guardar-premio') }}" enctype="multipart/form-data" class='styled-form'>
@@ -31,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="web">Web</label>
-                        <input type="text" class="form-control" name="web-premio" >
+                        <input type="text" class="form-control" name="url-premio" >
                     </div>
                 </div>
 
@@ -41,6 +51,9 @@
                         <textarea type="text" class="form-control" name="descripcion-premio" rows="5" required>
                         </textarea>
                     </div>
+                </div>
+                <div class='btn-container'>
+                    <button type="submit" class="btn btn-admin-save">Crear</button>
                 </div>
             </form>
 

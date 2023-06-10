@@ -9,6 +9,34 @@ use Illuminate\Http\Request;
 
 class PremioController extends BaseController
 {
+    
+    public function guardarPremio(Request $request)
+    {
+        //Validación url
+        if (!$this->verfificarUrl($request->input('url-premio'))) {
+            return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
+        }
+
+        $imagen = $request->file('imagen');
+        $nombreImagen = $request->input('titulo') . date("YmdHis") . "." . $imagen->extension();
+        $imagen->move(public_path('img/premios'), $nombreImagen);
+        
+        $premio = Premio::create([
+            'titulo' => $request->input('titulo'),
+            'fecha' => $request->input('fecha'), // '2021-05-05
+            'url' => $request->input('url'),
+            'descripcion' => $request->input('descripcion'),
+            'imagen' => $nombreImagen,
+            'destacado' => false,
+            'activo' => true,
+
+        ]);
+
+        //$premio->save();
+
+
+        return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
+    }
 
     public function mostrarPremios() {
         $premios = Premio::all()->where('activo', '1');
@@ -42,34 +70,6 @@ class PremioController extends BaseController
     public function crearPremio()
     {
         return view('admin.crear-premio');
-    }
-
-    public function crearPremioPost(Request $request)
-    {
-        //Validación url
-        if (!$this->verfificarUrl($request->input('url'))) {
-            return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
-        }
-
-        $imagen = $request->file('imagen');
-        $nombreImagen = $request->input('titulo') . date("YmdHis") . "." . $imagen->extension();
-        $imagen->move(public_path('img/premios'), $nombreImagen);
-        
-        $premio = Premio::create([
-            'titulo' => $request->input('titulo'),
-            'fecha' => $request->input('fecha'), // '2021-05-05
-            'url' => $request->input('url'),
-            'descripcion' => $request->input('descripcion'),
-            'imagen' => $nombreImagen,
-            'destacado' => false,
-            'activo' => true,
-
-        ]);
-
-        $premio->save();
-
-
-        return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
     }
 
     public function eliminarPremio(Request $request)
