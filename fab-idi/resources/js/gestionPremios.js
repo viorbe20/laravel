@@ -45,7 +45,7 @@ $(document).ready(function () {
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
 
-            let ultimosPremios = premios.slice(-6);
+            let ultimosPremios = premios.slice(-6).reverse();
 
             ultimosPremios.forEach(function (premio) {
 
@@ -53,26 +53,7 @@ $(document).ready(function () {
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                    let rowHtml = `
-                    <tr>
-                        <td>${premio.titulo}</td>
-                        <td>${fechaFormateada}</td>
-                        <td>${premio.descripcion}</td>
-                        <td>${premio.url ? premio.url : ''}</td>
-                        <td>${premio.imagen}</td>
-                        <td>
-                        <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                            ${numPremiosDestacados < 4 ?
-                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
-                            <i class="fa-solid fa-eye"></i>
-                </a>`
-                            : ''
-                        }
-                        </td>
-                    </tr>
-                `;
-                    tbody.innerHTML += rowHtml;
+                    renderData(premio, fechaFormateada, numPremiosDestacados, tbody);
                 }
             });
         });
@@ -96,25 +77,7 @@ $(document).ready(function () {
                     let fecha = new Date(premio.fecha);
                     let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                    let rowHtml = `
-                    <tr>
-                    <td>${premio.titulo}</td>
-                    <td>${fechaFormateada}</td>
-                    <td>${premio.descripcion}</td>
-                    <td>${premio.url ? premio.url : ''}</td>
-                    <td>${premio.imagen}</td>
-                    <td>
-                    <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    ${numPremiosDestacados < 3 ?
-                            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
-                            <i class="fa-sharp fa-solid fa-eye"></i></a>`
-                            : ''
-                        }
-                    </td>
-                    </tr>
-                    `;
-                    tbody.innerHTML += rowHtml;
+                    renderData(premio, fechaFormateada, numPremiosDestacados, tbody);
                 }
             });
         });
@@ -136,3 +99,25 @@ $(document).ready(function () {
         }
     });
 });
+
+function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
+    let rowHtml = `
+                    <tr>
+                        <td>${premio.titulo}</td>
+                        <td>${fechaFormateada}</td>
+                        <td>${premio.descripcion}</td>
+                        <td>${premio.url ? premio.url : ''}</td>
+                        <td>${premio.imagen}</td>
+                        <td>
+                        <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                            ${numPremiosDestacados < 4 ?
+            `<a href="${premio.destacado ? `gestion-premios/quitar-destacado/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-warning" : "btn btn-admin-premio"} btn-destacar-premio">
+                            <i class="fa-solid fa-eye"></i>
+                </a>`
+            : ''}
+                        </td>
+                    </tr>
+                `;
+    tbody.innerHTML += rowHtml;
+}
