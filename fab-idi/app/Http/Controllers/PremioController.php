@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class PremioController extends BaseController
 {
-    
+
     public function guardarPremio(Request $request)
     {
         //Validación url
-        if(!empty($request->input('url-premio'))) {
+        if (!empty($request->input('url-premio'))) {
             if (!$this->verfificarUrl($request->input('url-premio'))) {
                 return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
             }
@@ -64,7 +64,8 @@ class PremioController extends BaseController
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
     }
 
-    public function mostrarPremios() {
+    public function mostrarPremios()
+    {
         $premios = Premio::all()->where('activo', '1');
         return view('mostrar-premios')->with('premios', $premios);
     }
@@ -141,6 +142,10 @@ class PremioController extends BaseController
     public function gestionPremios()
     {
         $premio = Premio::all();
-        return view('admin/gestion-premios')->with('premios', $premio);
+        $premiosDestacados = Premio::where('activo', 1)
+            ->where('destacado', 1)
+            ->get();
+
+        return view('admin/gestion-premios')->with('premios', $premio)->with('premiosDestacados', $premiosDestacados);
     }
 }

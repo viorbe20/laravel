@@ -108,7 +108,7 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                         <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
                         <td>
                         <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href="/gestion-premios/eliminar/${premio.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                        <a href='#' class="btn btn-danger btn-admin-delete" data-nombre="${premio.titulo}" data-id="${premio.id}"><i class="fa-solid fa-trash"></i></a>
                         ${numPremiosDestacados < 4 ?
                             `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
                                             <i class="fa-solid fa-eye"></i>
