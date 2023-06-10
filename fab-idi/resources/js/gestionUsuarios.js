@@ -22,7 +22,7 @@ $(document).ready(function () {
                 });
             },
             error: function () {
-                // Manejar el error en caso de que la subconsulta falle
+                console.log('Ocurrió un error al obtener los perfiles.');
             }
         });
 
@@ -32,7 +32,6 @@ $(document).ready(function () {
     //Obtiene el el tipo de colaborador de un usuario dado un ID
     function getColaborador(colaboradorId) {
         let colaboradorEncontrado = '';
-
 
         $.ajax({
             url: '/obtener-colaboradores-ajax/',
@@ -46,7 +45,7 @@ $(document).ready(function () {
                 });
             },
             error: function () {
-                // Manejar el error en caso de que la subconsulta falle
+                console.log('Ocurrió un error al obtener los perfiles.');
             }
         });
 
@@ -86,7 +85,7 @@ $(document).ready(function () {
         obtenerUsuarios().then(function (usuarios) {
             tbody.innerHTML = "";
 
-            let ultimosUsuarios = usuarios.slice(-6);
+            let ultimosUsuarios = usuarios.slice(-6).reverse();
 
             ultimosUsuarios.forEach(function (usuario) {
 
@@ -97,26 +96,7 @@ $(document).ready(function () {
                         usuario.id_colaborador = getColaborador(usuario.id_colaborador);
                     }
 
-
-                    let rowHtml = `
-                    <tr>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.apellidos}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.telefono ? usuario.telefono : ''}</td>
-                    <td>${usuario.twitter ? usuario.twitter : ''}</td>
-                    <td>${usuario.instagram ? usuario.instagram : ''}</td>
-                    <td>${usuario.linkedin ? usuario.linkedin : ''}</td>
-                    <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
-                    <td>${usuario.perfil_id}</td>
-                    <td>
-                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-    
-                    </td>
-                   </tr> 
-                    `;
-                    tbody.innerHTML += rowHtml;
+                    renderData(usuario, tbody);
                 }
 
             });
@@ -125,9 +105,9 @@ $(document).ready(function () {
     }
 
     function mostrarUsuariosCoincidentes() {
-        
+
         let query = queryInput.val().toLowerCase();
-        
+
         obtenerUsuarios().then(function (usuarios) {
             tbody.innerHTML = "";
 
@@ -148,26 +128,7 @@ $(document).ready(function () {
                         usuario.id_colaborador = getColaborador(usuario.id_colaborador);
                     }
 
-
-                    let rowHtml = `
-                    <tr>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.apellidos}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.telefono ? usuario.telefono : ''}</td>
-                    <td>${usuario.twitter ? usuario.twitter : ''}</td>
-                    <td>${usuario.instagram ? usuario.instagram : ''}</td>
-                    <td>${usuario.linkedin ? usuario.linkedin : ''}</td>
-                    <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
-                    <td>${usuario.perfil_id}</td>
-                    <td>
-                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                    <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-    
-                    </td>
-                   </tr> 
-                    `;
-                    tbody.innerHTML += rowHtml;
+                    renderData(usuario, tbody);
                 }
 
             });
@@ -192,3 +153,21 @@ $(document).ready(function () {
         }
     });
 }); 
+
+function renderData(usuario, tbody) {
+    let rowHtml = `
+                    <tr>
+                    <td style="width:30px;"><img src="${rutaImagen}/${usuario.imagen}" alt="foto-perfil-usuario" width="100%"></td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.apellidos}</td>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.telefono ? usuario.telefono : ''}</td>
+                    <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
+                    <td>${usuario.perfil_id}</td>
+                    <td>
+                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                    </td></tr> 
+                    `;
+    tbody.innerHTML += rowHtml;
+}

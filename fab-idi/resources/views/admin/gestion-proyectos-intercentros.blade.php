@@ -7,7 +7,7 @@
 @section('content')
 <script>
     //Para cargar la imagen de perfil en el archivo js
-    let rutaImagen = "{{ asset('images/proyectos/') }}";
+    let rutaImagen = "{{ asset('img/proyectos/') }}";
 </script>
 
 <main id='main-gestion-proyectos-intercentros' class='main-admin'>

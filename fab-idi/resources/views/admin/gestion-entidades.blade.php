@@ -8,7 +8,7 @@
 
 <script>
     //Para cargar la imagen de perfil
-    let rutaImagen = "{{ asset('images/usuarios/') }}";
+    let rutaImagen = "{{ asset('imd/entidades/') }}";
 </script>
 
     <main id='main-gestion-entidades' class='main-admin'>
