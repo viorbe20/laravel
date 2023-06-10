@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 
 
-class PremioController extends Controller
+class PremioController extends BaseController
 {
 
     public function mostrarPremios() {
@@ -50,9 +50,8 @@ class PremioController extends Controller
         //cambiar nombre de la imagen al titulo del premio mas la fecha y la extension
         $nombreImagen = $request->input('titulo') . date("YmdHis") . "." . $imagen->extension();
         $imagen->move(public_path('img/premios'), $nombreImagen);
-
-
-       $premio = Premio::create([
+        
+        $premio = Premio::create([
             'titulo' => $request->input('titulo'),
             'fecha' => $request->input('fecha'), // '2021-05-05
             'url' => $request->input('url'),
@@ -72,9 +71,6 @@ class PremioController extends Controller
     public function eliminarPremio(Request $request)
     {
         $premio = Premio::find($request->id);
-        //borrar imagen de la carpeta img/premios
-        unlink(public_path('img/premios/' . $premio->imagen));
-        //poner activo a false
         $premio->delete();
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
@@ -117,5 +113,3 @@ class PremioController extends Controller
         return view('admin/gestion-premios')->with('premios', $premio);
     }
 }
-
-?>

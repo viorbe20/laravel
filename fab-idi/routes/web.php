@@ -101,12 +101,12 @@ Route::post("/guardar-cambios-evento", [EventoController::class, "guardarCambios
 
 //Ajax
 
-    Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-    Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-    Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
-    Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
-    Route::post("/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
-    Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
-    Route::match(['GET', 'POST'],"/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
-    Route::match(['GET', 'POST'],"/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
-    Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");
+Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
+Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
+Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
+Route::match(['GET', 'POST'], "/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
+Route::match(['GET', 'POST'], "/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
+Route::match(['GET', 'POST'], "/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
+Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");

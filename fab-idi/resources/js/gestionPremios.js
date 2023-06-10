@@ -16,7 +16,6 @@ $(document).ready(function () {
 
         let tbody = document.querySelector("#tbody-tabla-premios");
 
-
         if (tbody) {
             tbody.innerHTML = "";
             return fetch("/obtener-premios-ajax", {
@@ -29,7 +28,9 @@ $(document).ready(function () {
             }).then(function (response) {
                 return response.json();
             }).then(function (premios) {
-                let premiosActivos = premios.filter(function (premio) {
+                let premiosArray = Object.values(premios);
+                // Filtrar premios activos
+                let premiosActivos = premiosArray.filter(function (premio) {
                     return premio.activo === 1;
                 });
 
@@ -69,7 +70,6 @@ $(document).ready(function () {
                 return premio.titulo.toLowerCase().includes(queryInput.val());
             });
 
-
             premiosFiltrados.forEach(function (premio) {
 
                 if (!premio.destacado && premio.activo == 1) {
@@ -84,9 +84,8 @@ $(document).ready(function () {
     }
 
     //Muestra premios al cargar la página
-    if (window.location.pathname === "/gestion-premios") {
-        mostrarPremios();
-    }
+    mostrarPremios();
+
 
     //Muestra los premios que coinciden con la búsqueda
     $("#buscar-premio").on("keyup", function () {
