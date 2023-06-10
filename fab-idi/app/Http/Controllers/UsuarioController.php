@@ -106,7 +106,7 @@ class UsuarioController extends Controller
     
             $mailer = new Swift_Mailer($transport);
     
-            $message = new Swift_Message('Alta de usuario');
+            $message = new Swift_Message('Alta de usuario Red FAB-IDI');
             $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
             $message->setTo(['a20orbevi@iesgrancapitan.org' => $usuario->nombre]);
             $message->setBody(view('emails.alta-usuario', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
