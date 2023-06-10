@@ -22,11 +22,12 @@ class UsuarioController extends Controller
 
         $randomPassword = $this->generarPasswordAleatoria();
 
-        
+
+        //Perfil usuario - procesamiento de la imagen
         if ($request->hasFile('foto-usuario')) {
             $file = $request->file('foto-usuario');
             $maxSize = 2097152; // 2 megabytes
-            
+
             if ($file->getSize() > $maxSize) {
                 return redirect()->route('crear-usuario')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
             } else {
@@ -36,24 +37,96 @@ class UsuarioController extends Controller
                 if (!in_array($extension, $allowedExtensions)) {
                     return redirect()->route('crear-usuario')->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
                 } else {
-                    $nombreArchivo = time() . '.' . $extension;
-                    $file->move(public_path('img'), $nombreArchivo);
+                    $nombreImagen = '';
                 }
-                
+            }
+        } else {
+            $nombreImagen = 'usuario-default.png';
+        }
 
-                return redirect()->route('crear-usuario')->with('success', 'La imagen se cargó correctamente.');
+        //Perfil entidad - procesamiento de la imagen
+        if ($request->hasFile('foto-entidad')) {
+            $file = $request->file('foto-entidad');
+            $maxSize = 2097152; // 2 megabytes
 
+            if ($file->getSize() > $maxSize) {
+                return redirect()->route('crear-entidad')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->route('crear-entidad')->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreImagen = '';
+                }
+                return redirect()->route('crear-entidad')->with('success', 'La imagen se cargó correctamente.');
+            }
+        } else {
+            $nombreImagen = 'entidad-default.png';
+        }
+
+        //Procesamiento del usuario
+        if ($tipoUsuario == "usuario") {
+
+            $randomPassword = $this->generarPasswordAleatoria();
+
+            $usuario = User::create([
+                'nombre' => $request->input('nombre-usuario'),
+                'apellidos' => $request->input('apellidos-usuario'),
+                'email' => $request->input('email-usuario'),
+                'password' => bcrypt($randomPassword),
+                'idColaborador' => $request->input('select-tipo-colaborador'),
+                'perfil_id' => 1,
+                'activo' => 1,
+                'telefono' => $request->input('telefono-usuario'),
+                'twitter' => $request->input('twitter-usuario'),
+                'instagram' => $request->input('instagram-usuario'),
+                'linkedin' => $request->input('linkedin-usuario'),
+            ]);
+
+            //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
+            if ($request->hasFile('foto-usuario')) {
+                $ultimoId = User::latest('id')->value('id');
+                //dd($ultimoId);
+                $extension = $request->file('foto-usuario')->getClientOriginalExtension();
+                $nombreImagen = $ultimoId . '.' . $extension;
+                $request->file('foto-usuario')->move(public_path('img/usuarios'), $nombreImagen);
+                $usuario->imagen = $nombreImagen;
+                $usuario->save();
+            } else {
+                $usuario->imagen = 'usuario-default.webp';
+                $usuario->save();
             }
 
+            return redirect()->route('gestion-usuarios');
+        } else if ($tipoUsuario == "entidad") {
 
-
-            $request->validate([
-                'foto-usuario' => 'max:' . $maxSize,
+            $entidad = Entidad::create([
+                'nombre' => $request->input('nombre-entidad'),
+                'representante' => $request->input('representante-entidad'),
+                'email' => $request->input('email-entidad'),
+                'telefono' => $request->input('telefono-entidad'),
+                'web' => $request->input('web-entidad'),
+                'colaborador_id' => $request->input('select-tipo-colaborador-entidad'),
+                'imagen' => $nombreImagen,
+                'activo' => 1
             ]);
-        
-        } else {
-            // No se seleccionó ninguna imagen
-        }     
+
+            if ($request->hasFile('foto-entidad')) {
+                $ultimoId = Entidad::latest('id')->value('id');
+                $extension = $request->file('foto-entidad')->getClientOriginalExtension();
+                $nombreImagen = $ultimoId . '.' . $extension;
+                $request->file('foto-entidad')->move(public_path('img/entidades'), $nombreImagen);
+                $entidad->imagen = $nombreImagen;
+                $entidad->save();
+            } else {
+                $entidad->imagen = 'entidad-default.webp';
+                $entidad->save();
+            }
+
+            return redirect()->route('gestion-entidades');
+        }
     }
 
     private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
