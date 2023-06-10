@@ -27,7 +27,6 @@
                     <option value="usuario">Usuario</option>
                     <option value="entidad">Entidad</option>
                 </select>
-
             </div>
             <hr>
                 <div id="usuario-campos" style="display: none;">

@@ -70,8 +70,8 @@ Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name(
 //Admin premios
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
 Route::get("/gestion-premios", [PremioController::class, "gestionPremios"])->name("gestion-premios");
-Route::get("/gestion-premios/crear", [PremioController::class, "crearPremio"])->name("crear-premio");
-Route::post("/gestion-premios/crear", [PremioController::class, "crearPremioPost"])->name("crear-premio-post");
+Route::get("/gestion-premios/crear-premio", [PremioController::class, "crearPremio"])->name("crear-premio");
+Route::match(['GET', 'POST'], "/gestion-premios/guardar-premio", [PremioController::class, "guardarPremio"])->name("guardar-premio");
 Route::post("/gestion-premios/destacar/{id}", [PremioController::class, "destacarPremio"])->name("destacar-premio");
 Route::get("/gestion-premios/quitar-destacado/{id}", [PremioController::class, "quitarPremioDestacado"])->name("quitar-premio-destacado");
 Route::get("/gestion-premios/editar/{id}", [PremioController::class, "editarPremio"])->name("editar-premio");
