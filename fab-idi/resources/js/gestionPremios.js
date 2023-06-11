@@ -7,7 +7,6 @@ $(document).ready(function () {
     let tbody = document.querySelector("#tbody-tabla-premios");
     let tbodyDestacados = document.querySelector("#tbody-tabla-premios-destacados");
     let queryInput = $("#buscar-premio");
-    //contar los premios destacados sacandolo del número de filas de la tabla
     let numPremiosDestacados = $("#tbody-tabla-premios-destacados tr").length;
 
     function obtenerPremios() {
@@ -43,6 +42,8 @@ $(document).ready(function () {
         }
     }
 
+
+
     //Muestra todos los premios en la tabla
     function mostrarPremios() {
 
@@ -53,17 +54,23 @@ $(document).ready(function () {
                 return premio.destacado === 0;
             }).slice(-5).reverse();
 
+            let premiosDestacados = premios.filter(function (premio) {
+                return premio.destacado === 1;
+            });
+
+            let numeroPremiosDestacados = premiosDestacados.length;
+
             ultimosPremios.forEach(function (premio) {
 
                 let fecha = new Date(premio.fecha);
                 let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                renderData(premio, fechaFormateada, numPremiosDestacados, tbody);
+                renderData(premio, fechaFormateada, numeroPremiosDestacados, tbody);
 
             });
         });
     }
-    
+
     //Muestra premios destacados en la tabla
     function mostrarPremiosDestacados() {
 
@@ -79,11 +86,12 @@ $(document).ready(function () {
                 let fecha = new Date(premio.fecha);
                 let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                renderData(premio, fechaFormateada, numPremiosDestacados, tbodyDestacados);
-                
+                renderDataDestacados(premio, fechaFormateada, tbodyDestacados);
+
             });
         });
     }
+
 
     //Muestra los premios que coinciden con la búsqueda
     function mostrarPremiosCoincidentes() {
@@ -108,8 +116,6 @@ $(document).ready(function () {
         });
     }
 
-
-
     //Muestra premios al cargar la página
     mostrarPremios();
     mostrarPremiosDestacados();
@@ -128,6 +134,7 @@ $(document).ready(function () {
 });
 
 function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
+
     let rowHtml = `
                     <tr>
                         <td style="width:10%;"><img src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad" width="30%"></td>
@@ -146,7 +153,29 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                     </tr>
                 `;
     tbody.innerHTML += rowHtml;
-    
+
+    //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+    const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
+    confirmarEliminacion(enlacesEliminacion);
+
+}
+
+function renderDataDestacados(premio, fechaFormateada, tbody) {
+    let rowHtml = `
+                    <tr>
+                        <td style="width:10%;"><img src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad" width="30%"></td>
+                        <td>${premio.titulo}</td>
+                        <td>${fechaFormateada}</td>
+                        <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
+                        <td>
+                        <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
+                        <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-premio="${premio.titulo}" data-id-premio="${premio.id}"><i class="fa-solid fa-trash"></i></a>
+                        <a href="/gestion-premios/quitar-destacado/${premio.id}" class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
+                        </td>
+                    </tr>
+                `;
+    tbody.innerHTML += rowHtml;
+
     //Añade el evento de confirmación de eliminación a los enlaces de eliminación
     const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
     confirmarEliminacion(enlacesEliminacion);
