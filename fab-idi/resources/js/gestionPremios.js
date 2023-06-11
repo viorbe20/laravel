@@ -46,16 +46,17 @@ $(document).ready(function () {
         obtenerPremios().then(function (premios) {
             tbody.innerHTML = "";
 
-            let ultimosPremios = premios.slice(-5).reverse();
+            let ultimosPremios = premios.filter(function (premio) {
+                return premio.destacado === 0;
+            }).slice(-5).reverse();
 
             ultimosPremios.forEach(function (premio) {
 
-                if (!premio.destacado && premio.activo == 1) {
-                    let fecha = new Date(premio.fecha);
-                    let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
+                let fecha = new Date(premio.fecha);
+                let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                    renderData(premio, fechaFormateada, numPremiosDestacados, tbody);
-                }
+                renderData(premio, fechaFormateada, numPremiosDestacados, tbody);
+
             });
         });
     }
@@ -108,14 +109,29 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                         <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
                         <td>
                         <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href='#' class="btn btn-danger btn-admin-delete" data-nombre="${premio.titulo}" data-id="${premio.id}"><i class="fa-solid fa-trash"></i></a>
+                        <a href='#' class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
                         ${numPremiosDestacados < 4 ?
-                            `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
+            `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
                                             <i class="fa-solid fa-eye"></i>
                                 </a>`
-                            : ''}
+            : ''}
                         </td>
                     </tr>
                 `;
     tbody.innerHTML += rowHtml;
+
+    // Agregar evento de clic al enlace de eliminación
+    // const enlaceEliminacion = tbody.querySelector('.btn-admin-delete');
+    // console.log(enlaceEliminacion);
+
+    // enlaceEliminacion.addEventListener('click', function() {
+    //     console.log(enlaceEliminacion);
+    //     const nombrePremio = this.dataset.nombrePremio;
+    //     const idPremio = this.dataset.idPremio;
+
+    //     $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
+    //     $('#modal-eliminacion').find('.modal-footer .btn-primary').attr('href', `/gestion-premios/eliminar-premio/${idPremio}`);
+
+    //     $('#modal-eliminacion').modal('show');
+    // });
 }

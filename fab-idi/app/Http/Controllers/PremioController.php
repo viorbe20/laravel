@@ -141,11 +141,10 @@ class PremioController extends BaseController
 
     public function gestionPremios()
     {
-        $premio = Premio::all();
         $premiosDestacados = Premio::where('activo', 1)
             ->where('destacado', 1)
             ->get();
 
-        return view('admin/gestion-premios')->with('premios', $premio)->with('premiosDestacados', $premiosDestacados);
+        return view('admin/gestion-premios')->with('premiosDestacados', $premiosDestacados);
     }
 }
