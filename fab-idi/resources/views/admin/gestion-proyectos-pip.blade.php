@@ -65,30 +65,6 @@
                     </tr>
                 </thead>
                 <tbody id="tbody-tabla-proyectos-pip-destacados">
-                    {{-- @foreach ($proyectosDestacados as $proyecto)
-                        <tr>
-                            <td style="width:30px;"><img src="{{ asset('images/proyectos/' . $proyecto->imagen) }}"
-                                    alt="foto-perfil-entidad" width="100%"></td>
-                            <td>{{ $proyecto->nombre }}</td>
-
-                            @foreach ($cursosAcademicos as $cursoAcademico)
-                                @if ($cursoAcademico->id == $proyecto->curso_academico_id)
-                                    <td>{{ $cursoAcademico->curso_academico }}</td>
-                                @endif
-                            @endforeach
-
-                            <td><a href={{ $proyecto->url }}>Documentación</a></td>
-                            <td>
-                                <a href="{{ url('gestion-proyectos/editar/' . $proyecto->id) }}"
-                                    class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{ url('gestion-proyectos/eliminar/' . $proyecto->id) }}"
-                                    class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                                <a href="{{ url('gestion-proyectos/quitar-destacado/' . $proyecto->id) }}"
-                                    class="btn btn-admin-save"><i class="fa-solid fa-eye-slash"></i></a>
-
-                            </td>
-                        </tr>
-                    @endforeach --}}
                 </tbody>
             </table>
         </section>
