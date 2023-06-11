@@ -51,7 +51,6 @@ $(document).ready(function () {
             let premiosDestacados = premios.filter(function (premio) {
                 return premio.destacado === 1;
             });
-            console.log(premiosDestacados);
 
             let numeroPremiosDestacados = premiosDestacados.length;
 

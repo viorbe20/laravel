@@ -9,6 +9,19 @@ use App\Models\CursoAcademico;
 class ProyectoController extends Controller
 {
 
+    public function eliminarProyecto($id)
+    {
+        Proyecto::where('id', $id)->update(['activo' => 0]);
+        
+        $proyecto = Proyecto::find($id);
+
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha eliminado correctamente.');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros')->with('success', 'El proyecto se ha eliminado correctamente.');
+        }
+    }
+
     public function quitarProyectoDestacado($id)
     {
         $proyecto = Proyecto::find($id);
@@ -102,17 +115,7 @@ class ProyectoController extends Controller
         return view('admin.inicio-admin');
     }
 
-    public function eliminarProyecto($id)
-    {
-        Proyecto::where('id', $id)->update(['activo' => 0]);
 
-        $proyecto = Proyecto::find($id);
-        if ($proyecto->tipo_proyecto_id == '1') {
-            return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha eliminado correctamente.');
-        } else {
-            return redirect()->route('gestion-proyectos-intercentros')->with('success', 'El proyecto se ha eliminado correctamente.');
-        }
-    }
 
     public function obtenerCursoAcademicoAjax()
     {
