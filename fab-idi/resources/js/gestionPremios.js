@@ -173,6 +173,7 @@ $(document).ready(function () {
         confirmarEliminacion(enlacesEliminacion, urlEliminar);
 
     }
+    
     //Muestra premios al cargar la página
     mostrarPremios();
     mostrarPremiosDestacados();

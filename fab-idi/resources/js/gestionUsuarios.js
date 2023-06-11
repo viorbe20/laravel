@@ -92,7 +92,7 @@ $(document).ready(function () {
         obtenerUsuarios().then(function (usuarios) {
             tbody.innerHTML = "";
 
-            let ultimosUsuarios = usuarios.slice(-6).reverse();
+            let ultimosUsuarios = usuarios.slice(-5).reverse();
 
             ultimosUsuarios.forEach(function (usuario) {
 

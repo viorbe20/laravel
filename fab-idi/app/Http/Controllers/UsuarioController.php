@@ -86,7 +86,7 @@ class UsuarioController extends Controller
                 'email' => $request->input('email-usuario'),
                 'password' => '',
                 'idColaborador' => $request->input('select-tipo-colaborador'),
-                'perfil_id' => $request->input('select-tipo-perfil'),
+                'perfil_id' => $request->input('select-perfil-usuario'),
                 'activo' => 1,
                 'telefono' => $request->input('telefono-usuario'),
                 'twitter' => $request->input('twitter-usuario'),

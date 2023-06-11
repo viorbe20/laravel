@@ -47,7 +47,7 @@
                         <select class="form-control" name="select-perfil-usuario">
                             <option value="1">Admin</option>
                             <option value="2" selected>Usuario</option>
-                            <option value="3">Embajador</option>
+                            <option value="3">Mentor</option>
                         </select>
                     </div>
                     <div class="form-group">

@@ -56,10 +56,7 @@ class PremioController extends BaseController
             $premio->imagen = $nombreImagen;
             $premio->save();
             $file->move(public_path('img/premios'), $nombreImagen);
-        } else {
-            $premio->imagen = 'premio-default.webp';
-            $premio->save();
-        }
+        } 
 
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
     }
