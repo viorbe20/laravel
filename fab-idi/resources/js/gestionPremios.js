@@ -143,6 +143,7 @@ $(document).ready(function () {
         tbody.innerHTML += rowHtml;
 
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+        //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
         const urlEliminar = `/gestion-premios/eliminar/`;
         confirmarEliminacion(enlacesEliminacion, urlEliminar);
@@ -168,7 +169,8 @@ $(document).ready(function () {
 
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
-        confirmarEliminacion(enlacesEliminacion);
+        const urlEliminar = `/gestion-premios/eliminar/`;
+        confirmarEliminacion(enlacesEliminacion, urlEliminar);
 
     }
     //Muestra premios al cargar la página

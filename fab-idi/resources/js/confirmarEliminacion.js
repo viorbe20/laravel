@@ -11,6 +11,7 @@ function confirmarEliminacion(enlacesEliminacion, urlEliminar) {
         enlace.addEventListener('click', function () {
             const nombreElemento = this.dataset.nombreElemento;
             const idElemento = this.dataset.idElemento;
+            console.log(idElemento);
 
             $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombreElemento}'?`);
             $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar + idElemento);
