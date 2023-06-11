@@ -3,8 +3,9 @@ import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
 
-    const originalTbodyContent = $("#tbody-tabla-premios").html();
+    //const originalTbodyContent = $("#tbody-tabla-premios").html();
     let tbody = document.querySelector("#tbody-tabla-premios");
+    let tbodyDestacados = document.querySelector("#tbody-tabla-premios-destacados");
     let queryInput = $("#buscar-premio");
     //contar los premios destacados sacandolo del número de filas de la tabla
     let numPremiosDestacados = $("#tbody-tabla-premios-destacados tr").length;
@@ -62,6 +63,27 @@ $(document).ready(function () {
             });
         });
     }
+    
+    //Muestra premios destacados en la tabla
+    function mostrarPremiosDestacados() {
+
+        obtenerPremios().then(function (premios) {
+            tbodyDestacados.innerHTML = "";
+
+            let premiosDestacados = premios.filter(function (premio) {
+                return premio.destacado === 1;
+            });
+
+            premiosDestacados.forEach(function (premio) {
+
+                let fecha = new Date(premio.fecha);
+                let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
+
+                renderData(premio, fechaFormateada, numPremiosDestacados, tbodyDestacados);
+                
+            });
+        });
+    }
 
     //Muestra los premios que coinciden con la búsqueda
     function mostrarPremiosCoincidentes() {
@@ -86,8 +108,11 @@ $(document).ready(function () {
         });
     }
 
+
+
     //Muestra premios al cargar la página
     mostrarPremios();
+    mostrarPremiosDestacados();
 
 
     //Muestra los premios que coinciden con la búsqueda

@@ -61,24 +61,6 @@
                     </tr>
                 </thead>
                 <tbody id="tbody-tabla-premios-destacados">
-                    @foreach ($premiosDestacados as $premio)
-                        <tr>
-                            <td style='width:10%'><img src="{{ asset('img/premios/' . $premio->imagen) }}"
-                                    alt="foto-perfil-entidad" width="30%"></td>
-                            <td>{{ $premio->titulo }}</td>
-                            <td>{{ date('d/m/Y', strtotime($premio->fecha)) }}</td>
-                            <td><a href="{{ $premio->url }}" target="_blank">{{ $premio->url }}</a></td>
-                            <td>
-                                <a href="{{ url('gestion-premios/editar/' . $premio->id) }}"
-                                    class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                                <a href="{{ url('gestion-premios/eliminar/' . $premio->id) }}"
-                                    class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
-                                <a href="{{ url('gestion-premios/quitar-destacado/' . $premio->id) }}"
-                                    class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
-
-                            </td>
-                        </tr>
-                    @endforeach
                 </tbody>
             </table>
         </section>
