@@ -100,10 +100,12 @@ class PremioController extends BaseController
         return view('admin.crear-premio');
     }
 
-    public function eliminarPremio(Request $request)
+    public function eliminarPremio($id)
     {
-        $premio = Premio::find($request->id);
-        $premio->delete();
+        $premio = Premio::find($id);
+        $premio->activo = 0;
+        $premio->update();
+
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
 

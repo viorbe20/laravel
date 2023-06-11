@@ -21,12 +21,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>¿Quieres eliminar el elemento?</p>
+                        <p></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Confirmar eliminación</button>
-                        <a href="{{ url('gestion-premios/eliminar-premio/id') }}"
-                            class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
+                        <a href=""
+                            class="btn btn-admin-delete">Confirmar Eliminación</a>
                     </div>
                 </div>
             </div>

@@ -109,7 +109,7 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                         <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
                         <td>
                         <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a href='#' class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                        <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-premio="${premio.titulo}" data-id-premio="${premio.id}"><i class="fa-solid fa-trash"></i></a>
                         ${numPremiosDestacados < 4 ?
             `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
                                             <i class="fa-solid fa-eye"></i>
@@ -121,17 +121,24 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
     tbody.innerHTML += rowHtml;
 
     // Agregar evento de clic al enlace de eliminación
-    // const enlaceEliminacion = tbody.querySelector('.btn-admin-delete');
-    // console.log(enlaceEliminacion);
+    const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
 
-    // enlaceEliminacion.addEventListener('click', function() {
-    //     console.log(enlaceEliminacion);
-    //     const nombrePremio = this.dataset.nombrePremio;
-    //     const idPremio = this.dataset.idPremio;
+    //console.log(enlacesEliminacion);
+    
+    enlacesEliminacion.forEach(function (enlace) {
+        enlace.addEventListener('click', function () {
+            const nombrePremio = this.dataset.nombrePremio;
+            const idPremio = this.dataset.idPremio;
+            const urlEliminar = `/gestion-premios/eliminar/${idPremio}`;
 
-    //     $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
-    //     $('#modal-eliminacion').find('.modal-footer .btn-primary').attr('href', `/gestion-premios/eliminar-premio/${idPremio}`);
+            $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
+            $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar);
+            document.querySelector('#modal-eliminacion').style.display = 'flex';
+        });
+    });
 
-    //     $('#modal-eliminacion').modal('show');
-    // });
+    //Cierra modal de eliminación
+    $('#modal-eliminacion .btn-close').click(function () {
+        document.querySelector('#modal-eliminacion').style.display = 'none';
+    });
 }
