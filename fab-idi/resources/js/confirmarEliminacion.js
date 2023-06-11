@@ -1,18 +1,26 @@
-// import $ from 'jquery';
 
-// $(document).ready(function () {
-//     //console.log("Confirmar eliminación cargado");
+import $ from "jquery";
+
+//console.log('confirmarEliminacion.js cargado');
+
+function confirmarEliminacion(enlacesEliminacion) {
     
-//     $(document).on("click", ".btn-admin-delete", function (event) {
-//         document.querySelector('#modal-eliminacion').style.display = 'flex';
-//         event.preventDefault();
-//         const nombreElemento = $(this).data('nombre');
-//         const idElemento = $(this).data('id');
-//         //console.log(nombreElemento);
-//         //console.log(idElemento);
-//     });
 
-//     $('#modal-eliminacion .btn-close').click(function () {
-//         document.querySelector('#modal-eliminacion').style.display = 'none';
-//     });
-// });
+    enlacesEliminacion.forEach(function (enlace) {
+        enlace.addEventListener('click', function () {
+            const nombrePremio = this.dataset.nombrePremio;
+            const idPremio = this.dataset.idPremio;
+            const urlEliminar = `/gestion-premios/eliminar/${idPremio}`;
+
+            $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
+            $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar);
+            document.querySelector('#modal-eliminacion').style.display = 'flex';
+        });
+    });
+
+    $('#modal-eliminacion .btn-close').click(function () {
+        document.querySelector('#modal-eliminacion').style.display = 'none';
+    });
+}
+
+export default confirmarEliminacion;

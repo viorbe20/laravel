@@ -1,6 +1,8 @@
 import $ from "jquery";
+import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
+
     const originalTbodyContent = $("#tbody-tabla-premios").html();
     let tbody = document.querySelector("#tbody-tabla-premios");
     let queryInput = $("#buscar-premio");
@@ -119,26 +121,9 @@ function renderData(premio, fechaFormateada, numPremiosDestacados, tbody) {
                     </tr>
                 `;
     tbody.innerHTML += rowHtml;
-
-    // Agregar evento de clic al enlace de eliminación
-    const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
-
-    //console.log(enlacesEliminacion);
     
-    enlacesEliminacion.forEach(function (enlace) {
-        enlace.addEventListener('click', function () {
-            const nombrePremio = this.dataset.nombrePremio;
-            const idPremio = this.dataset.idPremio;
-            const urlEliminar = `/gestion-premios/eliminar/${idPremio}`;
+    //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+    const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
+    confirmarEliminacion(enlacesEliminacion);
 
-            $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
-            $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar);
-            document.querySelector('#modal-eliminacion').style.display = 'flex';
-        });
-    });
-
-    //Cierra modal de eliminación
-    $('#modal-eliminacion .btn-close').click(function () {
-        document.querySelector('#modal-eliminacion').style.display = 'none';
-    });
 }

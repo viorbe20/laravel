@@ -2,7 +2,7 @@
 
 @section('title', 'Gestión de Premios')
 
-@vite(['resources/js/gestionPremios.js', 'resources/js/confirmarEliminacion.js'])
+@vite(['resources/js/gestionPremios.js'])
 
 @section('content')
     <script>
