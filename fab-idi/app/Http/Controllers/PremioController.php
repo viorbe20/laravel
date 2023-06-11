@@ -102,9 +102,7 @@ class PremioController extends BaseController
 
     public function eliminarPremio($id)
     {
-        $premio = Premio::find($id);
-        $premio->activo = 0;
-        $premio->update();
+        Premio::where('id', $id)->update(['activo' => 0]);
 
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }

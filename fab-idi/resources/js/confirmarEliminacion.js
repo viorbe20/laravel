@@ -3,17 +3,16 @@ import $ from "jquery";
 
 //console.log('confirmarEliminacion.js cargado');
 
-function confirmarEliminacion(enlacesEliminacion) {
+function confirmarEliminacion(enlacesEliminacion, urlEliminar) {
     
 
     enlacesEliminacion.forEach(function (enlace) {
         enlace.addEventListener('click', function () {
-            const nombrePremio = this.dataset.nombrePremio;
-            const idPremio = this.dataset.idPremio;
-            const urlEliminar = `/gestion-premios/eliminar/${idPremio}`;
+            const nombreElemento = this.dataset.nombreElemento;
+            const idElemento = this.dataset.idElemento;
 
-            $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombrePremio}'?`);
-            $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar);
+            $('#modal-eliminacion').find('.modal-body p').text(`¿Quieres eliminar el elemento '${nombreElemento}'?`);
+            $('#modal-eliminacion').find('.modal-footer .btn-admin-delete').attr('href', urlEliminar.concat(idElemento));
             document.querySelector('#modal-eliminacion').style.display = 'flex';
         });
     });

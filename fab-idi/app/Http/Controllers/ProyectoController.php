@@ -108,9 +108,9 @@ class ProyectoController extends Controller
 
         $proyecto = Proyecto::find($id);
         if ($proyecto->tipo_proyecto_id == '1') {
-            return redirect()->route('gestion-proyectos-pip');
+            return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha eliminado correctamente.');
         } else {
-            return redirect()->route('gestion-proyectos-intercentros');
+            return redirect()->route('gestion-proyectos-intercentros')->with('success', 'El proyecto se ha eliminado correctamente.');
         }
     }
 

@@ -1,4 +1,5 @@
 import $ from "jquery";
+import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
     let tbody = document.querySelector("#tbody-tabla-proyectos-intercentros");

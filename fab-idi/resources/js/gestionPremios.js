@@ -132,7 +132,7 @@ $(document).ready(function () {
                             <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
                             <td>
                             <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-premio="${premio.titulo}" data-id-premio="${premio.id}"><i class="fa-solid fa-trash"></i></a>
+                            <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${premio.titulo}" data-id-elemento="${premio.id}"><i class="fa-solid fa-trash"></i></a>
                             ${numeroPremiosDestacados < 4 ?
                 `<a href="${premio.destacado ? `gestion-premios/destacar/${premio.id}` : `gestion-premios/destacar/${premio.id}`}" class="btn ${premio.destacado ? "btn-admin-save" : "btn btn-admin-premio"} btn-destacar-premio">
                                                 <i class="fa-solid fa-eye"></i>
@@ -145,7 +145,8 @@ $(document).ready(function () {
 
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
-        confirmarEliminacion(enlacesEliminacion);
+        const urlEliminar = `/gestion-premios/eliminar/`;
+        confirmarEliminacion(enlacesEliminacion, urlEliminar);
 
     }
 
