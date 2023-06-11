@@ -14,6 +14,7 @@ use Swift_SmtpTransport;
 
 class AuthController extends BaseController
 {
+    //Permite que el usuario pueda pedir una nueva contraseña
     public function regenerarContrasena(Request $request)
     {
         $email = $request->input('email');
@@ -21,6 +22,12 @@ class AuthController extends BaseController
         $usuario = DB::table('users')->where('email', $email)->first();
 
         if ($usuario) {
+
+            //Comprueba si la cuenta está activa
+            if ($usuario->activo == '0') {
+                return back()->with('error', 'El usuario no está activo. Contacta con el administrador para activar tu cuenta.');
+            }
+            
             $randomPassword = $this->generarPasswordAleatoria();
             $passwordEncriptada = bcrypt($randomPassword);
             DB::table('users')->where('email', $email)->update(['password' => $passwordEncriptada]);
@@ -61,15 +68,22 @@ class AuthController extends BaseController
 
     public function loginPost(Request $request)
     {
+
+        if (empty($request->input('email')) || empty($request->input('password'))){
+            return back()->with('error', 'Los campos son obligatorios.');
+        }
+
+
+
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
 
             $user = DB::table('users')->where('email', $request->email)->first();
 
-            if ($user->activo == false) {
+            if ($user->activo == '0') {
                 auth()->logout();
-                return back()->with('error', 'El usuario no está activo.');
+                return back()->with('error', 'El usuario no está activo. Contacta con el administrador para activar tu cuenta.');
             }
 
             $perfil_id = DB::table('users')->where('email', $request->email)->value('perfil_id');

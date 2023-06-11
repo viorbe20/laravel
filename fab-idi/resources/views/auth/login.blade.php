@@ -51,7 +51,7 @@
                         <a href="{{ route('olvidar-contrasena') }}">He olvidado mi contraseña</a>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                        <button type="submit" class="btn btn-success">Login</button>
                     </div>
                 </form>
 
