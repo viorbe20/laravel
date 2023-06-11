@@ -121,7 +121,7 @@ $(document).ready(function () {
             let numeroProyectosDestacados = proyectosDestacados.length;
 
             //Filtra los proyectos que coinciden con la búsqueda
-            let proyectosFiltrados = proyectosArray.filter(function (proyecto) {
+            let proyectosFiltrados = proyectos.filter(function (proyecto) {
                 return proyecto.nombre.toLowerCase().includes(queryInput.val());
             });
 

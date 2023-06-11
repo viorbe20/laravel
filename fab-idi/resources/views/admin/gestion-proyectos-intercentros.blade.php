@@ -13,6 +13,17 @@
 <main id='main-gestion-proyectos-intercentros' class='main-admin'>
 
     <section id="section-table-proyectos-intercentros-listado">
+                    {{-- Mensajes de aviso --}}
+                    @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @elseif (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+        
         <div class='btn-container-vista'>
             <a href="{{ url('/proyectos-intercentros') }}" class="btn"><i class="fa-solid fa-eye"><span>
                         Vista</span></i></a>
@@ -22,7 +33,7 @@
         </div>
 
         <div class="input-group styled-input-group">
-            <span class="input-group-text" id="">Buscar proyecto</span>
+            <span class="input-group-text" id="">Buscar proyecto por nombre</span>
             <input type="text" class="input-group-text" name="buscar" id="buscar-proyecto-intercentros">
             <a href="{{ url('gestion-proyectos/crear') }}" class="btn btn-admin-add"><i
                     class="fa fa-circle-plus"></i></a>
@@ -41,17 +52,6 @@
             <tbody id="tbody-tabla-proyectos-intercentros">
             </tbody>
         </table>
-
-        <!-- mensaje success -->
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @elseif (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
     </section>
 
 </main>
