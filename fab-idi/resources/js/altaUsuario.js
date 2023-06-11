@@ -1,8 +1,4 @@
 import $ from 'jquery';
-// import 'popper.js/dist/umd/popper.js';
-// import '@popperjs/core';
-// import 'bootstrap';
-
 
 $(document).ready(function () {
 

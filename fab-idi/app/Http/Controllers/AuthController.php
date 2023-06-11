@@ -83,7 +83,7 @@ class AuthController extends BaseController
             }
         }
 
-        return back()->with('error', 'Wrong credentials.');
+        return back()->with('error', 'Los datos no son correctos.');
     }
 
     public function register()

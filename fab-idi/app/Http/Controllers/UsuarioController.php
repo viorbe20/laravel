@@ -14,14 +14,25 @@ use Swift_SmtpTransport;
 
 class UsuarioController extends Controller
 {
+    private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
+    {
+        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        if ($caracteresEspeciales) {
+            $caracteres .= '!@#$%^&*()';
+        }
+        $password = '';
+
+        for ($i = 0; $i < $longitud; $i++) {
+            $password .= $caracteres[mt_rand(0, strlen($caracteres) - 1)];
+        }
+
+        return $password;
+    }
 
     public function guardarUsuario(Request $request)
     {
 
         $tipoUsuario = $request->input('select-tipo-usuario');
-
-        $randomPassword = $this->generarPasswordAleatoria();
-
 
         //Perfil usuario - procesamiento de la imagen
         if ($request->hasFile('foto-usuario')) {
@@ -69,15 +80,13 @@ class UsuarioController extends Controller
         //Procesamiento del usuario
         if ($tipoUsuario == "usuario") {
 
-            $randomPassword = $this->generarPasswordAleatoria();
-
             $usuario = User::create([
                 'nombre' => $request->input('nombre-usuario'),
                 'apellidos' => $request->input('apellidos-usuario'),
                 'email' => $request->input('email-usuario'),
-                'password' => bcrypt($randomPassword),
+                'password' => '',
                 'idColaborador' => $request->input('select-tipo-colaborador'),
-                'perfil_id' => 1,
+                'perfil_id' => $request->input('select-tipo-perfil'),
                 'activo' => 1,
                 'telefono' => $request->input('telefono-usuario'),
                 'twitter' => $request->input('twitter-usuario'),
@@ -88,7 +97,6 @@ class UsuarioController extends Controller
             //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
             if ($request->hasFile('foto-usuario')) {
                 $ultimoId = User::latest('id')->value('id');
-                //dd($ultimoId);
                 $extension = $request->file('foto-usuario')->getClientOriginalExtension();
                 $nombreImagen = $ultimoId . '.' . $extension;
                 $request->file('foto-usuario')->move(public_path('img/usuarios'), $nombreImagen);
@@ -99,7 +107,9 @@ class UsuarioController extends Controller
                 $usuario->save();
             }
 
-            //Envio de email
+            //Generación de la contraseña aleatoria y envío del email
+            $randomPassword = $this->generarPasswordAleatoria();
+
             $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
             $transport->setUsername('viorbe20@gmail.com');
             $transport->setPassword('qgeccmuaivcojphv');
@@ -109,8 +119,13 @@ class UsuarioController extends Controller
             $message = new Swift_Message('Alta de usuario Red FAB-IDI');
             $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
             $message->setTo(['a20orbevi@iesgrancapitan.org' => $usuario->nombre]);
+            $message->setTo([$usuario->email  => $usuario->nombre]);
             $message->setBody(view('emails.alta-usuario', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
             $mailer->send($message);
+
+            //Escripta la contraseña y la guarda en la base de datos
+            $usuario->password = bcrypt($randomPassword);
+            $usuario->update();
 
             return redirect()->route('gestion-usuarios');
         } else if ($tipoUsuario == "entidad") {
@@ -140,21 +155,6 @@ class UsuarioController extends Controller
 
             return redirect()->route('gestion-entidades');
         }
-    }
-
-    private function generarPasswordAleatoria($longitud = 8, $caracteresEspeciales = true)
-    {
-        $caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        if ($caracteresEspeciales) {
-            $caracteres .= '!@#$%^&*()';
-        }
-        $password = '';
-
-        for ($i = 0; $i < $longitud; $i++) {
-            $password .= $caracteres[mt_rand(0, strlen($caracteres) - 1)];
-        }
-
-        return $password;
     }
 
     public function renovarContrasena($id)

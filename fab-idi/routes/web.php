@@ -17,8 +17,8 @@ Route::get("/", [InicioController::class, "index"])->name("index");
 // Auth
 Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name("login");
-Route::get("/register", [AuthController::class, "register"])->name("register");
-Route::post("/register", [AuthController::class, "registerPost"])->name("register");
+// Route::get("/register", [AuthController::class, "register"])->name("register");
+// Route::post("/register", [AuthController::class, "registerPost"])->name("register");
 Route::match(['GET', 'POST'], "/olvidar-contrasena", [AuthController::class, "olvidarContrasena"])->name("olvidar-contrasena");
 Route::match(['GET', 'POST'], "/regenerar-contrasena", [AuthController::class, "regenerarContrasena"])->name("regenerar-contrasena");
 Route::get("/logout", [AuthController::class, "logout"])->name("logout");
@@ -59,7 +59,7 @@ Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorControll
 Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
 
 //Admin panel
-Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
+//Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
 
 //Admin vídeos
 Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
@@ -110,3 +110,9 @@ Route::match(['GET', 'POST'], "/obtener-premios-ajax", [PremioController::class,
 Route::match(['GET', 'POST'], "/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
 Route::match(['GET', 'POST'], "/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
 Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");
+
+
+//Middleware. En el archivo kernel.php se definen los middleware
+Route::group(['middleware' => 'admin'], function(){
+    Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
+});
