@@ -24,8 +24,7 @@
                         <p></p>
                     </div>
                     <div class="modal-footer">
-                        <a href=""
-                            class="btn btn-admin-delete">Confirmar Eliminación</a>
+                        <a href="" class="btn btn-admin-delete">Confirmar Eliminación</a>
                     </div>
                 </div>
             </div>
@@ -34,6 +33,8 @@
 
         {{-- Sección para gestionar premios destacados --}}
         <section id="section-table-premios-destacados">
+
+            {{-- Mensajes de aviso --}}
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -43,9 +44,12 @@
                     {{ session('error') }}
                 </div>
             @endif
+
+            {{-- Botón que enruta a la vista --}}
             <div class='btn-container-vista'>
                 <a href="{{ url('/') }}" class="btn"><i class="fa-solid fa-eye"><span> Vista</span></i></a>
             </div>
+
             <div class='page-subtitle'>
                 <h2>PREMIOS DESTACADOS</h2>
             </div>
@@ -65,7 +69,7 @@
             </table>
         </section>
 
-        {{-- Sección para añadir gestionar premios --}}
+        {{-- Sección que los últimos 5 premios --}}
         <section id="section-table-premios-listado">
             <div class='page-subtitle'>
                 <h2>LISTADO DE PREMIOS</h2>

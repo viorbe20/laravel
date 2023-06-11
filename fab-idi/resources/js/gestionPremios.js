@@ -3,10 +3,9 @@ import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
 
-    //const originalTbodyContent = $("#tbody-tabla-premios").html();
     let tbody = document.querySelector("#tbody-tabla-premios");
-    let tbodyDestacados = document.querySelector("#tbody-tabla-premios-destacados");
     let queryInput = $("#buscar-premio");
+    let tbodyDestacados = document.querySelector("#tbody-tabla-premios-destacados");
 
     //Obtiene todos los premios
     function obtenerPremios() {
@@ -52,6 +51,7 @@ $(document).ready(function () {
             let premiosDestacados = premios.filter(function (premio) {
                 return premio.destacado === 1;
             });
+            console.log(premiosDestacados);
 
             let numeroPremiosDestacados = premiosDestacados.length;
 
@@ -112,14 +112,11 @@ $(document).ready(function () {
             });
 
             premiosFiltrados.forEach(function (premio) {
+                let fecha = new Date(premio.fecha);
+                let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
 
-                if (!premio.destacado && premio.activo == 1) {
+                renderData(premio, fechaFormateada, numeroPremiosDestacados, tbody);
 
-                    let fecha = new Date(premio.fecha);
-                    let fechaFormateada = `${String(fecha.getDate()).padStart(2, '0')}/${fecha.getMonth() + 1}/${fecha.getFullYear()}`;
-
-                    renderData(premio, fechaFormateada, numeroPremiosDestacados, tbody);
-                }
             });
         });
     }
@@ -145,13 +142,13 @@ $(document).ready(function () {
                         </tr>
                     `;
         tbody.innerHTML += rowHtml;
-    
+
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
         confirmarEliminacion(enlacesEliminacion);
-    
+
     }
-    
+
     //Renderiza los datos de los premios destacados
     function renderDataDestacados(premio, fechaFormateada, tbody) {
         let rowHtml = `
@@ -168,11 +165,11 @@ $(document).ready(function () {
                         </tr>
                     `;
         tbody.innerHTML += rowHtml;
-    
+
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
         confirmarEliminacion(enlacesEliminacion);
-    
+
     }
     //Muestra premios al cargar la página
     mostrarPremios();
