@@ -316,6 +316,7 @@ textarea {
 }
 
 /*****************************VISTA USUARIOS*****************************/
+/*Página inicio*/
 #main-inicio {
   #inicio-up {
       display: flex;
@@ -445,6 +446,26 @@ textarea {
       margin: 2% 0;
   }
 }
+
+/*Página quiénes somos*/
+//Página quienes somos
+
+#main-quienes-somos {
+  #historia-red {
+      display: flex;
+      justify-content: space-between;
+      #historia {
+          flex: 5;
+      }
+  }
+
+  #img-red {
+      flex: 5;
+      width: 100%;
+      text-align: center;
+  }
+}
+
 
 /*****************************VISTA ADMIN*****************************/
 /*Página inicio*/
@@ -907,31 +928,31 @@ nav {
 
 //Páginas quiénes somos
 
-#main-quienes-somos {
-  #historia-red {
-    display: flex;
-    justify-content: space-between;
+// #main-quienes-somos {
+//   #historia-red {
+//     display: flex;
+//     justify-content: space-between;
 
-    #historia {
-      flex: 5;
+//     #historia {
+//       flex: 5;
 
-      h2 {
-        text-align: center;
-      }
+//       h2 {
+//         text-align: center;
+//       }
 
-      p {
-        font-size: 18px;
-      }
+//       p {
+//         font-size: 18px;
+//       }
 
-    }
-  }
+//     }
+//   }
 
-  #img-red {
-    flex: 5;
-    width: 100%;
-    text-align: center;
-  }
-}
+//   #img-red {
+//     flex: 5;
+//     width: 100%;
+//     text-align: center;
+//   }
+// }
 
 //Página colaboradores
 .carrusel-colaboradores {
