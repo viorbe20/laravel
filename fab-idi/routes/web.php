@@ -86,10 +86,8 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
     Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
     Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");
-});
 
-//Middleware para las llamadas ajax. Redirigen a la página de inicio si se intenta acceder a ellas directamente
-Route::group(['middleware' => 'redirect.if.ajax'], function () {
+    //Llamadas ajax
     Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
     Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
     Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
@@ -100,3 +98,4 @@ Route::group(['middleware' => 'redirect.if.ajax'], function () {
     Route::match(['GET', 'POST'], "/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
     Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");
 });
+

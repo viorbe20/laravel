@@ -8,7 +8,7 @@
         <li class="profile-container">
             <p class="profile-name">Bienvenido, {{ Auth::user()->nombre }}</p>
             <div>
-                <img src="{{ asset('images/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil"
+                <img src="{{ asset('img/usuarios/' . Auth::user()->imagen) }}" alt="Foto de perfil"
                     class="profile-picture">
             </div>
         </li>
