@@ -102,7 +102,7 @@ $(document).ready(function () {
         proyecto.curso_academico_id = getCursoAcademico(proyecto.curso_academico_id);
         let rowHtml = `
                         <tr>
-                            <td style="width:30px;"><img src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad" width="100%"></td>
+                            <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad"></td>
                             <td>${proyecto.nombre}</td>
                             <td>${proyecto.curso_academico_id}</td>
                             <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>

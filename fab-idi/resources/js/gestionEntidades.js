@@ -125,7 +125,7 @@ $(document).ready(function () {
 function renderData(entidad, tbody) {
     let rowHtml = `
                     <tr>
-                    <td style="width:30px;"><img src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad" width="100%"></td>
+                    <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad"></td>
                     <td>${entidad.nombre}</td>
                     <td>${entidad.representante ? entidad.representante : ''}</td>
                     <td><a href="mailto:${entidad.email}">${entidad.email}</a></td>
