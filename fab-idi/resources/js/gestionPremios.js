@@ -125,7 +125,7 @@ $(document).ready(function () {
 
         let rowHtml = `
                         <tr>
-                            <td style="width:10%;"><img src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad" width="30%"></td>
+                            <td style="width:10%;"><img class='imagen-fit'src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad"></td>
                             <td>${premio.titulo}</td>
                             <td>${fechaFormateada}</td>
                             <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
@@ -154,7 +154,7 @@ $(document).ready(function () {
     function renderDataDestacados(premio, fechaFormateada, tbody) {
         let rowHtml = `
                         <tr>
-                            <td style="width:10%;"><img src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad" width="30%"></td>
+                            <td style="width:10%;"><img class='imagen-fit' src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad"></td>
                             <td>${premio.titulo}</td>
                             <td>${fechaFormateada}</td>
                             <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
