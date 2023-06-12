@@ -36,8 +36,8 @@
 }
 
 #modal-eliminacion {
-  top : 20%;
-  
+  top: 20%;
+
 }
 
 textarea {
@@ -46,28 +46,27 @@ textarea {
 }
 
 .container-contador-boton {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+
+  .contador-caracteres-container {
     display: flex;
     align-items: center;
-    width: 100%;
-    justify-content: space-between;
-    
-    .contador-caracteres-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    justify-content: center;
+  }
 
-    .boton-crear {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 5%;
+  .boton-crear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5%;
 
-      button 
-      {
-        padding: 30% 100%;
-      }
+    button {
+      padding: 30% 100%;
     }
+  }
 }
 
 .main-admin {
@@ -319,131 +318,130 @@ textarea {
 /*Página inicio*/
 #main-inicio {
   #inicio-up {
+    display: flex;
+
+    #inicio-videos {
+      text-align: center;
+      flex: 50%;
+    }
+
+    #inicio-text {
+      padding: 2%;
+      flex: 50%;
+    }
+
+    #video-line-2 {
       display: flex;
+      justify-content: center;
+    }
 
-      #inicio-videos {
-          text-align: center;
-          flex: 50%;
-      }
-
-      #inicio-text {
-          padding: 2%;
-          flex: 50%;
-      }
-
-      #video-line-2 {
-          display: flex;
-          justify-content: center;
-      }
-
-      iframe {
-          width: 100%;
-          padding: 0 2px;
-      }
+    iframe {
+      width: 100%;
+      padding: 0 2px;
+    }
   }
 
   #section-premios {
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0;
+
+    #inicio-cards {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       margin: 2% 0;
+    }
 
-      #inicio-cards {
-          display: flex;
-          justify-content: center;
-          margin: 2% 0;
-      }
-
-      a {
-          margin: 0 40%;
-      }
+    a {
+      margin: 0 40%;
+    }
   }
 
   #inicio-cards {
-      .card {
-          margin: 0% 3%;
+    .card {
+      margin: 0% 3%;
 
-          //sombra
-          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-      }
+      //sombra
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    }
   }
 
   #btn-ver-premios {
-      margin: 4% 0%;
+    margin: 4% 0%;
   }
 
   //Premios
   .gallery {
+    display: flex;
+    padding: 2px;
+    transition: 0.3s;
+
+    &:hover &__image {
+      filter: grayscale(1);
+    }
+
+    &__column {
       display: flex;
-      padding: 2px;
+      flex-direction: column;
+      width: 25%;
+    }
+
+    &__link {
+      margin: 2px;
+      overflow: hidden;
+
+      &:hover {
+        .gallery__image {
+          filter: grayscale(0);
+        }
+
+        .gallery__caption {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__thumb {
+      position: relative;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
       transition: 0.3s;
 
-      &:hover &__image {
-          filter: grayscale(1);
+      &:hover {
+        transform: scale(1.1);
       }
+    }
 
-      &__column {
-          display: flex;
-          flex-direction: column;
-          width: 25%;
-      }
-
-      &__link {
-          margin: 2px;
-          overflow: hidden;
-
-          &:hover {
-              .gallery__image {
-                  filter: grayscale(0);
-              }
-
-              .gallery__caption {
-                  opacity: 1;
-              }
-          }
-      }
-
-      &__thumb {
-          position: relative;
-      }
-
-      &__image {
-          display: block;
-          width: 100%;
-          transition: 0.3s;
-
-          &:hover {
-              transform: scale(1.1);
-          }
-      }
-
-      &__caption {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          padding: 25px 15px 15px;
-          width: 100%;
-          font-family: "Raleway", sans-serif;
-          font-size: 16px;
-          color: white;
-          opacity: 0;
-          background: linear-gradient(
-              0deg,
-              rgba(0, 0, 0, 0.5) 0%,
-              rgba(255, 255, 255, 0) 100%
-          );
-          transition: 0.3s;
-      }
+    &__caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 25px 15px 15px;
+      width: 100%;
+      font-family: "Raleway", sans-serif;
+      font-size: 16px;
+      color: white;
+      opacity: 0;
+      background: linear-gradient(0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(255, 255, 255, 0) 100%);
+      transition: 0.3s;
+    }
   }
+
   .fondo-titulo {
-      h2 {
-          color: white;
-          text-shadow: 2px 2px 4px #0000008b;
-      }
-      background: url("../../public/img/banner-premios.webp") no-repeat center
-          center;
-      background-size: cover;
-      padding: 2%;
-      margin: 2% 0;
+    h2 {
+      color: white;
+      text-shadow: 2px 2px 4px #0000008b;
+    }
+
+    background: url("../../public/img/banner-premios.webp") no-repeat center center;
+    background-size: cover;
+    padding: 2%;
+    margin: 2% 0;
   }
 }
 
@@ -452,17 +450,18 @@ textarea {
 
 #main-quienes-somos {
   #historia-red {
-      display: flex;
-      justify-content: space-between;
-      #historia {
-          flex: 5;
-      }
+    display: flex;
+    justify-content: space-between;
+
+    #historia {
+      flex: 5;
+    }
   }
 
   #img-red {
-      flex: 5;
-      width: 100%;
-      text-align: center;
+    flex: 5;
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -954,6 +953,137 @@ nav {
 //   }
 // }
 
+//P+agina mentorización
+//Página Mentorizacion
+
+#main-mentorizacion {
+  .container {
+    display: flex;
+    gap: 5%;
+    margin-bottom: 2%;
+
+    .subtitulo {
+      text-align: left;
+    }
+
+    .flex-item {
+      flex: 50%;
+      margin-top: 38px;
+    }
+
+    .formulario {
+      align-self: start;
+    }
+  }
+
+  .fondo-titulo {
+    h4 {
+      color: white;
+      text-shadow: 2px 2px 4px #0000008b;
+    }
+
+    // poner degradado a la imagen de fondo
+
+    background: linear-gradient(to right,
+      rgba(86, 86, 86, 0.5),
+      rgba(20, 20, 20, 0.659)),
+    url("../../public/img/banner-proyectos-ejemplo.webp") no-repeat center center;
+    background-size: cover;
+    padding: 2%;
+    margin: 2% 0;
+  }
+
+  .proyectos-mentores {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+
+    .tarjeta {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      width: 100%;
+      color: whitesmoke;
+      height: 450px;
+      background-color: rgb(101, 101, 101);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+        0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1),
+        0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
+
+      .content {
+        text-align: center;
+        padding: 1rem;
+        width: 100%;
+
+        .title {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 1rem;
+          text-transform: uppercase;
+        }
+
+        p {
+          text-align: center !important;
+        }
+
+        .descripcion {
+          text-align: justify !important;
+        }
+
+        a {
+          color: black;
+          text-decoration: none;
+        }
+
+        .none {
+          display: none;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1),
+          0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1),
+          0 8px 8px rgba(0, 0, 0, 0.3), 0 16px 16px rgba(0, 0, 0, 0.3);
+        align-items: center;
+
+        //   oscurecer más la imagen de fondo
+
+        .content {
+          height: 100%;
+          animation: slide-up 0.5s ease-out;
+          background: rgba(0, 0, 0, 0.773);
+
+          .none {
+            display: block;
+          }
+        }
+      }
+
+      @keyframes slide-up {
+        0% {
+          transform: translateY(100%);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slide-down {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(100%);
+        }
+      }
+    }
+  }
+}
+
 //Página colaboradores
 .carrusel-colaboradores {
   background-color: #00C67E;
@@ -978,7 +1108,7 @@ nav {
     width: 40px;
     height: 40px;
     background-color: transparent;
-    border:none;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -986,7 +1116,7 @@ nav {
     transition: background-color 0.3s ease;
   }
 
-    .slick-next {
+  .slick-next {
     position: absolute;
     z-index: 1;
     right: 15px;
@@ -995,7 +1125,7 @@ nav {
     width: 40px;
     height: 40px;
     background-color: transparent;
-    border:none;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -24,11 +24,13 @@ Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 //Usuarios
 Route::get("/quienes-somos", [UsuarioController::class, "quienesSomos"])->name("quienes-somos");
 Route::get("/mentorizacion", [UsuarioController::class, "mentorizacion"])->name("mentorizacion");
+Route::post("/mentorizacion", [UsuarioController::class, "mentorizacionPost"])->name("mentorizacion-post");
 Route::get("/proyectos-intercentros", [UsuarioController::class, "proyectosIntercentros"])->name("proyectos-intercentros");
 Route::get("/eventos", [UsuarioController::class, "eventos"])->name("eventos");
 Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas");
 
-//Emails
+
+
 //Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");

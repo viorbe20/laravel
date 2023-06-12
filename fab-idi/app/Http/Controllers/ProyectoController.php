@@ -115,8 +115,6 @@ class ProyectoController extends Controller
         return view('admin.inicio-admin');
     }
 
-
-
     public function obtenerCursoAcademicoAjax()
     {
         $cursos = CursoAcademico::all();
