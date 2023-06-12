@@ -73,14 +73,15 @@ textarea {
 
 .btn-admin-edit {
   background-color: #ffffff;
-  color: #C71585;
+  color: #FFD700;
   font-weight: 500;
   font-size: 16px;
   border-style: solid;
-  border-color: #C71585;
+  border-color: #FFD700;
 
   &:hover {
-    background-color: #C71585;
+    background-color: #FFD700;
+    border-color: #FFD700;
     color: #ffffff;
   }
 }
@@ -96,20 +97,21 @@ textarea {
 
   &:hover {
     background-color: #00C67E;
+    border-color: #00C67E;
     color: #ffffff;
   }
 }
 
 .btn-admin-delete {
   background-color: #ffffff;
-  color: #FFD700;
+  color: #CC0000;
   font-weight: 500;
   font-size: 16px;
   border-style: solid;
-  border-color: #FFD700;
+  border-color: #CC0000;
 
   &:hover {
-    background-color: #FFD700;
+    background-color: #CC0000;
     color: #ffffff;
   }
 }
