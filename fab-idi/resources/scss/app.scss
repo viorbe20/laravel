@@ -314,157 +314,6 @@ textarea {
   align-items: center;
 }
 
-/*****************************VISTA USUARIOS*****************************/
-/*Página inicio*/
-#main-inicio {
-  #inicio-up {
-    display: flex;
-
-    #inicio-videos {
-      text-align: center;
-      flex: 50%;
-    }
-
-    #inicio-text {
-      padding: 2%;
-      flex: 50%;
-    }
-
-    #video-line-2 {
-      display: flex;
-      justify-content: center;
-    }
-
-    iframe {
-      width: 100%;
-      padding: 0 2px;
-    }
-  }
-
-  #section-premios {
-    display: flex;
-    flex-direction: column;
-    margin: 2% 0;
-
-    #inicio-cards {
-      display: flex;
-      justify-content: center;
-      margin: 2% 0;
-    }
-
-    a {
-      margin: 0 40%;
-    }
-  }
-
-  #inicio-cards {
-    .card {
-      margin: 0% 3%;
-
-      //sombra
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    }
-  }
-
-  #btn-ver-premios {
-    margin: 4% 0%;
-  }
-
-  //Premios
-  .gallery {
-    display: flex;
-    padding: 2px;
-    transition: 0.3s;
-
-    &:hover &__image {
-      filter: grayscale(1);
-    }
-
-    &__column {
-      display: flex;
-      flex-direction: column;
-      width: 25%;
-    }
-
-    &__link {
-      margin: 2px;
-      overflow: hidden;
-
-      &:hover {
-        .gallery__image {
-          filter: grayscale(0);
-        }
-
-        .gallery__caption {
-          opacity: 1;
-        }
-      }
-    }
-
-    &__thumb {
-      position: relative;
-    }
-
-    &__image {
-      display: block;
-      width: 100%;
-      transition: 0.3s;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
-
-    &__caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 25px 15px 15px;
-      width: 100%;
-      font-family: "Raleway", sans-serif;
-      font-size: 16px;
-      color: white;
-      opacity: 0;
-      background: linear-gradient(0deg,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(255, 255, 255, 0) 100%);
-      transition: 0.3s;
-    }
-  }
-
-  .fondo-titulo {
-    h2 {
-      color: white;
-      text-shadow: 2px 2px 4px #0000008b;
-    }
-
-    background: url("../../public/img/banner-premios.webp") no-repeat center center;
-    background-size: cover;
-    padding: 2%;
-    margin: 2% 0;
-  }
-}
-
-/*Página quiénes somos*/
-//Página quienes somos
-
-#main-quienes-somos {
-  #historia-red {
-    display: flex;
-    justify-content: space-between;
-
-    #historia {
-      flex: 5;
-    }
-  }
-
-  #img-red {
-    flex: 5;
-    width: 100%;
-    text-align: center;
-  }
-}
-
 
 /*****************************VISTA ADMIN*****************************/
 /*Página inicio*/
@@ -873,94 +722,163 @@ nav {
   }
 }
 
-//Página inicio
-#inicio-up {
-  display: flex;
+/*Página inicio*/
+#main-inicio {
 
-  #inicio-videos {
-    text-align: center;
-    flex: 50%;
-  }
+  #inicio-up {
 
-  #inicio-text {
-    padding: 2%;
-    flex: 50%;
-  }
-
-  #video-line-2 {
     display: flex;
-    justify-content: center;
+
+    #inicio-videos {
+      text-align: center;
+      flex: 50%;
+    }
+
+    #inicio-text {
+      padding: 2%;
+      flex: 50%;
+    }
+
+    #video-line-2 {
+      display: flex;
+      justify-content: center;
+    }
+
+    iframe {
+      width: 100%;
+      padding: 0 2px;
+    }
   }
 
-  iframe {
-    width: 100%;
-  }
-}
 
-#section-premios {
-  display: flex;
-  flex-direction: column;
-  margin: 2% 0;
+
+  #section-premios {
+    display: flex;
+    flex-direction: column;
+    margin: 2% 0;
+
+    #inicio-cards {
+      display: flex;
+      justify-content: center;
+      margin: 2% 0;
+    }
+
+    a {
+      margin: 0 40%;
+    }
+  }
 
   #inicio-cards {
+    .card {
+      margin: 0% 3%;
+
+      //sombra
+      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    }
+  }
+
+  #btn-ver-premios {
+    margin: 4% 0%;
+  }
+
+  //Premios
+  .gallery {
     display: flex;
-    justify-content: center;
+    padding: 2px;
+    transition: 0.3s;
+
+    &:hover &__image {
+      filter: grayscale(1);
+    }
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+    }
+
+    &__link {
+      margin: 2px;
+      overflow: hidden;
+
+      &:hover {
+        .gallery__image {
+          filter: grayscale(0);
+        }
+
+        .gallery__caption {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__thumb {
+      position: relative;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    &__caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 25px 15px 15px;
+      width: 100%;
+      font-family: "Raleway", sans-serif;
+      font-size: 16px;
+      color: white;
+      opacity: 0;
+      background: linear-gradient(0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(255, 255, 255, 0) 100%);
+      transition: 0.3s;
+    }
   }
 
-  a {
-    margin: 0 40%;
+  .fondo-titulo {
+    h2 {
+      color: white;
+      text-shadow: 2px 2px 4px #0000008b;
+    }
+
+    background: url("../../public/img/banner-premios.webp") no-repeat center center;
+    background-size: cover;
+    padding: 2%;
+    margin: 2% 0;
   }
 }
 
-#inicio-cards {
-  .card {
-    margin: 0% 3%;
+/*Página quiénes somos*/
 
-    //sombra
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+#main-quienes-somos {
+  #historia-red {
+    display: flex;
+    justify-content: space-between;
+
+    #historia {
+      flex: 5;
+    }
+  }
+
+  #img-red {
+    flex: 5;
+    width: 100%;
+    text-align: center;
   }
 }
 
-#btn-ver-premios {
-  margin: 4% 0%;
-}
+//Página Proyectos Intercentros
 
-//Páginas quiénes somos
-
-// #main-quienes-somos {
-//   #historia-red {
-//     display: flex;
-//     justify-content: space-between;
-
-//     #historia {
-//       flex: 5;
-
-//       h2 {
-//         text-align: center;
-//       }
-
-//       p {
-//         font-size: 18px;
-//       }
-
-//     }
-//   }
-
-//   #img-red {
-//     flex: 5;
-//     width: 100%;
-//     text-align: center;
-//   }
-// }
-
-//P+agina mentorización
-//Página Mentorizacion
-
-#main-mentorizacion {
+#main-proyectos-intercentros {
   .container {
-    display: flex;
-    gap: 5%;
-    margin-bottom: 2%;
 
     .subtitulo {
       text-align: left;
@@ -993,7 +911,7 @@ nav {
     margin: 2% 0;
   }
 
-  .proyectos-mentores {
+  .proyectos-intercentros {
     display: grid;
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
@@ -1084,156 +1002,299 @@ nav {
   }
 }
 
-//Página colaboradores
-.carrusel-colaboradores {
-  background-color: #00C67E;
+//Página panel Colaboradores
 
-  .testimonial-item {
-    background-color: pink;
-    margin: 0% 0.5%;
+#main-panel-colaboradores {
+  .team-boxed {
+    color: #313437;
+    background-color: #eef4f7;
+
+    p {
+      color: #7d8285;
+    }
+  }
+
+  .carrusel-colaboradores {
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 350px;
+      padding: 20px 0;
+    }
+
+    .testimonial-item {
+      margin: 0% 0.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 30%;
+    }
+
+    .slick-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Estilo para el botón previo */
+    .slick-prev {
+      position: absolute;
+      z-index: 1;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: transparent !important;
+      border: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .slick-next {
+      position: absolute;
+      z-index: 1;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: transparent !important;
+      border: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Estilo para la flecha del botón previo */
+    .slick-prev:before {
+      content: "<";
+      font-size: 34px;
+      color: #333333;
+    }
+
+    .slick-next::before {
+      content: ">";
+      font-size: 34px;
+      color: #333333;
+    }
+
+    .slick-dots {
+      display: none !important;
+    }
+
+    .fa-brands {
+      font-size: 50px;
+    }
+  }
+}
+
+#main-panel-colaboradores h3 {
+  text-align: center;
+}
+
+
+.team-boxed h2 {
+  font-weight: bold;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  color: inherit;
+}
+
+@media (max-width:767px) {
+  .team-boxed h2 {
+      margin-bottom: 25px;
+      padding-top: 25px;
+      font-size: 24px;
+  }
+}
+
+.team-boxed .intro {
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.team-boxed .intro p {
+  margin-bottom: 0;
+}
+
+.team-boxed .item {
+  text-align: center;
+}
+
+.team-boxed .item .box {
+  text-align: center;
+  padding: 30px;
+  background-color: #fff;
+  margin-bottom: 30px;
+}
+
+.team-boxed .item .name {
+  font-weight: bold;
+  margin-top: 28px;
+  margin-bottom: 8px;
+  color: inherit;
+}
+
+.team-boxed .item .title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #d0d0d0;
+  letter-spacing: 2px;
+  font-size: 13px;
+}
+
+.team-boxed .item .description {
+  font-size: 15px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.box img {
+  max-width: 160px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.team-boxed .social {
+  font-size: 18px;
+  color: #a2a8ae;
+}
+
+.team-boxed .social a {
+  color: inherit;
+  margin: 0 10px;
+  display: inline-block;
+  opacity: 0.7;
+}
+
+.team-boxed .social a:hover {
+  opacity: 1;
+}
+
+//Página ver más Premios
+#main-premios {
+  #section-premios {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 30%;
-  }
+    margin: 2% 0;
 
-  /* Estilo para el botón previo */
-  .slick-prev {
-    position: absolute;
-    z-index: 1;
-    left: 15px;
-    top: 30%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .slick-next {
-    position: absolute;
-    z-index: 1;
-    right: 15px;
-    top: 30%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  /* Flechas carrusel */
-
-  .slick-before::after {
-    content: "<";
-    font-size: 34px;
-    color: #333333;
-  }
-
-  .slick-next::before {
-    content: ">";
-    font-size: 34px;
-    color: #333333;
-  }
-
-  ul.slick-dots {
-    display: none !important;
-  }
-
-}
-
-//Formularios
-#form-crear-colaborador {
-  background-color: #bbb;
-  padding: 5%;
-
-  #div-imagen {
-    margin: 2% 0%;
-  }
-}
-
-//Página proyectos intercentros
-#panel-proyectos-intercentros-destacados,
-#panel-proyectos-intercentros-actuales {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  .card {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.gallery {
-  display: flex;
-  padding: 2px;
-  transition: .3s;
-
-
-  .card:hover {
-    filter: grayscale(1);
-    transition: .3s;
-    transform: scale(1.1);
-  }
-
-
-  &__column {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-
-  &__thumb {
-    position: relative;
-  }
-
-  &__image {
-    display: block;
-    width: 100%;
-    transition: .3s;
-
-  }
-
-  &__caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    padding: 25px 15px 15px;
-    width: 100%;
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-    color: white;
-    opacity: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .5) 0%, rgba(255, 255, 255, 0) 100%);
-    transition: .3s;
-  }
-
-  .card {
-    margin: 6%;
-
-    &.wide {
-      height: 14%;
+    #inicio-cards {
+      display: flex;
+      justify-content: center;
     }
 
-    &.tall {
-      height: 15.5%;
+    a {
+      margin: 0 40%;
     }
 
-    &.big {
-      height: 17%;
-
+    #btn-ver-premios {
+      margin: 4% 0%;
     }
+  }
+
+  .gallery {
+    display: flex;
+    padding: 2px;
+    transition: 0.3s;
+
+    .card:hover {
+      filter: grayscale(1);
+      transition: 0.3s;
+      transform: scale(1.1);
+    }
+
+    &__column {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    &__thumb {
+      position: relative;
+    }
+
+    &__image {
+      display: block;
+      width: 100%;
+      transition: 0.3s;
+    }
+
+    &__caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 25px 15px 15px;
+      width: 100%;
+      font-family: "Raleway", sans-serif;
+      font-size: 16px;
+      color: white;
+      opacity: 0;
+      background: linear-gradient(0deg,
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(255, 255, 255, 0) 100%);
+      transition: 0.3s;
+    }
+
+    .card {
+      margin: 6%;
+
+      h4 {
+        text-align: center;
+      }
+
+      //     &.wide {
+      //         height: 14%;
+      //     }
+
+      //     &.tall {
+      //         height: 15.5%;
+      //     }
+
+      //     &.big {
+      //         height: 17%;
+      //     }
+    }
+  }
+}
+
+//Footer
+footer {
+  background-color: var(--verde-oscuro);
+  color: var(--verde-claro);
+  text-align: center;
+
+  img {
+    width: 10%;
+  }
+
+  a {
+    color: var(--verde-claro);
+    text-decoration: none;
+    font-size: 20px;
+
+    &:hover {
+      color: var(--verde-claro);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  #iconos-rrss {
+    i {
+      margin: 0 5px;
+      font-size: 20px;
+    }
+
   }
 }

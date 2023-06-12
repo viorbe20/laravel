@@ -1,74 +1,75 @@
 @extends('layouts.plantilla')
 
-@section('head')
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-@endsection
-
 @section('title', 'Proyectos Intercentros')
 
 @section('content')
 
-    <main id='main-proyectos-intercentros'>
-        @php
-            $proyectosAnteriores = App\Models\Proyecto::where('destacado', '1')
-                ->where('tipo_proyecto_id', '2')
-                ->get();
-            $proyectosActivos = App\Models\Proyecto::where('activo', '1')
-                ->where('tipo_proyecto_id', '2')
-                ->get();
-        @endphp
-        <div>
-            <h4>¿Qué es?</h4>
-            <p>Queremos tener una batería de proyectos de investigación creados por los IES de la RED, que puedan ser
-                utilizados por los nuevos centros que se incorporen a la RED, y en el que los estudiantes de los distintos
-                centros puedan ponerse en contacto entre si, para ayudarse. Los resultados pueden ser compartidos y
-                presentados conjuntamente en eventos como ferias o congresos.
-            </p>
 
-            <h4>¿Quién puede participar?</h4>
-            <p>
-                Cualquier nuevo centro de la RED, incluso otros centros que no estén en la RED pero que quieran iniciarse y
-                probar.
-            </p>
+<main id="main-proyectos-intercentros">
+    <section class="container">
+        <!-- alinear a la izquierda -->
+        <h5 class="subtitulo">¿QUÉ SON LOS PROYECTOS INTERCENTROS?</h5>
+        <p>
+            Queremos contar con una batería de proyectos de investigación creados por los Institutos de Educación
+            Secundaria (IES) de la RED, que puedan ser utilizados por los nuevos centros que se incorporen a la RED.
+        </p>
+        <p> Además, buscamos que los estudiantes de los diferentes centros puedan establecer contacto entre sí para
+            brindarse apoyo mutuo. Los resultados de estos proyectos podrán ser compartidos y presentados conjuntamente
+            en eventos como ferias o congresos.
+        </p>
+        <h6 class="subtitulo">¿QUIÉN PUEDE PARTICIPAR?</h6>
+        <p> Todos los nuevos centros que formen parte de la RED, así como aquellos centros que no estén actualmente en
+            la RED pero deseen unirse y probar.
+        </p>
+        <h6 class="subtitulo">¿CÓMO PARTICIPAR?</h6>
+        <p>
+            Para participar, es necesario redactar una solicitud dirigida al centro que ha propuesto la iniciativa.
+        </p>
 
-            <h4>¿Cómo participar?</h4>
-            <p>Escribir una petición al centro que lo ha propuesto. </p>
+    </section>
 
-            <h3>Proyectos Anteriores</h3>
-            <div id='panel-proyectos-intercentros-destacados'>
-                @foreach ($proyectosAnteriores as $proyecto)
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('images/proyectos/' . $proyecto->imagen) }}" alt="Foto de perfil"
-                        class="profile-picture">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $proyecto->nombre }}</h5>
-                            <p class="card-text">{{ $proyecto->descripcion }}</p>
-                            <a href="{{ $proyecto->url }}" class="btn btn-admin-save">Saber más</a>
+    <section id="proyectos">
+
+        <div class="fondo-titulo">
+            <h4 class="titulo">PROYECTOS INTERCENTROS</h4>
+        </div>
+
+            <div class="container">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia quaerat accusantium repudiandae,
+                    explicabo delectus dicta illum iure incidunt error! Nemo nulla hic ea eum expedita, atque pariatur
+                    ratione
+                    alias.
+                </p>
+            </div>
+            <section class="proyectos-intercentros container">
+                @foreach ($proyectosIntercentros as $proyecto)
+                <!-- poner proyecto imagen como background con url cover center center y con degradado lineal -->
+                <div class="tarjeta"
+                    style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url({{ asset('img/proyectos/'.$proyecto->imagen) }}); background-size: cover; background-position: center center;">
+                    <div class="content">
+                        <h2 class="title">{{ $proyecto->nombre }}</h2>
+                        <div class="none">
+                            @if ($proyecto->autor != null)
+                            <p class="text-uppercase">{{ $proyecto->autor }}</p>
+                            @endif
+                            @if ($proyecto->centro != null)
+                            <p class="text-uppercase">{{ $proyecto->centro }}</p>
+                            @endif
+                            @if ($proyecto->descripcion != null)
+                            <p class="descripcion text-justify">{{ $proyecto->descripcion }}</p>
+                            @endif
+                            @if ($proyecto->url != null)
+                            <button class="btn btn-principal"><a href="{{ $proyecto->url }}" target="_blank">Ver
+                                    proyecto</a></button>
+                            @endif
                         </div>
                     </div>
+                </div>
                 @endforeach
-            </div>
-        
-            <h3>Proyectos Actuales</h3>
-            <div id='panel-proyectos-intercentros-actuales'>
-                @foreach ($proyectosAnteriores as $proyecto)
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="{{ asset('images/proyectos/' . $proyecto->imagen) }}" alt="Foto de perfil"
-                        class="profile-picture">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $proyecto->nombre }}</h5>
-                            <p class="card-text">{{ $proyecto->descripcion }}</p>
-                            <a href="{{ $proyecto->url }}" class="btn btn-admin-save">Saber más</a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            </section>
 
+    </section>
 
-
-
-    </main>
-
+</main>
 
 @endsection
