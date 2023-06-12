@@ -53,8 +53,8 @@
         <li>
             <button class="accordion"><i class="fa-solid fa-newspaper"></i>Revistas</button>
             <ul class="panel">
-                <li class="{{ Route::is('gestion-eventos') ? 'active' : '' }}">
-                    <a href="{{ route('gestion-eventos') }}">Gestión de Revistas</a>
+                <li class="">
+                    <a href="}">Gestión de Revistas</a>
                 </li>
             </ul>
         </li>
