@@ -21,6 +21,14 @@
 
 /*ADMIN VIEW*/
 /*Estilos generales*/
+
+.imagen-fit {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
 #modal-eliminacion {
   top : 20%;
   
@@ -364,19 +372,16 @@ textarea {
 
           div {
             background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-size: cover;
             position: absolute;
-            top: 65%;
+            top: 90%;
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 90px;
             height: 90px;
             border-radius: 50px;
-
-
-            img {
-              width: 90px;
-            }
           }
 
         }
@@ -811,9 +816,8 @@ nav {
     transform: translateY(-50%);
     width: 40px;
     height: 40px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    border: 1px solid #dddddd;
+    background-color: transparent;
+    border:none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -821,11 +825,39 @@ nav {
     transition: background-color 0.3s ease;
   }
 
-  /* Estilo para la flecha del botón previo */
-  .slick-prev:before {
+    .slick-next {
+    position: absolute;
+    z-index: 1;
+    right: 15px;
+    top: 30%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Flechas carrusel */
+
+  .slick-before::after {
     content: "<";
     font-size: 34px;
     color: #333333;
+  }
+
+  .slick-next::before {
+    content: ">";
+    font-size: 34px;
+    color: #333333;
+  }
+
+  ul.slick-dots {
+    display: none !important;
   }
 
 }

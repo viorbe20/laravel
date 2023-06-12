@@ -164,7 +164,7 @@ $(document).ready(function () {
 function renderData(usuario, tbody) {
     let rowHtml = `
                     <tr>
-                    <td style="width:30px;"><img src="${rutaImagen}/${usuario.imagen}" alt="foto-perfil-usuario" width="100%"></td>
+                    <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${usuario.imagen}" alt="foto-perfil-usuario"></td>
                     <td>${usuario.nombre}</td>
                     <td>${usuario.apellidos}</td>
                     <td>${usuario.email}</td>

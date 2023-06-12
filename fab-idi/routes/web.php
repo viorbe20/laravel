@@ -30,7 +30,8 @@ Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas"
 
 //Emails
 //Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
-
+Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
+Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
 //Middleware. En el archivo kernel.php se definen los middleware
 Route::group(['middleware' => 'admin'], function () {
     Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
@@ -52,7 +53,6 @@ Route::group(['middleware' => 'admin'], function () {
 
     // Colaborador
     Route::get("/gestion-colaboradores", [UsuarioController::class, "buscarUsuarioPost"])->name("buscar-usuario");
-    Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
     Route::get("/gestion-colaboradores", [ColaboradorController::class, "gestionColaboradores"])->name("gestion-colaboradores");
     Route::match(['GET', 'POST'], '/crear-colaborador/{id}/{tipoColaborador}', [ColaboradorController::class, 'crearColaborador'])->name('crear-colaborador');
     Route::match(['GET', 'POST'], '/eliminar-colaborador/{id}', [ColaboradorController::class, 'eliminarColaboradorPost'])->name('eliminar-colaborador-post');
@@ -71,7 +71,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
     
     //Admin premios
-    Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
+   
     Route::get("/gestion-premios", [PremioController::class, "gestionPremios"])->name("gestion-premios");
     Route::get("/gestion-premios/crear-premio", [PremioController::class, "crearPremio"])->name("crear-premio");
     Route::match(['GET', 'POST'], "/gestion-premios/guardar-premio", [PremioController::class, "guardarPremio"])->name("guardar-premio");
