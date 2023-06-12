@@ -27,11 +27,15 @@ class AuthController extends BaseController
             if ($usuario->activo == '0') {
                 return back()->with('error', 'El usuario no está activo. Contacta con el administrador para activar tu cuenta.');
             }
-            
+
+            //Genera una contraseña aleatoria y la encripta
             $randomPassword = $this->generarPasswordAleatoria();
             $passwordEncriptada = bcrypt($randomPassword);
+
+            //Actualiza la contraseña en la base de datos
             DB::table('users')->where('email', $email)->update(['password' => $passwordEncriptada]);
 
+            //Envía un email con la nueva contraseña
             $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
             $transport->setUsername('viorbe20@gmail.com');
             $transport->setPassword('qgeccmuaivcojphv');
@@ -40,7 +44,7 @@ class AuthController extends BaseController
 
             $message = new Swift_Message('Generación de nueva contraseña Red FAB-IDI');
             $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
-            $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
+            $message->setTo(['a20orbevi@iesgrancapitan.org' => $usuario->nombre, $usuario->email => $usuario->nombre]);
             $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
             $mailer->send($message);
 
@@ -72,8 +76,6 @@ class AuthController extends BaseController
         if (empty($request->input('email')) || empty($request->input('password'))){
             return back()->with('error', 'Los campos son obligatorios.');
         }
-
-
 
         $credentials = $request->only('email', 'password');
 

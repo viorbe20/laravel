@@ -37,8 +37,6 @@ Route::match(['GET', 'POST'], "/gestion-usuarios/guardar-usuario", [UsuarioContr
 Route::match(['GET', 'POST'], "/guardar-cambios-usuario", [UsuarioController::class, "guardarCambiosUsuario"])->name("guardar-cambios-usuario");
 
 //Admin usuarios
-Route::get("/gestion-contrasenas", [UsuarioController::class, "gestionContrasenas"])->name("gestion-contrasenas");
-Route::get("/gestion-contrasenas/renovar-contrasena/{id}", [UsuarioController::class, "renovarContrasena"])->name("renovar-contrasena");
 
 
 //Admin Entidades
@@ -99,20 +97,25 @@ Route::get("/gestion-eventos/editar-evento/{id}", [EventoController::class, "edi
 Route::post("/guardar-evento", [EventoController::class, "guardarEvento"])->name("guardar-evento");
 Route::post("/guardar-cambios-evento", [EventoController::class, "guardarCambiosEvento"])->name("guardar-cambios-evento");
 
-//Ajax
-
-Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
-Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
-Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
-Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
-Route::match(['GET', 'POST'], "/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
-Route::match(['GET', 'POST'], "/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
-Route::match(['GET', 'POST'], "/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
-Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");
-
-
 //Middleware. En el archivo kernel.php se definen los middleware
-Route::group(['middleware' => 'admin'], function(){
+Route::group(['middleware' => 'admin'], function () {
     Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
+    Route::get("/gestion-contrasenas", [UsuarioController::class, "gestionContrasenas"])->name("gestion-contrasenas");
+    Route::get("/gestion-contrasenas/renovar-contrasena/{id}", [UsuarioController::class, "renovarContrasena"])->name("renovar-contrasena");
 });
+
+//Middleware para las llamadas ajax.
+Route::group(['middleware' => 'redirect.if.ajax'], function () {
+    Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+    Route::post("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");
+    Route::get("/obtener-perfiles-ajax", [UsuarioController::class, "obtenerPerfilesAjax"])->name("obtener-perfiles-ajax");
+    Route::get("/obtener-colaboradores-ajax", [UsuarioController::class, "obtenerColaboradoresAjax"])->name("obtener-colaboradores-ajax");
+    Route::post("/obtener-eventos-ajax", [EventoController::class, "obtenerEventosAjax"])->name("obtener-eventos-ajax");
+    Route::match(['GET', 'POST'], "/obtener-premios-ajax", [PremioController::class, "obtenerPremiosAjax"])->name("obtener-premios-ajax");
+    Route::match(['GET', 'POST'], "/obtener-entidades-ajax", [EntidadController::class, "obtenerEntidadesAjax"])->name("obtener-entidades-ajax");
+    Route::match(['GET', 'POST'], "/obtener-proyectos-ajax", [ProyectoController::class, "obtenerProyectosAjax"])->name("obtener-proyectos-ajax");
+    Route::get("/obtener-curso-academico-ajax", [ProyectoController::class, "obtenerCursoAcademicoAjax"])->name("obtener-curso-academico-ajax");
+    
+    
+});
+
