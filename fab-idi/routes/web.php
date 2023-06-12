@@ -85,7 +85,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get("/gestion-videos", [VideoController::class, "gestionVideos"])->name("gestion-videos");
     Route::get("/gestion-videos/editar/{id}", [VideoController::class, "editarVideos"])->name("editar-videos");
     Route::post("/gestion-videos/editar/{id}", [VideoController::class, "actualizarVideo"])->name("actualizar-video");
-    Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");
+    //Route::get("/gestion-premios", [VideoController::class, "gestionVideos"])->name("gestion-premios");
 
     //Llamadas ajax
     Route::get("/obtener-usuarios-ajax", [UsuarioController::class, "obtenerUsuariosAjax"])->name("obtener-usuarios-ajax");

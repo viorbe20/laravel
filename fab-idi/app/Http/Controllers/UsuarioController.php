@@ -37,7 +37,7 @@ class UsuarioController extends Controller
         //Perfil usuario - procesamiento de la imagen
         if ($request->hasFile('foto-usuario')) {
             $file = $request->file('foto-usuario');
-            $maxSize = 2097152; // 2 megabytes
+            $maxSize = 2097152; 
 
             if ($file->getSize() > $maxSize) {
                 return redirect()->route('crear-usuario')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
