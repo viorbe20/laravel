@@ -117,18 +117,35 @@ class PremioController extends BaseController
 
     public function guardarCambiosPremio(Request $request)
     {
+
         $premio = Premio::find(request()->input('id-premio'));
 
+        //Validación url
+        if (!empty($request->input('url-premio'))) {
+            if (!$this->verfificarUrl($request->input('url-premio'))) {
+                return redirect()->route('crear-premio')->with('error', 'La url no es válida.');
+            }
+        }
+
+        //Validación imagen
         if ($request->hasFile('imagen-premio')) {
-            $imagen = $request->file('imagen-premio');
-            $nombreImagen = $request->file('imagen-premio')->hashName();
-            $imagen->move(public_path() . '/images/premio/', $nombreImagen);
-            //Borra la imagen anterior
-            unlink(public_path('images/premio/' . $premio->imagen));
-            //Añade id del premio al nombre de la imagen
-            $nombreImagen = $premio->id . $nombreImagen;
+            $file = $request->file('imagen-premio');
+            $maxSize = 2097152; // 2 megabytes 2097152
+
+            if ($file->getSize() > $maxSize) {
+                return redirect()->to('gestion-premios/editar/' . $premio->id)->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->to('gestion-premios/editar/' . $premio->id)->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreImagen = '';
+                }
+            }
         } else {
-            $nombreImagen = $premio->imagen;
+            $nombreImagen = 'premio-default.webp';
         }
 
         $premio->titulo = $request->input('titulo-premio');
@@ -138,8 +155,18 @@ class PremioController extends BaseController
         $premio->imagen = $nombreImagen;
         $premio->save();
 
+
+        //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
+        if ($request->hasFile('imagen-premio')) {
+            $nombreImagen = $premio->id . '.' . $extension;
+            $premio->imagen = $nombreImagen;
+            $premio->save();
+            $file->move(public_path('img/premios'), $nombreImagen);
+        }
+        
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha editado correctamente.');
     }
+
 
     public function gestionPremios()
     {

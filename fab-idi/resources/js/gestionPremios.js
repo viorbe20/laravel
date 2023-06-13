@@ -128,7 +128,7 @@ $(document).ready(function () {
                             <td style="width:10%;"><img class='imagen-fit'src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad"></td>
                             <td>${premio.titulo}</td>
                             <td>${fechaFormateada}</td>
-                            <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
+                            <td>${premio.url ? `<a href="${premio.url}" target="_blank">Ver más</a>` : ''}</td>
                             <td>
                             <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${premio.titulo}" data-id-elemento="${premio.id}"><i class="fa-solid fa-trash"></i></a>
@@ -143,7 +143,6 @@ $(document).ready(function () {
         tbody.innerHTML += rowHtml;
 
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
-        //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
         const urlEliminar = `/gestion-premios/eliminar/`;
         confirmarEliminacion(enlacesEliminacion, urlEliminar);
@@ -157,7 +156,7 @@ $(document).ready(function () {
                             <td style="width:10%;"><img class='imagen-fit' src="${rutaImagen}/${premio.imagen}" alt="foto-perfil-entidad"></td>
                             <td>${premio.titulo}</td>
                             <td>${fechaFormateada}</td>
-                            <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
+                            <td>${premio.url ? `<a href="${premio.url}" target="_blank">Ver más</a>` : ''}</td>
                             <td>
                             <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${premio.titulo}" data-id-elemento="${premio.id}"><i class="fa-solid fa-trash"></i></a>                            
