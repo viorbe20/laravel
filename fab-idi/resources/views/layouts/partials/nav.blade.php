@@ -34,13 +34,9 @@
                     <a href="{{ route('panel-colaboradores') }}">Panel de colaboradores</a>
                 </li>
 
-
-
                 <li class="{{ Route::is('revistas') ? 'active' : '' }}">
-                    <a href="{{ route('revistas') }}">Revistas</a>
+                    <a href="#">Revistas</a>
                 </li>
-
-
 
                 <li class="{{ Request::url() === 'https://profundizaiesmartinrivero.blogspot.com/' ? 'active' : '' }}">
                     <a href="https://profundizaiesmartinrivero.blogspot.com/">Blog</a>

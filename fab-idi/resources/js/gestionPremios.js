@@ -160,7 +160,7 @@ $(document).ready(function () {
                             <td>${premio.url ? `<a href="${premio.url}" target="_blank">${premio.url}</a>` : ''}</td>
                             <td>
                             <a href="/gestion-premios/editar/${premio.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-premio="${premio.titulo}" data-id-premio="${premio.id}"><i class="fa-solid fa-trash"></i></a>
+                            <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${premio.titulo}" data-id-elemento="${premio.id}"><i class="fa-solid fa-trash"></i></a>                            
                             <a href="/gestion-premios/quitar-destacado/${premio.id}" class="btn btn-admin-premio"><i class="fa-solid fa-eye-slash"></i></a>
                             </td>
                         </tr>

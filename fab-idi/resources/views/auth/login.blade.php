@@ -46,7 +46,7 @@
                             <i class="fas fa-eye"></i>
                         </button>
                         </div>
-                    </div>´
+                    </div>
                     <div class="mb-3">
                         <a href="{{ route('olvidar-contrasena') }}">He olvidado mi contraseña</a>
                     </div>

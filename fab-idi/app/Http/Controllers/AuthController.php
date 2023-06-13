@@ -102,28 +102,6 @@ class AuthController extends BaseController
         return back()->with('error', 'Los datos no son correctos.');
     }
 
-    public function register()
-    {
-        $showLoginButton = false;
-        return view('auth/register', compact('showLoginButton'));
-    }
-
-    public function registerPost(Request $request)
-    {
-        $usuario = new User();
-
-        $usuario->nombre = $request->name;
-        $usuario->apellidos = $request->surnames;
-        $usuario->email = $request->email;
-        $usuario->password = Hash::make($request->password);
-        $usuario->perfil_id = 1;
-        $usuario->activo = false;
-
-        $usuario->save();
-
-        return back()->with('success', 'Register successfully.');
-    }
-
     public function logout()
     {
         auth()->logout();

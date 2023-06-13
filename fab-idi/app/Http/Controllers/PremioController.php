@@ -56,7 +56,7 @@ class PremioController extends BaseController
             $premio->imagen = $nombreImagen;
             $premio->save();
             $file->move(public_path('img/premios'), $nombreImagen);
-        } 
+        }
 
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha creado correctamente.');
     }
@@ -97,10 +97,18 @@ class PremioController extends BaseController
 
     public function eliminarPremio($id)
     {
-        Premio::where('id', $id)->update(['activo' => 0]);
+        $premio = Premio::find($id);
 
+        $premio->update(['activo' => 0]);
+    
+        // Borrar imagen de la carpeta img/premios si no es la imagen por defecto
+        if ($premio->imagen != 'premio-default.webp') {
+            unlink(public_path('img/premios/' . $premio->imagen));
+        }
+        
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
+
 
     public function editarPremio(Request $request)
     {

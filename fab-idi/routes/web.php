@@ -17,23 +17,21 @@ Route::get("/", [InicioController::class, "index"])->name("index");
 // Auth
 Route::get("/login", [AuthController::class, "login"])->name("login");
 Route::post("/login", [AuthController::class, "loginPost"])->name("login");
+Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 Route::match(['GET', 'POST'], "/olvidar-contrasena", [AuthController::class, "olvidarContrasena"])->name("olvidar-contrasena");
 Route::match(['GET', 'POST'], "/regenerar-contrasena", [AuthController::class, "regenerarContrasena"])->name("regenerar-contrasena");
-Route::get("/logout", [AuthController::class, "logout"])->name("logout");
 
 //Usuarios
 Route::get("/quienes-somos", [UsuarioController::class, "quienesSomos"])->name("quienes-somos");
+Route::post("/quienes-somos", [UsuarioController::class, "quienesSomosPost"])->name("quienes-somos-post");
 Route::get("/mentorizacion", [UsuarioController::class, "mentorizacion"])->name("mentorizacion");
 Route::post("/mentorizacion", [UsuarioController::class, "mentorizacionPost"])->name("mentorizacion-post");
 Route::get("/proyectos-intercentros", [UsuarioController::class, "proyectosIntercentros"])->name("proyectos-intercentros");
 Route::get("/eventos", [UsuarioController::class, "eventos"])->name("eventos");
 Route::get("/revistas", [UsuarioController::class, "revistas"])->name("revistas");
-
-
-
-//Route::match(['GET', 'POST'], "/formulario-mentor", [MentorController::class, "formularioMentor"])->name("formulario-mentor");
 Route::get("/panel-colaboradores", [ColaboradorController::class, "index"])->name("panel-colaboradores");
 Route::get("/mostrar-premios", [PremioController::class, "mostrarPremios"])->name("mostrar-premios");
+
 //Middleware. En el archivo kernel.php se definen los middleware
 Route::group(['middleware' => 'admin'], function () {
     Route::get("/inicio-admin", [AuthController::class, "inicioAdmin"])->name("inicio-admin");
@@ -73,7 +71,6 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get("/gestion-proyectos-intercentros", [ProyectoController::class, "gestionProyectosIntercentros"])->name("gestion-proyectos-intercentros");
     
     //Admin premios
-   
     Route::get("/gestion-premios", [PremioController::class, "gestionPremios"])->name("gestion-premios");
     Route::get("/gestion-premios/crear-premio", [PremioController::class, "crearPremio"])->name("crear-premio");
     Route::match(['GET', 'POST'], "/gestion-premios/guardar-premio", [PremioController::class, "guardarPremio"])->name("guardar-premio");
