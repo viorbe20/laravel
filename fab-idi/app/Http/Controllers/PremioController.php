@@ -37,7 +37,7 @@ class PremioController extends BaseController
                 }
             }
         } else {
-            $nombreImagen = 'premio-default.png';
+            $nombreImagen = 'premio-default.webp';
         }
 
         $premio = Premio::create([
