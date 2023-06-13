@@ -109,7 +109,6 @@ class PremioController extends BaseController
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
 
-
     public function editarPremio(Request $request)
     {
         $premio = Premio::find($request->id);
