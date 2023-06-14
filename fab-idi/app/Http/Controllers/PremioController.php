@@ -94,7 +94,7 @@ class PremioController extends BaseController
     {
         return view('admin.crear-premio');
     }
-
+    
     public function eliminarPremio($id)
     {
         $premio = Premio::find($id);
@@ -104,8 +104,9 @@ class PremioController extends BaseController
         // Borrar imagen de la carpeta img/premios si no es la imagen por defecto
         if ($premio->imagen != 'premio-default.webp') {
             unlink(public_path('img/premios/' . $premio->imagen));
+            $premio->imagen = 'premio-default.webp';
+            $premio->save();
         }
-        
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
 
