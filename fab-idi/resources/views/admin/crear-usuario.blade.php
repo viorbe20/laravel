@@ -92,6 +92,7 @@
                     <div class="form-group">
                         <label for="phot">Foto</label>
                         <input type="file" class="form-control" name="foto-usuario">
+                        <span for="foto">*La imagen no debe pesar más de 2mb. Formatos admitidos: jpg, png, webp.</span> 
                     </div>
                 </div>
             </div>

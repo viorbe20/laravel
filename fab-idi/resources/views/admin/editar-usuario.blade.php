@@ -30,14 +30,14 @@
                 </div>
             </div>
 
-            <div class="form-row-3">
+            <div class="form-row-2">
                 <div class="form-group">
-                    <label for="email">Email*</label>
-                    <input type="email" class="form-control" name="email-usuario" value="{{ $usuario->email }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña*</label>
-                    <input type="text" class="form-control" name="password-usuario">
+                    <label for="profile">Perfil</label>
+                    <select class="form-control" name="select-perfil-usuario">
+                        <option value="1">Admin</option>
+                        <option value="2" selected>Usuario</option>
+                        <option value="3">Embajador</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono</label>
@@ -61,18 +61,10 @@
             </div>
 
 
-            <div class="form-row-2">
-                <div class="form-group">
-                    <label for="profile">Perfil</label>
-                    <select class="form-control" name="select-perfil-usuario">
-                        <option value="1">Admin</option>
-                        <option value="2" selected>Usuario</option>
-                        <option value="3">Embajador</option>
-                    </select>
-                </div>
+            <div class="form-row-1">
                 <div class="form-group">
                     <label for="phot">Foto</label>
-                    <input type="file" class="form-control" name="foto-usuario">
+                    <input type="file" class="form-control" name="imagen-usuario">
                 </div>
             </div>
             </div>
@@ -106,6 +98,7 @@
                     <div class="form-group">
                         <label for="image">Imagen</label>
                         <input type="file" class="form-control" name="imagen-entidad">
+                        <span for="foto">*La imagen no debe pesar más de 2mb. Formatos admitidos: jpg, png, webp.</span> 
                     </div>
                 </div>
             </div>

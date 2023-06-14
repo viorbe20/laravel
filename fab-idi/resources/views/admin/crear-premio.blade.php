@@ -40,6 +40,7 @@
                     <div class="form-group">
                         <label for="foto">Foto</label>
                         <input type="file" class="form-control" name="foto-premio">
+                        <span for="foto">*La imagen no debe pesar más de 2mb. Formatos admitidos: jpg, png, webp.</span> 
                     </div>
                     <div class="form-group">
                         <label for="web">Web</label>

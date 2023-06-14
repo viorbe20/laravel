@@ -45,6 +45,7 @@
                     <div class="form-group">
                         <label for="imagen">Imagen</label>
                         <input type="file" class="form-control" name="imagen-premio">
+                        <span for="foto">*La imagen no debe pesar más de 2mb. Formatos admitidos: jpg, png, webp.</span>
                     </div>
                 </div>
 
@@ -55,7 +56,11 @@
                     </textarea>
                     </div>
                 </div>
-
+                <div class='container-contador-boton'>
+                    <div class='contador-caracteres-container'>
+                        <p>Caracteres restantes: <span class='contador-caracteres'>240</span></p>
+                    </div>
+                </div>
 
                 <input type="hidden" name="id-premio" value="{{ $premio->id }}">
                 <div class='btn-container'>

@@ -64,6 +64,7 @@
                     <div class="form-group">
                         <label for="imagen">Imagen</label>
                         <input type="file" class="form-control" name="imagen-proyecto">
+                        <span for="foto">*La imagen no debe pesar más de 2mb. Formatos admitidos: jpg, png, webp.</span> 
                     </div>
                     <div class="form-group">
                         <label for="disponible">Puede visualizarse en la web</label>
