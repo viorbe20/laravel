@@ -1,9 +1,9 @@
 @extends('layouts.plantilla-admin')
 
-@section('head')
+{{-- @section('head')
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-@endsection
+@endsection --}}
 
 @section('title', 'Editar Usuario')
 
@@ -13,7 +13,15 @@
         <div class='page-subtitle'>
             <h2>EDICIÓN DE USUARIO</h2>
         </div>
-
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('guardar-cambios-usuario') }}" enctype="multipart/form-data"
             id='form-editar-usuario' class='styled-form'>
             @csrf

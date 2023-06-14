@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
     const originalTbodyContent = $("#tbody-tabla-gestion-entidades").html();
@@ -53,7 +53,8 @@ $(document).ready(function () {
                 return response.json();
             }).then(function (entidades) {
                 // Filtrar entidades activos
-                let entidadesActivas = entidades.filter(function (entidad) {
+                let entidadesArray = Object.values(entidades);
+                let entidadesActivas = entidadesArray.filter(function (entidad) {
                     return entidad.activo === 1;
                 });
 
@@ -126,17 +127,21 @@ function renderData(entidad, tbody) {
     let rowHtml = `
                     <tr>
                     <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${entidad.imagen}" alt="foto-perfil-entidad"></td>
-                    <td>${entidad.nombre}</td>
+                    <td>${entidad.web ? `<a href="${entidad.web}" target="_blank">${entidad.nombre}</a>` : entidad.nombre}</td>
                     <td>${entidad.representante ? entidad.representante : ''}</td>
                     <td><a href="mailto:${entidad.email}">${entidad.email}</a></td>
                     <td>${entidad.telefono ? entidad.telefono : ''}</td>
-                    <td>${entidad.web ? `<a href="${entidad.web}" target="_blank">${entidad.web}</a>` : ''}</td>
                     <td>${entidad.colaborador_id ? entidad.colaborador_id : ''}</td>
                     <td>
-                    <a href="/gestion-entidades/eliminar-entidad/${entidad.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${entidad.nombre}" data-id-elemento="${entidad.id}"><i class="fa-solid fa-trash"></i></a>                            
                     <a href="/gestion-entidades/editar-entidad/${entidad.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                     </td>
                 </tr> 
                     `;
     tbody.innerHTML += rowHtml;
+
+    //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+    const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
+    const urlEliminar = `/gestion-entidades/eliminar-entidad/`;
+    confirmarEliminacion(enlacesEliminacion, urlEliminar);
 }

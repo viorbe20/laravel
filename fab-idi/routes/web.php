@@ -47,7 +47,7 @@ Route::group(['middleware' => 'admin'], function () {
     //Admin Entidades
     Route::get("/gestion-entidades", [EntidadController::class, "gestionEntidades"])->name("gestion-entidades");
     Route::get("/gestion-entidades/eliminar-entidad/{id}", [EntidadController::class, "eliminarEntidad"])->name("eliminar-entidad");
-    Route::get("/gestion-entidades/editar-entidad/{id}", [Entidad::class, "editarEntidad"])->name("editar-entidad");
+    Route::get("/gestion-entidades/editar-entidad/{id}", [EntidadController::class, "editarEntidad"])->name("editar-entidad");
     Route::match(['GET', 'POST'], "/guardar-cambios-entidad", [EntidadController::class, "guardarCambiosEntidad"])->name("guardar-cambios-entidad");
     Route::get("/gestion-entidades/crear-entidad", [UsuarioController::class, "crearUsuario"])->name("crear-entidad");
 

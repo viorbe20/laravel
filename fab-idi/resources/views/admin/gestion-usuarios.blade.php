@@ -10,7 +10,7 @@
     let rutaImagen = "{{ asset('img/usuarios/') }}";
 </script>
     <main id='main-gestion-usuarios' class='main-admin'>
-        {{-- Modal para confirmar la eliminación de un premio --}}
+        {{-- Modal para confirmar la eliminación de un usuario --}}
         <div id='modal-eliminacion' class="modal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
