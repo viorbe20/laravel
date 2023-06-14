@@ -359,9 +359,20 @@ class UsuarioController extends BaseController
 
     public function eliminarUsuario($id)
     {
-        User::where('id', $id)->update(['activo' => 0])->update('password', '');
 
-        return view('admin/gestion-usuarios');
+        $user = User::find($id);
+        if ($user->imagen != 'usuario-default.webp') {
+            unlink(public_path('img/usuarios/' . $user->imagen));
+            $user->imagen = 'usuario-default.webp';
+            $user->save();
+        }
+        User::where('id', $id)->update([
+            'activo' => 0,
+            'imagen' => 'usuario-default.webp'
+        ]);
+        
+
+        return redirect()->route('gestion-usuarios')->with('mensaje', 'Usuario eliminado correctamente');
     }
 
     public function obtenerPerfilesAjax()

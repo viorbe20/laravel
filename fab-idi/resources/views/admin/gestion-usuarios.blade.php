@@ -10,6 +10,23 @@
     let rutaImagen = "{{ asset('img/usuarios/') }}";
 </script>
     <main id='main-gestion-usuarios' class='main-admin'>
+        {{-- Modal para confirmar la eliminación de un premio --}}
+        <div id='modal-eliminacion' class="modal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Eliminar elemento</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-admin-delete">Confirmar Eliminación</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="input-group styled-input-group">
             <span class="input-group-text" id="">Buscar usuario por nombre</span>

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import confirmarEliminacion from "./confirmarEliminacion";
 
 $(document).ready(function () {
     const originalTbodyContent = $("#tbody-tabla-gestion-usuarios").html();
@@ -172,9 +172,15 @@ function renderData(usuario, tbody) {
                     <td>${usuario.id_colaborador ? usuario.id_colaborador : ''}</td>
                     <td>${usuario.perfil_id}</td>
                     <td>
-                    <a href="/gestion-usuarios/eliminar-usuario/${usuario.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                    <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${usuario.nombre}" data-id-elemento="${usuario.id}"><i class="fa-solid fa-trash"></i></a>                            
                     <a href="/gestion-usuarios/editar-usuario/${usuario.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                     </td></tr> 
                     `;
     tbody.innerHTML += rowHtml;
+
+            //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+            const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
+            const urlEliminar = `/gestion-usuarios/eliminar-usuario/`;
+            confirmarEliminacion(enlacesEliminacion, urlEliminar);
+    
 }
