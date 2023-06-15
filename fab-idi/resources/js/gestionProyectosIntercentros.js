@@ -107,11 +107,16 @@ $(document).ready(function () {
                             <td>${proyecto.curso_academico_id}</td>
                             <td>
                             <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="/gestion-proyectos/eliminar/${proyecto.id}" class="btn btn-danger btn-admin-delete"><i class="fa-solid fa-trash"></i></a>
+                            <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${proyecto.nombre}" data-id-elemento="${proyecto.id}"><i class="fa-solid fa-trash"></i></a>                                                        
                             </td>
                         </tr>
                     `;
         tbody.innerHTML += rowHtml;
+
+        //Añade el evento de confirmación de eliminación a los enlaces de eliminación
+        const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
+        const urlEliminar = `/gestion-proyectos/eliminar/`;
+        confirmarEliminacion(enlacesEliminacion, urlEliminar);
     }
 
     //Muestra proyectos al cargar la página

@@ -156,7 +156,6 @@ $(document).ready(function () {
         tbody.innerHTML += rowHtml;
 
         //Añade el evento de confirmación de eliminación a los enlaces de eliminación
-        //Añade el evento de confirmación de eliminación a los enlaces de eliminación
         const enlacesEliminacion = tbody.querySelectorAll('.btn-admin-delete');
         const urlEliminar = `/gestion-proyectos/eliminar/`;
         confirmarEliminacion(enlacesEliminacion, urlEliminar);
