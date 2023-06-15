@@ -140,9 +140,8 @@ $(document).ready(function () {
         let rowHtml = `
                         <tr>
                             <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad"></td>
-                            <td>${proyecto.nombre}</td>
+                            <td>${proyecto.url ? `<a href="${proyecto.url}">${proyecto.nombre}</a>` : proyecto.nombre }</td>
                             <td>${proyecto.curso_academico_id}</td>
-                            <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>
                             <td>
                             <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${proyecto.nombre}" data-id-elemento="${proyecto.id}"><i class="fa-solid fa-trash"></i></a>                            
@@ -169,9 +168,8 @@ $(document).ready(function () {
         let rowHtml = `
                         <tr>
                             <td style="width:30px;"><img class='imagen-fit' src="${rutaImagen}/${proyecto.imagen}" alt="foto-perfil-entidad"></td>
-                            <td>${proyecto.nombre}</td>
+                            <td>${proyecto.url ? `<a href="${proyecto.url}">${proyecto.nombre}</a>` : proyecto.nombre }</td>
                             <td>${proyecto.curso_academico_id}</td>
-                            <td>${proyecto.url ? `<a href="${proyecto.url}">Documentación</a>` : ''}</td>
                             <td>
                             <a href="/gestion-proyectos/editar/${proyecto.id}" class="btn btn-primary btn-admin-edit"><i class="fa-solid fa-pen-to-square"></i></a>
                             <a href='#' class="btn btn-danger btn-admin-delete" data-nombre-elemento="${proyecto.nombre}" data-id-elemento="${proyecto.id}"><i class="fa-solid fa-trash"></i></a>                            

@@ -45,7 +45,6 @@
                     <th scope="col">Imagen</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Curso</th>
-                    <th scope="col">URL</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
