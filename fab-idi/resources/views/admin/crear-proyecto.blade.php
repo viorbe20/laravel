@@ -10,7 +10,15 @@
         <div class='page-subtitle'>
             <h2>ALTA PROYECTO</h2>
         </div>
-
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('guardar-proyecto') }}" enctype="multipart/form-data"
             id='form-crear-proyecto'class='styled-form'>
             @csrf

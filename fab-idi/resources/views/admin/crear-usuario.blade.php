@@ -9,16 +9,16 @@
     <main id='main-crear-usuario' class='main-admin'>
         <div class='page-subtitle'>
             <h2>ALTA USUARIO</h2>    
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @elseif (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
         </div>
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('guardar-usuario') }}" enctype="multipart/form-data" id='form-crear-usuario'class='styled-form'>
             @csrf
             <div class="form-group">

@@ -17,6 +17,10 @@
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
+                @elseif (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
                 @endif
             </div>
             <table class="table styled-table">
@@ -31,6 +35,6 @@
                 <tbody id="tbody-tabla-gestion-contrasenas">
                 </tbody>
             </table>
-    
+
     </main>
 @endsection

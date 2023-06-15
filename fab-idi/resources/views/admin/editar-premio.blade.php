@@ -2,6 +2,8 @@
 
 @section('title', 'Editar Premio')
 
+@vite(['resources/js/actualizarContador.js'])
+
 @section('content')
 
     <main id="main-editar-premio">
@@ -52,13 +54,13 @@
                 <div class="form-row-1">
                     <div class="form-group">
                         <label for="centro">Descripción*</label>
-                        <textarea type="text" class="form-control" name="descripcion-premio" rows="10" required>{{ $premio->descripcion }}
+                        <textarea type="text" class="form-control" name="descripcion-premio" required>{{ $premio->descripcion }}
                     </textarea>
                     </div>
                 </div>
                 <div class='container-contador-boton'>
                     <div class='contador-caracteres-container'>
-                        <p>Caracteres restantes: <span class='contador-caracteres'>240</span></p>
+                        <p>Caracteres restantes: <span class='contador-caracteres'></span></p>
                     </div>
                 </div>
 

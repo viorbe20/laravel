@@ -2,20 +2,28 @@
 
 @section('title', 'Editar Proyecto')
 
+@vite(['resources/js/actualizarContador.js'])
+
 @section('content')
 
     <main id='main-editar-proyecto' class='main-admin'>
         <div class='page-subtitle'>
             <h2>EDITAR PROYECTO</h2>
         </div>
-
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <form method="POST" action="{{ route('guardar-cambios-proyecto') }}" enctype="multipart/form-data"
             id='form-editar-proyecto' class='styled-form'>
             @csrf
             <div class="form-group">
                 <select class="form-control" id="form-select-tipo-proyecto" name="select-tipo-proyecto">
-                    <option value="" {{ $proyecto->tipo_proyecto_id == '' ? 'selected' : '' }}>Selecciona el tipo de
-                        proyecto</option>
                     <option value="1" {{ $proyecto->tipo_proyecto_id == 1 ? 'selected' : '' }}>PIP</option>
                     <option value="2" {{ $proyecto->tipo_proyecto_id == 2 ? 'selected' : '' }}>Intercentros</option>
                 </select>
@@ -87,13 +95,19 @@
                 <div class="form-row-1">
                     <div class="form-group">
                         <label for="centro">Descripción*</label>
-                        <textarea type="text" class="form-control" name="descripcion-proyecto" rows="10" required>{{ $proyecto->descripcion }}
-                        </textarea>
+                        <textarea type="text" class="form-control" name="descripcion-proyecto" required>{{ $proyecto->descripcion }}</textarea>
                     </div>
                 </div>
+
+                <div class='container-contador-boton'>
+                    <div class='contador-caracteres-container'>
+                        <p>Caracteres restantes: <span class='contador-caracteres'>240</span></p>
+                    </div>
+                </div>
+    
+                <input type="hidden" name="id-proyecto" value="{{ $proyecto->id }}">
                 <div class='btn-container'>
-                    <input type="hidden" name="id-proyecto" value="{{ $proyecto->id }}">
-                    <button type="submit" class="btn btn-admin-save">Crear</button>
+                    <button type="submit" class="btn btn-admin-save">Guardar cambios</button>
                 </div>
 
             </div>

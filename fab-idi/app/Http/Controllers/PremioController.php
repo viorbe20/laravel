@@ -107,6 +107,7 @@ class PremioController extends BaseController
             $premio->imagen = 'premio-default.webp';
             $premio->save();
         }
+        
         return redirect()->route('gestion-premios')->with('success', 'El premio se ha eliminado correctamente.');
     }
 

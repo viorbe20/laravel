@@ -5,15 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
 use App\Models\CursoAcademico;
+use Faker\Provider\Base;
 
-class ProyectoController extends Controller
+class ProyectoController extends BaseController
 {
 
     public function eliminarProyecto($id)
     {
-        Proyecto::where('id', $id)->update(['activo' => 0]);
-        
         $proyecto = Proyecto::find($id);
+
+        $proyecto->update(['activo' => 0]);
+
+        // Borrar imagen de la carpeta img/premios si no es la imagen por defecto
+        if ($proyecto->imagen != 'proyecto-default.webp') {
+            unlink(public_path('img/proyectos/' . $proyecto->imagen));
+            $proyecto->imagen = 'proyecto-default.webp';
+            $proyecto->save();
+        }
 
         if ($proyecto->tipo_proyecto_id == '1') {
             return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha eliminado correctamente.');
@@ -35,13 +43,13 @@ class ProyectoController extends Controller
         }
     }
 
-    
+
     public function destacarProyecto($id)
     {
         $proyecto = Proyecto::find($id);
         $proyecto->destacado = '1';
         $proyecto->save();
-        
+
         if ($proyecto->tipo_proyecto_id == '1') {
             return redirect()->route('gestion-proyectos-pip');
         } else {
@@ -53,11 +61,34 @@ class ProyectoController extends Controller
     {
         $proyecto = Proyecto::find(request()->input('id-proyecto'));
 
+        //Validación url
+        if (!empty($request->input('url-proyecto'))) {
+            
+            if (!$this->verfificarUrl($request->input('url-proyecto'))) {
+                
+                return redirect()->to('gestion-proyectos/editar/' . $proyecto->id)->with('success', 'La url no es válida.');
+            }
+        }
+
+        //Validación imagen
         if ($request->hasFile('imagen-proyecto')) {
-            $imagen = $request->file('imagen-proyecto');
-            $nombreImagen = $request->file('imagen-proyecto')->hashName();
-            $imagen->move(public_path() . '/images/proyectos/', $nombreImagen);
-            $proyecto->imagen = $nombreImagen;
+            $file = $request->file('imagen-proyecto');
+            $maxSize = 2097152; // 2 megabytes 2097152
+
+            if ($file->getSize() > $maxSize) {
+                return redirect()->to('gestion-proyectos/editar/' . $proyecto->id)->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->to('gestion-proyectos/editar/' . $proyecto->id)->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreImagen = '';
+                }
+            }
+        } else {
+            $nombreImagen = 'proyecto-default.webp';
         }
 
         $proyecto->nombre = $request->input('nombre-proyecto');
@@ -66,13 +97,24 @@ class ProyectoController extends Controller
         $proyecto->curso_academico_id = $request->input('select-curso-academico');
         $proyecto->tipo_proyecto_id = $request->input('select-tipo-proyecto');
         $proyecto->descripcion = $request->input('descripcion-proyecto');
-        $proyecto->destacado = $request->input('destacado') == '1' ? true : false;
         $proyecto->disponible = $request->input('disponible') == '1' ? true : false;
         $proyecto->url = $request->input('url-proyecto');
-        $proyecto->activo = $request->input('activo') == '1' ? true : false;
+        $proyecto->imagen = $nombreImagen;
         $proyecto->save();
 
-        return view('admin.inicio-admin');
+        //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
+        if ($request->hasFile('imagen-proyecto')) {
+            $nombreImagen = $proyecto->id . '.' . $extension;
+            $proyecto->imagen = $nombreImagen;
+            $proyecto->save();
+            $file->move(public_path('img/proyectos'), $nombreImagen);
+        }
+
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha actualizado correctamente.');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros')->with('success', 'El proyecto se ha actualizado correctamente.');
+        }
     }
 
     public function editarProyecto($id)
@@ -90,10 +132,30 @@ class ProyectoController extends Controller
 
     public function guardarProyecto(Request $request)
     {
+        //Validación url
+        if (!empty($request->input('url-proyecto'))) {
+            if (!$this->verfificarUrl($request->input('url-proyecto'))) {
+                return redirect()->route('gestion-proyectos/crear')->with('error', 'La url no es válida.');
+            }
+        }
+
+        //Validación imagen
         if ($request->hasFile('imagen-proyecto')) {
-            $imagen = $request->file('imagen-proyecto');
-            $nombreImagen = $request->file('imagen-proyecto')->hashName();
-            $imagen->move(public_path() . '/images/proyectos/', $nombreImagen);
+            $file = $request->file('imagen-proyecto');
+            $maxSize = 2097152; // 2 megabytes
+
+            if ($file->getSize() > $maxSize) {
+                return redirect()->route('crear-proyecto')->with('error', 'El tamaño de la imagen no puede superar los 2mb.');
+            } else {
+                $allowedExtensions = ['jpg', 'png', 'jpeg', 'webp'];
+                $extension = $file->getClientOriginalExtension();
+
+                if (!in_array($extension, $allowedExtensions)) {
+                    return redirect()->route('crear-proyecto')->with('error', 'La extensiones permitidas son: jpg, png, jpeg o webp.');
+                } else {
+                    $nombreImagen = '';
+                }
+            }
         } else {
             $nombreImagen = 'proyecto-default.webp';
         }
@@ -112,7 +174,19 @@ class ProyectoController extends Controller
             'activo' => '1',
         ]);
 
-        return view('admin.inicio-admin');
+        //Si lleva imagen le ponemos el nombre del id, la extension y la guardamos en la carpeta
+        if ($request->hasFile('imagen-proyecto')) {
+            $nombreImagen = $proyecto->id . '.' . $extension;
+            $proyecto->imagen = $nombreImagen;
+            $proyecto->save();
+            $file->move(public_path('img/proyectos'), $nombreImagen);
+        }
+
+        if ($proyecto->tipo_proyecto_id == '1') {
+            return redirect()->route('gestion-proyectos-pip')->with('success', 'El proyecto se ha creado correctamente.');
+        } else {
+            return redirect()->route('gestion-proyectos-intercentros')->with('success', 'El proyecto se ha creado correctamente.');
+        }
     }
 
     public function obtenerCursoAcademicoAjax()
@@ -130,8 +204,8 @@ class ProyectoController extends Controller
     public function gestionProyectosIntercentros()
     {
         $proyectosDestacados = Proyecto::where('tipo_proyecto_id', '2')->where('activo', '1')->where('destacado', '1')->get();
-        $cursosAcademicos = \App\Models\CursoAcademico::all();
-        
+        $cursosAcademicos = CursoAcademico::all();
+
         return view('admin.gestion-proyectos-intercentros', compact('proyectosDestacados', 'cursosAcademicos'));
     }
 
@@ -140,8 +214,8 @@ class ProyectoController extends Controller
     {
 
         $proyectosDestacados = Proyecto::where('tipo_proyecto_id', '1')->where('activo', '1')->where('destacado', '1')->get();
-        $cursosAcademicos = \App\Models\CursoAcademico::all();
-        
+        $cursosAcademicos = CursoAcademico::all();
+
         return view('admin.gestion-proyectos-pip', compact('proyectosDestacados', 'cursosAcademicos'));
     }
 }
