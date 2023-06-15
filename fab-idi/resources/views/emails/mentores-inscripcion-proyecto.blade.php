@@ -11,11 +11,9 @@
   <p>Un mentor ha solicitado mentorizar un proyecto:</p>
     <p>Estos son los datos del mentor:</p>
   <ul>
-    <li>Entidad: {{ $entidad }}</li>
-    <li>Nombre: {{ $nombre }}</li>
-    <li>Email: {{ $email }}</li>
-    <li>Proyecto: {{ $proyecto }}</li>
-    <li>Mensaje: {{ $mensaje }}</li>
+    <li>Nombre: {{ $data['nombreCompleto'] }}</li>
+    <li>Email: {{ $data['email'] }}</li>
+    <li>Proyecto: {{ $data['proyecto'] }}</li>
   </ul>
 </body>
 </html>

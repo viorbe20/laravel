@@ -11,12 +11,12 @@
   <h2> Inscripción como ENTIDAD</h2>
   <p> Datos del solicitante:</p>
   <ul>
-    <li>Nombre: {{ $nombre }}</li>
-    <li>representante: {{ $representante }}</li>
-    <li>Email: {{ $email }}</li>
-    <li>Teléfono: {{ $telefono }}</li>
-    <li>Web: {{ $web }}</li>
-    <li>Mensaje: {{ $mensaje }}</li>
+    <li>Nombre: {{ $data['nombre'] }}</li>
+    <li>representante: {{ $data['representante'] }}</li>
+    <li>Email: {{ $data['email'] }}</li>
+    <li>Teléfono: {{ $data['telefono'] }}</li>
+    <li>Web: {{ $data['web']}}</li>
+    <li>Mensaje: {{ $data['mensaje'] }}</li>
   </ul>
 </body>
 </html>

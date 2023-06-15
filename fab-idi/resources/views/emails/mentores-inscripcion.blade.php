@@ -10,19 +10,32 @@
 <h1>Inscripción como mentor</h1>
   <p>Has recibido un nuevo mensaje para dar de alta un mentor:</p>
     <p>Estos son los datos del solicitante:</p>
-  <ul>
-    <li>Nombre: {{ $nombre }}</li>
-    <li>Email: {{ $email }}</li>
-    <li>Teléfono: {{ $tel }}</li>
-    <li>Redes sociales:</li>
-      <ul>
-        <li>Twitter: {{ $twitter }}</li>
-        <li>Instagram: {{ $instagram }}</li>
-        <li>Linkedin: {{ $linkedin }}</li>
-        <li>Web: {{ $web }}</li>
-      </ul>
-    <li>Mensaje: {{ $mensaje }}</li>
-
-  </ul>
+    @if ($data['tipoUsuario'] == 'usuario')
+    <h2> Inscripción como USUARIO</h2>
+    @else
+    <h2> Inscripción como ENTIDAD</h2>
+    @endif
+    <p> Datos del solicitante:</p>
+    <ul>
+      <li>Nombre: {{ $data['nombre']}}</li>
+    @if ($data['tipoUsuario'] == 'usuario')
+      <li>Apellidos: {{ $data['apellidos'] }}</li>
+      <li>Email: {{ $data['email'] }}</li>
+      <li>Teléfono: {{ $data['telefono'] }}</li>
+      <li>Redes sociales: 
+          <ul>
+              <li>Twitter: {{ $data['twitter'] }}</li>
+              <li>Instagram: {{ $data['instagram'] }}</li>
+              <li>Linkedin: {{ $data['linkedin'] }}</li>
+          </ul>
+      </li>
+    @else
+      <li>representante: {{ $data['representante'] }}</li>
+      <li>Email: {{ $data['email'] }}</li>
+      <li>Teléfono: {{ $data['telefono'] }}</li>
+      <li>Web: {{ $data['web'] }}</li>
+    @endif
+      <li>Mensaje: {{ $data['mensaje'] }}</li>
+    </ul>
 </body>
 </html>

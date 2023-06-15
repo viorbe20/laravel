@@ -2,6 +2,8 @@
 
 @section('title', 'Mentorización')
 
+@vite(['resources/js/altaUsuario.js'])
+
 @section('content')
 
 
@@ -159,7 +161,7 @@
                         <div class="row">
                             <div class="mb-3 col">
                                 <label for="nombre">NOMBRE COMPLETO*</label>
-                                <input type="text" class="form-control" name="nombre-completo"
+                                <input readonly type="text" class="form-control" name="nombre-completo"
                                     value="{{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}">
                             </div>
                         </div>
@@ -167,7 +169,7 @@
                         <div class="row">
                             <div class="mb-3 col">
                                 <label for="email">EMAIL*</label>
-                                <input type="email" class="form-control" name="email"
+                                <input readonly type="email" class="form-control" name="email"
                                     value="{{ Auth::user()->email }}">
                             </div>
                         </div>

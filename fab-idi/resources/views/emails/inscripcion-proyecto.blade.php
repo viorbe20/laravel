@@ -8,13 +8,12 @@
 </head>
 <body>
 <h1>Inscripción para mentorizar un Proyecto</h1>
-<h2> PROYECTO: {{ $proyecto }}</h2>
+<h2> PROYECTO: {{ $data['proyecto'] }}</h2>
   <p> Datos del solicitante:</p>
   <ul>
-    <li>Nombre Completo: {{ $nombreCompleto }}</li>
-    <li>Correo Electrónico: {{ $email }}</li>
-    <li> Proyecto: {{ $proyecto }}</li>
+    <li>Nombre Completo: {{ $data['nombreCompleto'] }}</li>
+    <li>Correo Electrónico: {{ $data['email'] }}</li>
+    <li> Proyecto: {{ $data['proyecto'] }}</li>
   </ul>
-   
 </body>
 </html>
