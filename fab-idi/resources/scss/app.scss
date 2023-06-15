@@ -12,10 +12,10 @@
 
 
 * {
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 
   main {
-    padding: 2% 2%;
+      padding: 1.5% 4%;
   }
 }
 
@@ -314,6 +314,102 @@ textarea {
   align-items: center;
 }
 
+
+
+p {
+  font-size: 18px;
+  text-align: justify;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+  color: var(--verde-oscuro);
+}
+
+.subtitulo {
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+  color: var(--verde-oscuro);
+}
+
+.fondo-titulo {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.formulario {
+  --bs-card-spacer-y: 1rem;
+  --bs-card-spacer-x: 1rem;
+  --bs-card-title-spacer-y: 0.5rem;
+  --bs-card-border-width: 1px;
+  --bs-card-border-color: var(--bs-border-color-translucent);
+  --bs-card-border-radius: 0.375rem;
+  --bs-card-box-shadow: ;
+  --bs-card-inner-border-radius: calc(0.375rem - 1px);
+  --bs-card-cap-padding-y: 0.5rem;
+  --bs-card-cap-padding-x: 1rem;
+  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
+  --bs-card-cap-color: ;
+  --bs-card-height: ;
+  --bs-card-color: ;
+  --bs-card-bg: #fff;
+  --bs-card-img-overlay-padding: 1rem;
+  --bs-card-group-margin: 0.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: var(--bs-card-height);
+  word-wrap: break-word;
+  background-color: var(--bs-card-bg);
+  background-clip: border-box;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  border-radius: var(--bs-card-border-radius);
+  width: 50%;
+  .form-header {
+      color: #fefefe;
+      padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+      margin-bottom: 0;
+      background-color: var(--verde-oscuro);
+      border-bottom: var(--bs-card-border-width) solid
+          var(--bs-card-border-color);
+
+      h4 {
+          font-weight: 600;
+          margin: 0;
+      }
+  }
+  .form-body {
+      flex: 1 1 auto;
+      padding: 20px 45px;
+      color: var(--bs-card-color);
+      background-color: var(--bs-card-bg);
+
+      label {
+          color: #868686;
+      }
+      .form-select {
+          color: #44484d;
+          background-color: #f1f1f1;
+      }
+      .form-control {
+          color: #44484d;
+          background-color: #f1f1f1;
+      }
+      .btn-submit {
+          text-align: right;
+      }
+  }
+  ´ select {
+      background-color: #f1f1f1;
+  }
+}
 
 /*****************************VISTA ADMIN*****************************/
 /*Página inicio*/
@@ -728,135 +824,132 @@ nav {
 
 /*Página inicio*/
 #main-inicio {
-
   #inicio-up {
-
-    display: flex;
-
-    #inicio-videos {
-      text-align: center;
-      flex: 50%;
-    }
-
-    #inicio-text {
-      padding: 2%;
-      flex: 50%;
-    }
-
-    #video-line-2 {
       display: flex;
-      justify-content: center;
-    }
 
-    iframe {
-      width: 100%;
-      padding: 0 2px;
-    }
+      #inicio-videos {
+          text-align: center;
+          flex: 50%;
+      }
+
+      #inicio-text {
+          padding: 2%;
+          flex: 50%;
+      }
+
+      #video-line-2 {
+          display: flex;
+          justify-content: center;
+      }
+
+      iframe {
+          width: 100%;
+          padding: 0 2px;
+      }
   }
 
-
-
   #section-premios {
-    display: flex;
-    flex-direction: column;
-    margin: 2% 0;
-
-    #inicio-cards {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       margin: 2% 0;
-    }
 
-    a {
-      margin: 0 40%;
-    }
+      #inicio-cards {
+          display: flex;
+          justify-content: center;
+          margin: 2% 0;
+      }
+
+      a {
+          margin: 0 40%;
+      }
   }
 
   #inicio-cards {
-    .card {
-      margin: 0% 3%;
+      .card {
+          margin: 0% 3%;
 
-      //sombra
-      box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
-    }
+          //sombra
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+      }
   }
 
   #btn-ver-premios {
-    margin: 4% 0%;
+      margin: 4% 0%;
   }
 
   //Premios
   .gallery {
-    display: flex;
-    padding: 2px;
-    transition: 0.3s;
-
-    &:hover &__image {
-      filter: grayscale(1);
-    }
-
-    &__column {
       display: flex;
-      flex-direction: column;
-      width: 25%;
-    }
-
-    &__link {
-      margin: 2px;
-      overflow: hidden;
-
-      &:hover {
-        .gallery__image {
-          filter: grayscale(0);
-        }
-
-        .gallery__caption {
-          opacity: 1;
-        }
-      }
-    }
-
-    &__thumb {
-      position: relative;
-    }
-
-    &__image {
-      display: block;
-      width: 100%;
+      padding: 2px;
       transition: 0.3s;
 
-      &:hover {
-        transform: scale(1.1);
+      &:hover &__image {
+          filter: grayscale(1);
       }
-    }
 
-    &__caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      padding: 25px 15px 15px;
-      width: 100%;
-      font-family: "Raleway", sans-serif;
-      font-size: 16px;
-      color: white;
-      opacity: 0;
-      background: linear-gradient(0deg,
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(255, 255, 255, 0) 100%);
-      transition: 0.3s;
-    }
+      &__column {
+          display: flex;
+          flex-direction: column;
+          width: 25%;
+      }
+
+      &__link {
+          margin: 2px;
+          overflow: hidden;
+
+          &:hover {
+              .gallery__image {
+                  filter: grayscale(0);
+              }
+
+              .gallery__caption {
+                  opacity: 1;
+              }
+          }
+      }
+
+      &__thumb {
+          position: relative;
+      }
+
+      &__image {
+          display: block;
+          width: 100%;
+          transition: 0.3s;
+
+          &:hover {
+              transform: scale(1.1);
+          }
+      }
+
+      &__caption {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 25px 15px 15px;
+          width: 100%;
+          font-family: "Raleway", sans-serif;
+          font-size: 16px;
+          color: white;
+          opacity: 0;
+          background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.5) 0%,
+              rgba(255, 255, 255, 0) 100%
+          );
+          transition: 0.3s;
+      }
   }
-
   .fondo-titulo {
-    h2 {
-      color: white;
-      text-shadow: 2px 2px 4px #0000008b;
-    }
-
-    background: url("../../public/img/banner-premios.webp") no-repeat center center;
-    background-size: cover;
-    padding: 2%;
-    margin: 2% 0;
+      h2 {
+          color: white;
+          text-shadow: 2px 2px 4px #0000008b;
+      }
+      background: url("../../public/img/banner-premios.webp") no-repeat center
+          center;
+      background-size: cover;
+      padding: 2%;
+      margin: 2% 0;
   }
 }
 
@@ -914,6 +1007,8 @@ nav {
     padding: 2%;
     margin: 2% 0;
   }
+
+ 
 
   .proyectos-intercentros {
     display: grid;

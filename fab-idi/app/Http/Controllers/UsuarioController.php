@@ -13,6 +13,8 @@ use Swift_Mailer;
 use Swift_Message;
 use Swift_SmtpTransport;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
+use Exception;
 
 
 
@@ -216,9 +218,11 @@ class UsuarioController extends BaseController
 
     public function mentorizacionPost(Request $request)
     {
+
+        $tipoUsuario = $request->input('tipoUsuario');
         // si es MENTOR selcciona el proyecto a mentorizar
-        if (auth()->user() && (Auth::user()::join('perfiles', 'users.perfil_id', '=', 'perfiles.id')->where('perfiles.perfil', 'mentor')
-            || Auth::user()::join('colaboradores', 'users.id_colaborador', '=', 'colaboradores.id')->where('colaboradores.colaborador', 'mentor'))) {
+        if(auth()->user() && (Auth::user()::join('perfiles', 'users.perfil_id', '=', 'perfiles.id')->where('perfiles.perfil','mentor')
+        || Auth::user()::join('colaboradores', 'users.id_colaborador', '=', 'colaboradores.id')->where('colaboradores.colaborador','mentor'))){
             // obtener proyecto por el nombre
             $proyecto = Proyecto::where('nombre', '=', $request->input('proyecto'))->first();
             // Si no ha seleccionado un proyecto
@@ -231,66 +235,72 @@ class UsuarioController extends BaseController
                 'proyecto' => $request->input('proyecto')
             );
             try {
-                Mail::send('emails.inscripcion-proyecto', $data, function ($message) use ($data) {
-                    $message->from($data['email'], $data['nombreCompleto']);
-                    $message->to('maria14998@gmail.com')
-                        ->subject('Inscripción para Mentorizar Proyecto');
+                Mail::send('emails.inscripcion-proyecto', $data, function($message) use ($data){ 
+                $message->from($data['email'], $data['nombreCompleto']);
+                $message->to('maria14998@gmail.com')
+                ->subject('Inscripción para Mentorizar Proyecto');
                 });
             } catch (\Swift_TransportException $e) {
                 return redirect()->route('mentorizacion')->with('error', 'No se ha podido enviar el correo');
             }
 
             return redirect()->route('mentorizacion')->with('success', 'Correo enviado correctamente');
-        } else {
+                
+
+
+        }else{
             // si es USUARIO rellena el formulario con sus datos
             if ($tipoUsuario == 'usuario') {
-                $data = array(
-                    'tipoUsuario' => $tipoUsuario,
-                    'nombre' => $request->input('nombre-usuario'),
-                    'apellidos' => $request->input('apellidos-usuario'),
-                    'email' => $request->input('email-usuario'),
-                    'telefono' => $request->input('telefono-usuario'),
-                    'twitter' => $request->input('twitter-usuario'),
-                    'instagram' => $request->input('instagram-usuario'),
-                    'linkedin' => $request->input('linkedin-usuario'),
-                    'mensaje' => $request->input('mensaje-usuario')
-
-                );
-                try {
-                    Mail::send('emails.inscripcion-mentor', $data, function ($message) use ($data) {
-                        $message->from($data['email'], $data['nombre'] . ' ' . $data['apellidos']);
-                        $message->to('maria14998@gmail.com')
-                            ->subject('Inscripción a red FAB-IDI');
-                    });
+            $data = array(
+                'tipoUsuario' => $tipoUsuario,
+                'nombre' => $request->input('nombre-usuario'),
+                'apellidos' => $request->input('apellidos-usuario'),
+                'email' => $request->input('email-usuario'),
+                'telefono' => $request->input('telefono-usuario'),
+                'twitter' => $request->input('twitter-usuario'),
+                'instagram' => $request->input('instagram-usuario'),
+                'linkedin' => $request->input('linkedin-usuario'),
+                'mensaje' => $request->input('mensaje-usuario')
+                
+            );
+            try {
+                Mail::send('emails.inscripcion-mentor', $data, function($message) use ($data){ 
+                $message->from($data['email'], $data['nombre'].' '.$data['apellidos']);
+                $message->to('maria14998@gmail.com')
+                ->subject('Inscripción a red FAB-IDI');
+                });
                 } catch (\Swift_TransportException $e) {
                     $enviado = false;
                     return view("quienes-somos", compact('enviado'));
                 }
-            } else {
-                // si es ENTIDAD rellena el formulario con sus datos
-                $data = array(
-                    'tipoUsuario' => $tipoUsuario,
-                    'nombre' => $request->input('nombre-entidad'),
-                    'representante' => $request->input('representante-entidad'),
-                    'email' => $request->input('email-entidad'),
-                    'telefono' => $request->input('telefono-entidad'),
-                    'web' => $request->input('web-entidad'),
-                    'mensaje' => $request->input('mensaje-entidad')
-                );
+        }else{
+            // si es ENTIDAD rellena el formulario con sus datos
+            $data = array(
+                'tipoUsuario' => $tipoUsuario,
+                'nombre' => $request->input('nombre-entidad'),
+                'representante' => $request->input('representante-entidad'),
+                'email' => $request->input('email-entidad'),
+                'telefono' => $request->input('telefono-entidad'),
+                'web' => $request->input('web-entidad'),
+                'mensaje' => $request->input('mensaje-entidad')
+            );
 
-                try {
-                    Mail::send('emails.inscripcion-mentor', $data, function ($message) use ($data) {
-                        $message->from($data['email'], $data['nombre']);
-                        $message->to('maria14998@gmail.com')
-                            ->subject('Inscripción a red FAB-IDI');
-                    });
-                } catch (\Swift_TransportException $e) {
-                    $enviado = false;
-                    return redirect()->route('quienes-somos', compact('enviado'));
-                }
+            try {
+                Mail::send('emails.inscripcion-mentor', $data, function($message) use ($data){ 
+                $message->from($data['email'], $data['nombre']);
+                $message->to('maria14998@gmail.com')
+                ->subject('Inscripción a red FAB-IDI');
+                });
+            } catch (\Swift_TransportException $e) {
+                $enviado = false;
+                return redirect()->route('quienes-somos', compact('enviado'));
             }
-            $enviado = true;
-            return view("quienes-somos", compact('enviado'));
+            
+
+        }
+        $enviado = true;
+        return view("quienes-somos", compact('enviado'));
+
         }
         return redirect()->route('mentorizacion');
     }
@@ -431,17 +441,23 @@ class UsuarioController extends BaseController
                 'instagram' => $request->input('instagram-usuario'),
                 'linkedin' => $request->input('linkedin-usuario'),
                 'mensaje' => $request->input('mensaje-usuario')
-
+                
             );
             try {
-                Mail::send('emails.inscripcion-red-fab-idi', $data, function ($message) use ($data) {
-                    $message->from($data['email'], $data['nombre'] . ' ' . $data['apellidos']);
-                    $message->to('maria14998@gmail.com')
-                        ->subject('Inscripción a red FAB-IDI');
-                });
-            } catch (\Swift_TransportException $e) {
-                $enviado = false;
-                return view("quienes-somos", compact('enviado'));
+                $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+                $transport->setUsername('viorbe20@gmail.com');
+                $transport->setPassword('qgeccmuaivcojphv');
+                
+                $mailer = new Swift_Mailer($transport);
+                
+                $message = new Swift_Message('Prueba email inscripción FAB-IDI');
+                $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+                $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-usuario')]);
+                //dd($data['tipoUsuario']);
+                $message->setBody(view('emails.inscripcion-red-fab-idi', ['data' => $data ])->render(), 'text/html');
+                $mailer->send($message);
+            } catch (Exception $e) {
+                return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
             }
         } else {
 
@@ -456,18 +472,22 @@ class UsuarioController extends BaseController
             );
 
             try {
-                Mail::send('emails.inscripcion-red-fab-idi', $data, function ($message) use ($data) {
-                    $message->from($data['email'], $data['nombre']);
-                    $message->to('maria14998@gmail.com')
-                        ->subject('Inscripción a red FAB-IDI');
-                });
-            } catch (\Swift_TransportException $e) {
-                $enviado = false;
-                return view("quienes-somos", compact('enviado'));
+                $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+                $transport->setUsername('viorbe20@gmail.com');
+                $transport->setPassword('qgeccmuaivcojphv');
+            
+                $mailer = new Swift_Mailer($transport);
+            
+                $message = new Swift_Message('Prueba email contraseña');
+                $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+                $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-entidad')]);
+                $message->setBody(view('emails.inscripcion-red-fab-idi', ['usuario' => $request->input('nombre-entidad')])->render(), 'text/html');
+                $mailer->send($message);            
+            } catch (Exception $e) {
+                return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
             }
         }
-        $enviado = true;
-        return view("quienes-somos", compact('enviado'));
-        return redirect()->view('quienes-somos');
+
+        return view("quienes-somos")->with('mensaje', 'Email enviado correctamente');
     }
 }
