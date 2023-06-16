@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-06-2023 a las 10:25:06
+-- Tiempo de generación: 16-06-2023 a las 11:10:56
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -390,12 +390,12 @@ INSERT INTO `users` (`id`, `nombre`, `apellidos`, `email`, `password`, `telefono
 (12, 'embajador12', 'apellido1 apellido 2', 'embajador12@gmail.com', '$2y$10$FcMTz/v2i4JWFghKT31Hhu7NuwEody8c9LZlGnQi/WvZ95/76XCyW', '666666666', NULL, '@instagram', '@linkedin', 2, '12.jpg', 1, NULL, '2023-05-13 16:14:17', '2023-05-16 16:17:51', 2),
 (13, 'embajador6', 'embajador6apellidos1 apellido2', 'embajador6@gmail.com', '$2y$10$WJCXGTejwR7zFWKPCr1.AOCFsBvwEQZyQFh.GeteG3ETMCzmmS2Fq', '555555555', '@twitter', NULL, NULL, 2, '13.jpg', 0, NULL, '2023-05-13 16:13:12', '2023-05-20 05:41:32', 2),
 (15, 'embajador15', 'apellido1 apellido2', 'embajador15@gmail.com', '$2y$10$ja2TY5y8teyoVfpTXEux1O42ha7j4D4E2EC1SgEoRvEUtwo/BOnVS', NULL, NULL, '@instagram', NULL, 2, '15.jpg', 1, NULL, '2023-05-15 18:12:14', '2023-05-20 06:04:13', NULL),
-(18, 'mentor1', 'mentor1', 'mentor1@gmail.com', '$2y$10$h23fQvFmCieigQrKcSMUneqst14GOthQqnBO.6no7nctpiSwwIx1.', '', '', '', '', 3, 'usuario-default.webp', 1, NULL, '2023-05-13 16:06:42', '2023-06-05 16:22:26', 3),
+(18, 'mentor1', 'mentor1', 'mentor1@gmail.com', '$2y$10$kEbmvLAgIyiCywuQR/gCzeDSCS/dRVwctXi4rCWaWYXEhVD/hI2Oi', '', '', '', '', 3, 'usuario-default.webp', 1, NULL, '2023-05-13 16:06:42', '2023-06-05 16:22:26', 3),
 (19, 'user3', 'user3', 'user3@gmail.com', '$2y$10$IVkCwIm2Ywi9l13SzQHR/uivunHiL3mjYg9RWD3hx.h2ZR38ValLy', NULL, '@twitter', '@instagram', NULL, 1, '19.jpg', 1, NULL, '2023-06-03 15:18:28', '2023-06-14 15:53:09', NULL),
 (25, 'embajador2', 'embajador2', 'embajador2@gmail.com', '$2y$10$PGQzgGb7ShHwyBcY7V.9C.Wgz3PCKv98bmnAmngQg6eaK9MBAELqa', '555555555', '@twitter', '@instagram', '@linkedin', 1, 'usuario-default.webp', 1, NULL, '2023-06-03 15:43:25', '2023-06-03 15:43:25', NULL),
 (35, 'emba', 'embajador1apellido embajador1apellido', 'embajador1@gmail.com', '$2y$10$YSwm9vnfQOH1dbadHRB8hehhWb/01aAroRRSnRXjliUtk4k2WKzNG', '888 888 888', '@twitter', '@instagram', '@inkedin', 2, '35.jpg', 1, NULL, '2023-06-03 16:08:46', '2023-06-14 13:54:02', NULL),
 (44, 'Marcos', 'Naz Lucena', 'admin1@gmail.com', '$2y$10$zsmNxMLWI4DYb5wOTlak2uZ0rNTT3V2JW3OMr2/s4OKt08NR73edy', '555888333', '@twitter', '@instagram', '@linkedin', 1, '44.webp', 1, NULL, '2023-06-10 06:32:09', '2023-06-10 06:32:09', NULL),
-(47, 'user1', 'user1', 'user1@gmail.com', '$2y$10$sEO/8y87Kg314yCcJd6Ww.ShmIoiMt.JvkFFN.udkRpWGoQnwq.VC', NULL, NULL, '@instagram', NULL, 2, '47.jpg', 1, NULL, '2023-06-11 12:20:38', '2023-06-14 15:58:12', NULL),
+(47, 'user1', 'user1', 'user1@gmail.com', '$2y$10$w072Bw9yJRMfDa/64.VlrO8cKZLejkpYJiozzaopF1XqUqGZTkzru', NULL, NULL, '@instagram', NULL, 2, '47.jpg', 1, NULL, '2023-06-11 12:20:38', '2023-06-14 15:58:12', NULL),
 (49, 'mentor56', 'apellido 1 apellido 2', 'mentor56@gmail.com', '$2y$10$Yg/EU56VvS8zh/V28PQYoOwErHXah0rpT1f4SNTsgJe7JAJnoa.Km', '666666666', '@twitter', '@instagram', NULL, 3, '49.jpg', 1, NULL, '2023-06-12 16:22:30', '2023-06-12 16:22:31', NULL);
 
 -- --------------------------------------------------------
