@@ -246,7 +246,7 @@ class UsuarioController extends BaseController
                 $message->setBody(view('emails.mentores-inscripcion-proyecto', ['data' => $data ])->render(), 'text/html');
                 $mailer->send($message);
             } catch (Exception $e) {
-                return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
+                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
             }
 
             return redirect()->route('mentorizacion')->with('success', 'Correo enviado correctamente');
@@ -279,7 +279,7 @@ class UsuarioController extends BaseController
                 $message->setBody(view('emails.mentores-inscripcion', ['data' => $data ])->render(), 'text/html');
                 $mailer->send($message);
             } catch (Exception $e) {
-                return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
+                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
             }
         }else{
             // si es ENTIDAD rellena el formulario con sus datos
@@ -306,13 +306,13 @@ class UsuarioController extends BaseController
                 $message->setBody(view('emails.mentores-inscripcion', ['data' => $data ])->render(), 'text/html');
                 $mailer->send($message);
             } catch (Exception $e) {
-                return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
+                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
             }
             
 
         }
         $enviado = true;
-        return view("quienes-somos", compact('enviado'));
+        return view("mentorizacion", compact('enviado'));
 
         }
         return redirect()->route('mentorizacion');
