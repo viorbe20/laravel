@@ -19,6 +19,24 @@
   }
 }
 
+/*Margin lateral personalizado*/
+#main-inicio {
+  #inicio-up {
+    margin: 2% 5%;
+  }
+}
+
+#main-proyectos-intercentros {
+  .container {
+    margin: 2% 5%;
+  }
+}
+
+#main-quienes-somos {
+    margin: 2% 5%;
+}
+
+
 
 /*Estilos generales*/
 .titulo {
@@ -779,25 +797,25 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    background-color: pink;
 
     li {
-      padding: 10px 0%;
+      padding: 4px 2%;
       background-color: #ffffff;
       opacity: 0.8;
-      width: 20%;
       display: flex;
       justify-content: center !important;
       align-items: center !important;
+      width: 20%;
 
       a {
         color: var(--verde-medio);
         text-decoration: none;
         font-weight: bold;
-        padding: 0px 10px;
+        padding: 0px;
         font-size: 18px;
-        display: flex;
-        justify-content: center !important;
-        align-items: center !important;
+        text-align: center;
+        justify-content: center;
       }
     }
 
@@ -812,6 +830,7 @@ nav {
 
     li:hover {
       background-color: var(--verde-medio);
+      cursor: pointer;
 
       a {
         text-decoration: none;
