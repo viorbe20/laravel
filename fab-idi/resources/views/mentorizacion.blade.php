@@ -219,10 +219,9 @@
                     <h4 class="titulo">PROYECTOS</h4>
                 </div>
                 <div class="container">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia quaerat accusantium repudiandae,
-                        explicabo delectus dicta illum iure incidunt error! Nemo nulla hic ea eum expedita, atque pariatur
-                        ratione
-                        alias.
+                    <p>Estos son algunos de los proyectos que se han realizado hasta ahora. Si quieres consultar
+                        los proyectos actuales, debes estar registrado como mentor. Para ello, rellena el formulario de la 
+                        parte superior de la página.
                     </p>
                 </div>
                 <section class="proyectos-mentores container">
@@ -258,10 +257,10 @@
                         <h4 class="subtitulo">PROYECTOS DISPONIBLES</h4>
                     </div>
                     <div class="container">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia quaerat accusantium repudiandae,
-                            explicabo delectus dicta illum iure incidunt error! Nemo nulla hic ea eum expedita, atque pariatur
-                            ratione
-                            alias.
+                        <p>Estos son los proyectos que actualmente se encuentran displonibles. 
+                            Si estás interesado en mentorizar alguno de ellos, rellena el formulario de la 
+                            parte superior de la página indicando el proyecto que sea de tu interés. 
+                            En breve nos pondremos en contacto contigo para confirmar tu mentorización.
                         </p>
                     </div>
                     <section class="proyectos-mentores container">

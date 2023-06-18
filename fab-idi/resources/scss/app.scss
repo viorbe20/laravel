@@ -1712,6 +1712,20 @@ footer {
     }
   }
 
+  #main-mentorizacion {
+    .container {
+      flex-direction: column;
+    }
+
+    .formulario {
+      width: 100%;
+
+      select {
+      width: 80%;
+      }
+    }
+  }
+
 }
 
 @media (max-width:999px) {
@@ -1730,6 +1744,10 @@ footer {
       grid-template-columns: repeat(2, 1fr);
     } 
   }
+
+  #main-mentorizacion .proyectos-mentores {
+    grid-template-columns: repeat(1, 1fr);
+}
 }
 
 @media (max-width: 800px) {
