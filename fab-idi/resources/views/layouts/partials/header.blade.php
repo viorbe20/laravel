@@ -11,7 +11,6 @@
 
     <div id='header-right'>
         @guest
-
             <div id='iconos-rrss'>
                 <i class="fa-brands fa-twitter"></i>
                 <i class="fa-brands fa-instagram"></i>

@@ -8,7 +8,6 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample10">
             <ul class="navbar-nav">
-
                 <li class="{{ Request::is('/') ? 'active' : '' }}">
                     <a href="{{ URL::to('/') }}">Inicio</a>
                 </li>
