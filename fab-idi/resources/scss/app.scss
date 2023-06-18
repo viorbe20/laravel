@@ -797,7 +797,6 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: pink;
 
     li {
       padding: 4px 2%;
@@ -875,19 +874,43 @@ nav {
           display: flex;
           justify-content: center;
           margin: 2% 0;
+          
+          .card {
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            margin: 0 2%;
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.05);
+            }
+
+            .card-body {
+              padding-bottom: 40%;
+            }
+
+            img {
+              height: 200px;
+              object-fit: cover;
+            }
+  
+            h5 {
+              font-weight: bold;
+              height: 30%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+  
+            p {
+              height: 90%;
+              font-size: 16px;
+            }
+          }
+
       }
 
       a {
           margin: 0 40%;
-      }
-  }
-
-  #inicio-cards {
-      .card {
-          margin: 0% 3%;
-
-          //sombra
-          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
       }
   }
 
@@ -1619,18 +1642,6 @@ nav {
       h4 {
         text-align: center;
       }
-
-      //     &.wide {
-      //         height: 14%;
-      //     }
-
-      //     &.tall {
-      //         height: 15.5%;
-      //     }
-
-      //     &.big {
-      //         height: 17%;
-      //     }
     }
   }
 }
@@ -1665,3 +1676,55 @@ footer {
 
   }
 }
+
+/*RESPONSIVE*/
+
+@media (max-width: 1300px) {
+    #main-inicio {
+
+    #video-line-2{
+      display: flex;
+      flex-direction: column;
+
+      iframe{
+        margin: 2% 0%;
+        height: 300px !important;
+      }
+
+    }
+  }
+}
+
+@media (max-width:1100px) {
+  #inicio-cards {
+    flex-wrap: wrap;
+    
+    .card {
+      margin: 3% 3% !important;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #main-inicio {
+
+    #inicio-up{
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      margin: 0 5%;
+      
+      #inicio-videos {
+        width: 100%;
+      }
+    }
+
+    #video-line-2{
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+}
+

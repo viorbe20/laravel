@@ -15,7 +15,7 @@
             <div id='iconos-rrss'>
                 <i class="fa-brands fa-twitter"></i>
                 <i class="fa-brands fa-instagram"></i>
-                <a href="https://www.youtube.com/@antoniomarcosnazlucena9484" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.youtube.com/@RedFabIDI" target="_blank"><i class="fa-brands fa-youtube"></i></a>
             </div>
 
             <a href="{{ route('login') }}" class="btn btn-principal">Login</a>

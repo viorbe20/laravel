@@ -11,26 +11,28 @@
         <div id="historia">
             <h2 class="titulo">HISTORIA DEL FAB-IDI</h2>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
-                quaerat
-                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
-                soluta tenetur.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
-                quaerat
-                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
-                soluta tenetur.
+                En el año 2014, el <b>IES Martín Rivero de Ronda</b> inició un proyecto educativo que involucraba la creación
+                de un departamento de <b>Investigación, Desarrollo e Innovación (I+D+i)</b>, en el cual profesores y
+                estudiantes colaboraban utilizando la investigación científica como <b>metodología educativa</b>. Este enfoque
+                fomentaba la propuesta de investigaciones, el desarrollo de inventos y la constante innovación, ya sea
+                por los estudiantes actuales o por las generaciones posteriores que retomaban y mejoraban continuamente
+                los trabajos previos.
+
             </p>
             <p>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
-                quaerat
-                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
-                soluta tenetur.
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores atque adipisci, molestias sequi
-                quaerat
-                culpa, libero id ducimus eligendi, consequuntur numquam rem nostrum facilis sit odit officia similique
-                soluta tenetur.
+                El volumen de investigaciones y los premios obtenidos generaron una forma de trabajo basada no solo en
+                la mera realización de un proyecto, sino en la observación del <b>cambio de mentalidad</b> de los estudiantes a
+                medida que avanzaban en los diferentes niveles de investigación dentro del centro educativo. Esto
+                permitía que nuestro IES produjera <b>trabajos innovadores</b> y, sobre todo, estudiantes con las capacidades
+                investigativas necesarias para nuestra sociedad.
             </p>
-
+            <p>
+                Si bien <b>otros centros</b> también realizan investigaciones, se busca convertir este enfoque en una
+                <b>metodología estandarizada</b> para que otros institutos puedan incorporarse, y para que la universidad
+                juegue un papel mucho más activo en esta formación. Además, se pretende contar con estudiantes que han
+                surgido de esta <b>metodología</b> y que actúen como base y guías para los <b>nuevos estudiantes</b> que deseen
+                adentrarse en el mundo de la investigación.
+            </p>
         </div>
         <div id="img-red">
             <img src="{{ asset('img/colmena.png') }}" alt="colmena-fab-idi">
