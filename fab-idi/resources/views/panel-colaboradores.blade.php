@@ -60,7 +60,7 @@
                 <p class="title">Instituto</p>
                 <p class="description">{{ $instituto->descripcion }}</p>
                 <div class="social">
-                    {!! !empty($instituto->url) ? "<a href='$instituto->url'>{{$instituto->url}}</a>" : "" !!}
+                    {!! !empty($instituto->web) ? "<a href='$instituto->web'>Web</a>" : "" !!}
                 </div>
             </div>
         </div>
