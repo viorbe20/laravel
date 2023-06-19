@@ -1745,7 +1745,7 @@ footer {
     } 
   }
 
-  #main-mentorizacion .proyectos-mentores {
+  #main-mentorizacion .proyectos-mentores, #main-proyectos-intercentros .proyectos-intercentros {
     grid-template-columns: repeat(1, 1fr);
 }
 }

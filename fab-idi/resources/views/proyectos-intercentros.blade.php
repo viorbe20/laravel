@@ -35,10 +35,7 @@
         </div>
 
             <div class="container">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum quia quaerat accusantium repudiandae,
-                    explicabo delectus dicta illum iure incidunt error! Nemo nulla hic ea eum expedita, atque pariatur
-                    ratione
-                    alias.
+                <p>A continuación puedes ver los proyectos intercentros que se están llevando a cabo actualmente.
                 </p>
             </div>
             <section class="proyectos-intercentros container">

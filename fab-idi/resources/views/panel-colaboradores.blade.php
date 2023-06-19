@@ -9,7 +9,7 @@
 
 <main id='main-panel-colaboradores'>
 
-    <h4 class="subtitulo mt-5">Embajadores</h4>
+    <h4 class="subtitulo mt-5">EMBAJADORES</h4>
     <div class="carrusel-colaboradores">
         @foreach ($embajadores as $embajador)
         <div class="team-boxed">
@@ -29,7 +29,7 @@
         @endforeach
     </div>
 
-    <h4 class="subtitulo mt-5">Mentores</h4>
+    <h4 class="subtitulo mt-5">MENTORES</h4>
     <div class="carrusel-colaboradores">
         @foreach ($mentores as $mentor)
         <div class="team-boxed">
@@ -49,7 +49,7 @@
         @endforeach
     </div>
 
-    <h4 class="subtitulo mt-5">Institutos</h4>
+    <h4 class="subtitulo mt-5">INSTITUTOS</h4>
     <div class="carrusel-colaboradores">
         @foreach ($institutos as $instituto)
         <div class="team-boxed">
