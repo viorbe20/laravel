@@ -15,6 +15,7 @@ use Swift_SmtpTransport;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Exception;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -165,9 +166,15 @@ class UsuarioController extends BaseController
     {
         $usuario = User::find($id);
         $randomPassword = $this->generarPasswordAleatoria();
-        $usuario->password = bcrypt($randomPassword);
-        $usuario->save();
+        $passwordEncriptada = bcrypt($randomPassword);
 
+        // Actualiza la contraseña en la base de datos
+        DB::table('users')->where('id', $id)->update(['password' => $passwordEncriptada]);
+
+        // Refresca el objeto $usuario después de la actualización
+        $usuario->refresh();
+
+        //Envía un email con la nueva contraseña
         $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
         $transport->setUsername('viorbe20@gmail.com');
         $transport->setPassword('qgeccmuaivcojphv');
@@ -176,7 +183,7 @@ class UsuarioController extends BaseController
 
         $message = new Swift_Message('Prueba email contraseña');
         $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
-        $message->setTo(['viorbe20@gmail.com' => $usuario->nombre]);
+        $message->setTo(['a20orbevi@iesgrancapitan.org' => $usuario->nombre]);
         $message->setBody(view('emails.nueva-contrasena', ['usuario' => $usuario, 'randomPassword' => $randomPassword])->render(), 'text/html');
         $mailer->send($message);
 
@@ -266,7 +273,7 @@ class UsuarioController extends BaseController
         } else {
             // si es USUARIO rellena el formulario con sus datos
             if ($tipoUsuario == 'usuario') {
-                
+
                 $data = array(
                     'tipoUsuario' => $tipoUsuario,
                     'nombre' => $request->input('nombre-usuario'),
