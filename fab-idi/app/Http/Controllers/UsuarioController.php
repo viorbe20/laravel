@@ -219,10 +219,24 @@ class UsuarioController extends BaseController
     public function mentorizacionPost(Request $request)
     {
 
+        // proyectos activos donde tipo_proyecto_id sea el id de tipo_proyecto Proyecto PIP y el proyecto esté desactivado
+        $proyectosDestacados = Proyecto::join('tipos_proyectos', 'proyectos.tipo_proyecto_id', '=', 'tipos_proyectos.id')
+            ->where('tipos_proyectos.tipos_proyectos', '=', 'Proyecto PIP')
+            ->where('proyectos.activo', '=', '1')
+            ->where('proyectos.destacado', '=', '1')
+            ->get();
+
+        $proyectosDisponibles = Proyecto::join('tipos_proyectos', 'proyectos.tipo_proyecto_id', '=', 'tipos_proyectos.id')
+            ->where('tipos_proyectos.tipos_proyectos', '=', 'Proyecto PIP')
+            ->where('proyectos.activo', '=', '1')
+            ->where('proyectos.destacado', '=', '0')
+            ->where('proyectos.disponible', '=', '1')
+            ->get();
+
+
         $tipoUsuario = $request->input('tipoUsuario');
         // si es MENTOR selcciona el proyecto a mentorizar
-        if (auth()->user() && auth()->user()->perfil_id == 3 )
-        {
+        if (auth()->user() && auth()->user()->perfil_id == 3) {
             // obtener proyecto por el nombre
             $proyecto = Proyecto::where('nombre', '=', $request->input('proyecto'))->first();
             // Si no ha seleccionado un proyecto
@@ -238,84 +252,80 @@ class UsuarioController extends BaseController
                 $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
                 $transport->setUsername('viorbe20@gmail.com');
                 $transport->setPassword('qgeccmuaivcojphv');
-                
+
                 $mailer = new Swift_Mailer($transport);
                 $message = new Swift_Message('Prueba email solicitud Mentorización');
                 $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
                 $message->setTo(['a20orbevi@iesgrancapitan.org' => $data['nombreCompleto']]);
-                $message->setBody(view('emails.mentores-inscripcion-proyecto', ['data' => $data ])->render(), 'text/html');
+                $message->setBody(view('emails.mentores-inscripcion-proyecto', ['data' => $data])->render(), 'text/html');
                 $mailer->send($message);
             } catch (Exception $e) {
-                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
+                return redirect()->route('mentorizacion')->with('error', 'Error al enviar el correo');
             }
-
             return redirect()->route('mentorizacion')->with('success', 'Correo enviado correctamente');
-                
-        }else{
+        } else {
             // si es USUARIO rellena el formulario con sus datos
             if ($tipoUsuario == 'usuario') {
-            $data = array(
-                'tipoUsuario' => $tipoUsuario,
-                'nombre' => $request->input('nombre-usuario'),
-                'apellidos' => $request->input('apellidos-usuario'),
-                'email' => $request->input('email-usuario'),
-                'telefono' => $request->input('telefono-usuario'),
-                'twitter' => $request->input('twitter-usuario'),
-                'instagram' => $request->input('instagram-usuario'),
-                'linkedin' => $request->input('linkedin-usuario'),
-                'mensaje' => $request->input('mensaje-usuario')
                 
-            );
-            try {
-                $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
-                $transport->setUsername('viorbe20@gmail.com');
-                $transport->setPassword('qgeccmuaivcojphv');
-                
-                $mailer = new Swift_Mailer($transport);
-                
-                $message = new Swift_Message('Prueba email solicitud Mentorización');
-                $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
-                $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-usuario')]);
-                $message->setBody(view('emails.mentores-inscripcion', ['data' => $data ])->render(), 'text/html');
-                $mailer->send($message);
-            } catch (Exception $e) {
-                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
+                $data = array(
+                    'tipoUsuario' => $tipoUsuario,
+                    'nombre' => $request->input('nombre-usuario'),
+                    'apellidos' => $request->input('apellidos-usuario'),
+                    'email' => $request->input('email-usuario'),
+                    'telefono' => $request->input('telefono-usuario'),
+                    'twitter' => $request->input('twitter-usuario'),
+                    'instagram' => $request->input('instagram-usuario'),
+                    'linkedin' => $request->input('linkedin-usuario'),
+                    'mensaje' => $request->input('mensaje-usuario')
+
+                );
+                try {
+                    $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+                    $transport->setUsername('viorbe20@gmail.com');
+                    $transport->setPassword('qgeccmuaivcojphv');
+
+                    $mailer = new Swift_Mailer($transport);
+
+                    $message = new Swift_Message('Prueba email solicitud Mentorización');
+                    $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+                    $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-usuario')]);
+                    $message->setBody(view('emails.mentores-inscripcion', ['data' => $data])->render(), 'text/html');
+                    $mailer->send($message);
+                } catch (Exception $e) {
+                    return redirect()->route('mentorizacion')->with('mensaje', 'Error al enviar el email');
+                }
+            } else {
+                // si es ENTIDAD rellena el formulario con sus datos
+                $data = array(
+                    'tipoUsuario' => $tipoUsuario,
+                    'nombre' => $request->input('nombre-entidad'),
+                    'representante' => $request->input('representante-entidad'),
+                    'email' => $request->input('email-entidad'),
+                    'telefono' => $request->input('telefono-entidad'),
+                    'web' => $request->input('web-entidad'),
+                    'mensaje' => $request->input('mensaje-entidad')
+                );
+
+                try {
+                    $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
+                    $transport->setUsername('viorbe20@gmail.com');
+                    $transport->setPassword('qgeccmuaivcojphv');
+
+                    $mailer = new Swift_Mailer($transport);
+
+                    $message = new Swift_Message('Prueba email solicitud Mentorización');
+                    $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
+                    $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-entidad')]);
+                    $message->setBody(view('emails.mentores-inscripcion', ['data' => $data])->render(), 'text/html');
+                    $mailer->send($message);
+                } catch (Exception $e) {
+                    return redirect()->route('mentorizacion')->with('mensaje', 'Error al enviar el email');
+                }
             }
-        }else{
-            // si es ENTIDAD rellena el formulario con sus datos
-            $data = array(
-                'tipoUsuario' => $tipoUsuario,
-                'nombre' => $request->input('nombre-entidad'),
-                'representante' => $request->input('representante-entidad'),
-                'email' => $request->input('email-entidad'),
-                'telefono' => $request->input('telefono-entidad'),
-                'web' => $request->input('web-entidad'),
-                'mensaje' => $request->input('mensaje-entidad')
-            );
-
-            try {
-                $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
-                $transport->setUsername('viorbe20@gmail.com');
-                $transport->setPassword('qgeccmuaivcojphv');
-                
-                $mailer = new Swift_Mailer($transport);
-                
-                $message = new Swift_Message('Prueba email solicitud Mentorización');
-                $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
-                $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-entidad')]);
-                $message->setBody(view('emails.mentores-inscripcion', ['data' => $data ])->render(), 'text/html');
-                $mailer->send($message);
-            } catch (Exception $e) {
-                return view("mentorizacion")->with('mensaje', 'Error al enviar el email');
-            }
-            
-
+            $enviado = true;
+            return redirect()->route('mentorizacion', compact('enviado'));
         }
-        $enviado = true;
-        return view("mentorizacion", compact('enviado'));
-
-        }
-        return redirect()->route('mentorizacion');
+        return redirect()->route('mentorizacion', compact('proyectosDestacados', 'proyectosDisponibles'));
     }
 
     public function guardarCambiosUsuario(Request $request)
@@ -359,12 +369,12 @@ class UsuarioController extends BaseController
 
             if ($user->imagen != 'usuario-default.webp') {
                 $filePath = public_path('img/usuarios/' . $user->imagen);
-            
+
                 if (File::exists($filePath)) {
                     File::delete($filePath);
                 }
             }
-            
+
             $nombreImagen = $user->id . '.' . $extension;
             $user->imagen = $nombreImagen;
             $user->save();
@@ -393,7 +403,7 @@ class UsuarioController extends BaseController
             'activo' => 0,
             'imagen' => 'usuario-default.webp'
         ]);
-        
+
 
         return redirect()->route('gestion-usuarios')->with('mensaje', 'Usuario eliminado correctamente');
     }
@@ -454,19 +464,19 @@ class UsuarioController extends BaseController
                 'instagram' => $request->input('instagram-usuario'),
                 'linkedin' => $request->input('linkedin-usuario'),
                 'mensaje' => $request->input('mensaje-usuario')
-                
+
             );
             try {
                 $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
                 $transport->setUsername('viorbe20@gmail.com');
                 $transport->setPassword('qgeccmuaivcojphv');
-                
+
                 $mailer = new Swift_Mailer($transport);
-                
+
                 $message = new Swift_Message('Prueba email inscripción FAB-IDI');
                 $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
                 $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-usuario')]);
-                $message->setBody(view('emails.inscripcion-red-fab-idi', ['data' => $data ])->render(), 'text/html');
+                $message->setBody(view('emails.inscripcion-red-fab-idi', ['data' => $data])->render(), 'text/html');
                 $mailer->send($message);
             } catch (Exception $e) {
                 return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
@@ -487,14 +497,14 @@ class UsuarioController extends BaseController
                 $transport = new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls');
                 $transport->setUsername('viorbe20@gmail.com');
                 $transport->setPassword('qgeccmuaivcojphv');
-            
+
                 $mailer = new Swift_Mailer($transport);
-            
+
                 $message = new Swift_Message('Prueba email contraseña');
                 $message->setFrom(['viorbe20@gmail.com' => 'Fab Idi']);
                 $message->setTo(['a20orbevi@iesgrancapitan.org' => $request->input('nombre-entidad')]);
-                $message->setBody(view('emails.inscripcion-red-fab-idi', ['data' => $data ])->render(), 'text/html');
-                $mailer->send($message);           
+                $message->setBody(view('emails.inscripcion-red-fab-idi', ['data' => $data])->render(), 'text/html');
+                $mailer->send($message);
             } catch (Exception $e) {
                 return view("quienes-somos")->with('mensaje', 'Error al enviar el email');
             }

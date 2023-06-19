@@ -17,7 +17,7 @@
                 </li>
 
                 <li class="{{ Route::is('https://jovenesconinvestigadores.wordpress.com/') ? 'active' : '' }}">
-                    <a href="https://jovenesconinvestigadores.wordpress.com/">Jóvenes
+                    <a href="https://jovenesconinvestigadores.wordpress.com/" target='_blank'>Jóvenes
                         con Investigadores</a>
                 </li>
 
@@ -38,7 +38,7 @@
                 </li>
 
                 <li class="{{ Request::url() === 'https://profundizaiesmartinrivero.blogspot.com/' ? 'active' : '' }}">
-                    <a href="https://profundizaiesmartinrivero.blogspot.com/">Blog</a>
+                    <a href="https://profundizaiesmartinrivero.blogspot.com/" target='_blank'>Blog</a>
                 </li>
 
 
